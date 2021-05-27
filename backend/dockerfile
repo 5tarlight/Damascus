@@ -1,0 +1,14 @@
+FROM node:14
+
+WORKDIR /app/backend
+ENV PATH /app/backend/node_modules/.bin:$PATH
+
+COPY package.json ./
+COPY yarn.lock ./
+COPY tsconfig.json ./
+
+COPY . ./
+
+RUN yarn
+
+CMD [ "yarn", "start" ]
