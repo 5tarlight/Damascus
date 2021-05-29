@@ -7,4 +7,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: white;
+}
+
+.item-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
 }
