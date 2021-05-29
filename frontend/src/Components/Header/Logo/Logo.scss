@@ -1,0 +1,15 @@
+.img-logo {
+  width: 250px;
+
+  @media screen and (max-width: 600px) {
+    width: 150px;
+  }
+}
+
+.logo {
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
