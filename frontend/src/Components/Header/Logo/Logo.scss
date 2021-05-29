@@ -1,6 +1,9 @@
 .img-logo {
-  width: 10rem;
+  width: 250px;
 
+  @media screen and (max-width: 600px) {
+    width: 150px;
+  }
   &:hover {
     cursor: pointer;
   }
