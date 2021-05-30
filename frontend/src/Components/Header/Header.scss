@@ -1,5 +1,4 @@
 .header {
-  margin: 0 auto;
   background-color: black;
   padding: 20px 100px;
   height: 60px;
@@ -8,6 +7,12 @@
   align-items: center;
   justify-content: space-between;
   color: white;
+
+  /* 스마트폰 세로 */
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    padding: 10px 20px;
+  }
 }
 
 .item-list {
