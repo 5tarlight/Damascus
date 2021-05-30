@@ -2,8 +2,9 @@ import { Component } from 'react'
 import Logo from './Logo/Logo'
 import styles from './Header.scss'
 import classNames from 'classnames/bind'
-import HeaderItem from './HeaderItem/HeaderItem'
-import HeaderAuthItem from './HeaderAuthItem/HeaderAuthItem'
+// import HeaderItem from './HeaderItem/HeaderItem'
+// import HeaderAuthItem from './HeaderAuthItem/HeaderAuthItem'
+import HeaderSearch from './HeaderSearch/HeaderSearch'
 
 const cx = classNames.bind(styles)
 
@@ -20,31 +21,32 @@ class Header extends Component<{}, State> {
   }
 
   render() {
-    const menu = this.state.width >= 748 ?
-      (
-        <>
-          <li><HeaderItem text='커미션' to='/commisions' /></li>
-          <li><HeaderItem text='커미션' to='/commisions' /></li>
-        </>
-      ): (
-        <div>
+    // const menu = this.state.width >= 748 ?
+    //   (
+    //     <>
+    //       <li><HeaderItem text='커미션' to='/commisions' /></li>
+    //       <li><HeaderItem text='커미션' to='/commisions' /></li>
+    //     </>
+    //   ): (
+    //     <div>
 
-        </div>
-      )
+    //     </div>
+    //   )
 
     return (
       <div className={cx('header')}>
         <Logo />
-        <div>
-          <ul className={cx('item-list')}>
-            {menu}
-          </ul>
-        </div>
         <nav>
           <ul className={cx('item-list')}>
+            <HeaderSearch />
+            
+          </ul>
+        </nav>
+        <nav>
+          {/* <ul className={cx('item-list')}>
             <li><HeaderAuthItem text='로그인' to='/auth/login' /></li>
             <li><HeaderAuthItem text='회원가입' to='/auth/signup' /></li>
-          </ul>
+          </ul> */}
         </nav>
       </div>
     )
