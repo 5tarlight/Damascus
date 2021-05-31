@@ -1,9 +1,8 @@
 import { FC } from 'react'
+import Error404 from '../Components/Error404/Error404'
 
 const NotFound: FC<{}> = () => (
-  <div>
-    Not Found
-  </div>
+  <Error404 />
 )
 
 export default NotFound
