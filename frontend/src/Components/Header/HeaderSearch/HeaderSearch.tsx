@@ -10,15 +10,15 @@ const HeaderSearch: FC<{}> = () => {
     <InputGroup className={cx('mb-3', 'search')}>
       <FormControl
         className={cx('search-input')}
-        placeholder="Recipient's username"
-        aria-label="Recipient's username"
+        placeholder="카테고리"
+        aria-label="Category"
         aria-describedby="basic-addon2"
       />
       <InputGroup.Append>
         <Button
           className={cx('search-btn')}
           variant="outline-secondary"
-        >Button</Button>
+        >검색</Button>
       </InputGroup.Append>
     </InputGroup>
   )
