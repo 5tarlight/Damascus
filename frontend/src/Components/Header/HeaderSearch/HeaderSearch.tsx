@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import styles from './HeaderSearch.scss'
 import classNames from 'classnames/bind'
-import { Button, InputGroup } from 'react-bootstrap'
+import { InputGroup } from 'react-bootstrap'
 import SearchInput from './SearchInput/SearchInput'
+import SearchBtn from './SearchBtn/SearchBtn'
 
 const cx = classNames.bind(styles)
 
@@ -10,12 +11,7 @@ const HeaderSearch: FC<{}> = () => {
   return (
     <InputGroup className={cx('mb-3', 'search')}>
       <SearchInput />
-      <InputGroup.Append>
-        <Button
-          className={cx('search-btn')}
-          variant="outline-secondary"
-        >검색</Button>
-      </InputGroup.Append>
+      <SearchBtn />
     </InputGroup>
   )
 }
