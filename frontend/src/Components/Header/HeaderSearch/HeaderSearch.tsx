@@ -1,19 +1,15 @@
 import { FC } from 'react'
 import styles from './HeaderSearch.scss'
 import classNames from 'classnames/bind'
-import { Button, FormControl, InputGroup } from 'react-bootstrap'
+import { Button, InputGroup } from 'react-bootstrap'
+import SearchInput from './SearchInput/SearchInput'
 
 const cx = classNames.bind(styles)
 
 const HeaderSearch: FC<{}> = () => {
   return (
     <InputGroup className={cx('mb-3', 'search')}>
-      <FormControl
-        className={cx('search-input')}
-        placeholder="카테고리"
-        aria-label="Category"
-        aria-describedby="basic-addon2"
-      />
+      <SearchInput />
       <InputGroup.Append>
         <Button
           className={cx('search-btn')}
