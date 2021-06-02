@@ -1,27 +1,42 @@
-import { FC } from 'react'
+import { ChangeEvent, Component } from 'react'
 import styles from './HeaderSearch.scss'
 import classNames from 'classnames/bind'
-import { Button, FormControl, InputGroup } from 'react-bootstrap'
+import { InputGroup } from 'react-bootstrap'
+import SearchInput from './SearchInput/SearchInput'
+import SearchBtn from './SearchBtn/SearchBtn'
 
 const cx = classNames.bind(styles)
 
-const HeaderSearch: FC<{}> = () => {
-  return (
-    <InputGroup className={cx('mb-3', 'search')}>
-      <FormControl
-        className={cx('search-input')}
-        placeholder="카테고리"
-        aria-label="Category"
-        aria-describedby="basic-addon2"
-      />
-      <InputGroup.Append>
-        <Button
-          className={cx('search-btn')}
-          variant="outline-secondary"
-        >검색</Button>
-      </InputGroup.Append>
-    </InputGroup>
-  )
+interface State {
+  value: string
+}
+
+class HeaderSearch extends Component<{}, State> {
+  constructor(props: {}) {
+    super(props)
+
+    this.state = {
+      value: ''
+    }
+  }
+
+  render() {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      this.setState({
+        value: e.target.value
+      })
+    }
+
+    return (
+      <InputGroup className={cx('mb-3', 'search')}>
+        <SearchInput
+          text={this.state.value}
+          handleChange={handleChange}
+        />
+        <SearchBtn text={this.state.value} />
+      </InputGroup>
+    )
+  }
 }
 
 export default HeaderSearch
