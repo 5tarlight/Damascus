@@ -33,7 +33,7 @@ class HeaderSearch extends Component<{}, State> {
           text={this.state.value}
           handleChange={handleChange}
         />
-        <SearchBtn />
+        <SearchBtn text={this.state.value} />
       </InputGroup>
     )
   }
