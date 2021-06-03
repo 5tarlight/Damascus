@@ -1,9 +1,10 @@
-import { ChangeEvent, Component } from 'react'
+import { ChangeEvent, Component, createRef } from 'react'
 import styles from './HeaderSearch.scss'
 import classNames from 'classnames/bind'
 import { InputGroup } from 'react-bootstrap'
 import SearchInput from './SearchInput/SearchInput'
 import SearchBtn from './SearchBtn/SearchBtn'
+import SearchDropdown from './SearchDropdown/SearchDropdown'
 
 const cx = classNames.bind(styles)
 
@@ -21,10 +22,20 @@ class HeaderSearch extends Component<{}, State> {
   }
 
   render() {
+    const dropdown = createRef<HTMLDivElement>()
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       this.setState({
         value: e.target.value
       })
+    }
+
+    const handleShow = () => {
+      dropdown.current?.classList.toggle('show')
+    }
+
+    const handleHide = () => {
+      dropdown.current?.classList.toggle('show')
     }
 
     return (
@@ -32,7 +43,10 @@ class HeaderSearch extends Component<{}, State> {
         <SearchInput
           text={this.state.value}
           handleChange={handleChange}
+          handleShow={handleShow}
+          handleHide={handleHide}
         />
+        <SearchDropdown dropdownRef={dropdown} />
         <SearchBtn text={this.state.value} />
       </InputGroup>
     )
