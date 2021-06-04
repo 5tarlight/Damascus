@@ -4,7 +4,8 @@ import classNames from 'classnames/bind'
 import { InputGroup } from 'react-bootstrap'
 import SearchInput from './SearchInput/SearchInput'
 import SearchBtn from './SearchBtn/SearchBtn'
-import SearchDropdown from './SearchDropdown/SearchDropdown'
+import SearchDropdown, { DropdownData } from './SearchDropdown/SearchDropdown'
+import DropdownBackground from './SearchDropdown/DropdownBackground/DropdownBackground'
 
 const cx = classNames.bind(styles)
 
@@ -23,6 +24,7 @@ class HeaderSearch extends Component<{}, State> {
 
   render() {
     const dropdown = createRef<HTMLDivElement>()
+    const background = createRef<HTMLDivElement>()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       this.setState({
@@ -30,25 +32,48 @@ class HeaderSearch extends Component<{}, State> {
       })
     }
 
+    const setValue = (s: string) => {
+      console.log(s)
+      this.setState({
+        value: s
+      })
+    }
+
     const handleShow = () => {
-      dropdown.current?.classList.toggle('show')
+      dropdown.current?.classList.add('show')
+      background.current?.classList.add('show')
     }
 
     const handleHide = () => {
-      dropdown.current?.classList.toggle('show')
+      dropdown.current?.classList.remove('show')
+      background.current?.classList.remove('show')
     }
 
+    const items: [DropdownData] | [] = [
+      {
+        to: 'test',
+        value: 'zz'
+      }
+    ]
+
     return (
-      <InputGroup className={cx('mb-3', 'search')}>
-        <SearchInput
-          text={this.state.value}
-          handleChange={handleChange}
-          handleShow={handleShow}
-          handleHide={handleHide}
-        />
-        <SearchDropdown dropdownRef={dropdown} />
-        <SearchBtn text={this.state.value} />
-      </InputGroup>
+      <>
+        <InputGroup className={cx('mb-3', 'search')}>
+          <SearchInput
+            text={this.state.value}
+            handleChange={handleChange}
+            handleShow={handleShow}
+          />
+          <SearchDropdown
+            dropdownRef={dropdown}
+            items={items}
+            setValue={setValue}
+            handleHide={handleHide}
+          />
+          <SearchBtn text={this.state.value} handleHide={handleHide} />
+          <DropdownBackground backRef={background} onHide={handleHide} />
+        </InputGroup>
+      </>
     )
   }
 }

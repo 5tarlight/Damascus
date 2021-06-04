@@ -5,30 +5,39 @@ import DropdownItem from './DropdownItem/DropdownItem'
 
 const cx = classNames.bind(styles)
 
-interface Props {
-  dropdownRef: RefObject<HTMLDivElement>
+export interface DropdownData {
+  to: string
+  value: string
 }
 
-const SearchDropdown: FC<Props> = ({ dropdownRef }) => {
+interface Props {
+  dropdownRef: RefObject<HTMLDivElement>
+  items: [DropdownData] | []
+  setValue(s: string): void
+  handleHide(): void
+}
+
+const SearchDropdown: FC<Props> = ({ dropdownRef, items, setValue, handleHide }) => {
+  let dd
+  if (items.length < 1)
+    dd = (<></>)
+  else {
+    dd = items.map(({ to, value }: DropdownData) => {
+      return (
+        <DropdownItem
+          to={to}
+          value={value}
+          closeOnClick={handleHide}
+          redirect={setValue}
+          key={value}
+        />
+      )
+    })
+  }
 
   return (
     <div ref={dropdownRef} className={cx('dropdown-content')}>
-      <DropdownItem
-        to='/test'
-        value='테스트'
-        closeOnClick={() => dropdownRef.current?.classList.toggle('show')}
-        redirect={s => {
-
-        }}
-      />
-      <DropdownItem
-        to='/test'
-        value='테스트'
-        closeOnClick={() => dropdownRef.current?.classList.toggle('show')}
-        redirect={s => {
-
-        }}
-      />
+      {dd}
     </div>
   )
 }

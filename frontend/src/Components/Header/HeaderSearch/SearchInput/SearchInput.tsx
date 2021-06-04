@@ -8,7 +8,6 @@ const cx = classNames.bind(styles)
 interface Props {
   handleChange(e: ChangeEvent<HTMLInputElement>): void
   handleShow(): void
-  handleHide(): void
   text: string
 }
 
@@ -18,7 +17,7 @@ class SearchInput extends Component<Props, {}> {
   }
 
   render() {
-    const { handleChange, text, handleShow, handleHide } = this.props
+    const { handleChange, text, handleShow } = this.props
 
     return (
       <FormControl
@@ -29,7 +28,6 @@ class SearchInput extends Component<Props, {}> {
         onChange={handleChange}
         value={text}
         onFocus={handleShow}
-        onBlur={handleHide}
       />
     )
   }
