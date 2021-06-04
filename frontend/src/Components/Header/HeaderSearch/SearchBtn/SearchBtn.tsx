@@ -8,14 +8,16 @@ const cx = classNames.bind(styles)
 
 interface Props {
   text: string
+  handleHide(): void
 }
 
-const SearchBtn: FC<Props> = ({ text }) => {
+const SearchBtn: FC<Props> = ({ text, handleHide }) => {
   const history = useHistory()
 
   const handleClick = (e: ME<HTMLElement, MouseEvent>) => {
     e.preventDefault()
     e.stopPropagation()
+    handleHide()
     if (text.trim())
       history.push(`/search/${text.trim()}`)
   }

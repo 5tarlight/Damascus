@@ -1,0 +1,17 @@
+.dropdown-content {
+  z-index: 100;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  left: 0;
+  top: 38px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: black;
+}
+
+.show {
+  display: block;
+}

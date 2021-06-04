@@ -7,6 +7,7 @@ const cx = classNames.bind(styles)
 
 interface Props {
   handleChange(e: ChangeEvent<HTMLInputElement>): void
+  handleShow(): void
   text: string
 }
 
@@ -16,7 +17,7 @@ class SearchInput extends Component<Props, {}> {
   }
 
   render() {
-    const { handleChange, text } = this.props
+    const { handleChange, text, handleShow } = this.props
 
     return (
       <FormControl
@@ -26,6 +27,7 @@ class SearchInput extends Component<Props, {}> {
         aria-describedby="basic-addon2"
         onChange={handleChange}
         value={text}
+        onFocus={handleShow}
       />
     )
   }
