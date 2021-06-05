@@ -12,7 +12,7 @@ export interface DropdownData {
 
 interface Props {
   dropdownRef: RefObject<HTMLDivElement>
-  items: [DropdownData] | []
+  items: [DropdownData?]
   setValue(s: string): void
   handleHide(): void
 }
@@ -22,7 +22,8 @@ const SearchDropdown: FC<Props> = ({ dropdownRef, items, setValue, handleHide })
   if (items.length < 1)
     dd = (<></>)
   else {
-    dd = items.map(({ to, value }: DropdownData) => {
+
+    dd = (items as [DropdownData]).map(({ to, value }: DropdownData) => {
       return (
         <DropdownItem
           to={to}

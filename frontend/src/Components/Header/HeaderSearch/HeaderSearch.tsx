@@ -6,11 +6,13 @@ import SearchInput from './SearchInput/SearchInput'
 import SearchBtn from './SearchBtn/SearchBtn'
 import SearchDropdown, { DropdownData } from './SearchDropdown/SearchDropdown'
 import DropdownBackground from './SearchDropdown/DropdownBackground/DropdownBackground'
+import { filterCategory } from './SearchFilter'
 
 const cx = classNames.bind(styles)
 
 interface State {
-  value: string
+  value: string,
+  items: [DropdownData?]
 }
 
 class HeaderSearch extends Component<{}, State> {
@@ -18,7 +20,8 @@ class HeaderSearch extends Component<{}, State> {
     super(props)
 
     this.state = {
-      value: ''
+      value: '',
+      items: []
     }
   }
 
@@ -26,16 +29,34 @@ class HeaderSearch extends Component<{}, State> {
     const dropdown = createRef<HTMLDivElement>()
     const background = createRef<HTMLDivElement>()
 
+    const getItems = (str: string) => {
+      if (!str.trim()) return []
+      const search = filterCategory(str.trim())
+
+      const si: any[] = []
+
+      search.forEach((s: any) => {
+        si.push({
+          to: s,
+          value: s
+        })
+      })
+
+      return si
+    }
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+
       this.setState({
-        value: e.target.value
+        value: e.target.value,
+        items: getItems(e.target.value) as [DropdownData?]
       })
     }
 
     const setValue = (s: string) => {
-      console.log(s)
       this.setState({
-        value: s
+        value: s,
+        items: getItems(s) as [DropdownData?]
       })
     }
 
@@ -49,13 +70,6 @@ class HeaderSearch extends Component<{}, State> {
       background.current?.classList.remove('show')
     }
 
-    const items: [DropdownData] | [] = [
-      {
-        to: 'test',
-        value: 'zz'
-      }
-    ]
-
     return (
       <>
         <InputGroup className={cx('mb-3', 'search')}>
@@ -66,7 +80,7 @@ class HeaderSearch extends Component<{}, State> {
           />
           <SearchDropdown
             dropdownRef={dropdown}
-            items={items}
+            items={this.state.items}
             setValue={setValue}
             handleHide={handleHide}
           />

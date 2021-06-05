@@ -16,10 +16,9 @@ const DropdownItem: FC<Props> = ({ closeOnClick, redirect, value, to }) => {
      <div
        className={cx('profile-link')}
        onClick={e => {
-         console.log('clock!')
          e.preventDefault()
          e.stopPropagation()
-         closeOnClick()
+        //  closeOnClick()
          redirect(to)
        }}
      >{value}</div>
