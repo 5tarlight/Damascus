@@ -16,7 +16,7 @@ class Header extends Component<{}, State> {
   constructor(props: {}) {
     super(props)
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
     }
   }
 
@@ -39,7 +39,6 @@ class Header extends Component<{}, State> {
         <nav>
           <ul className={cx('item-list')}>
             <HeaderSearch />
-            
           </ul>
         </nav>
         <nav>

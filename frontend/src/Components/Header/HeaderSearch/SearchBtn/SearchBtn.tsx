@@ -18,8 +18,7 @@ const SearchBtn: FC<Props> = ({ text, handleHide }) => {
     e.preventDefault()
     e.stopPropagation()
     handleHide()
-    if (text.trim())
-      history.push(`/search/${text.trim()}`)
+    if (text.trim()) history.push(`/search/${text.trim()}`)
   }
 
   return (
@@ -28,7 +27,9 @@ const SearchBtn: FC<Props> = ({ text, handleHide }) => {
         className={cx('search-btn')}
         variant="outline-secondary"
         onClick={handleClick}
-      >검색</Button>
+      >
+        검색
+      </Button>
     </InputGroup.Append>
   )
 }

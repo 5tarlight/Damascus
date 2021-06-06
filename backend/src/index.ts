@@ -13,5 +13,5 @@ app.route('/').get((req, res) => {
 })
 
 app.listen(app.get('port'), () => {
-  console.log(`Server is ready on ${app.get("port")} port`)
+  console.log(`Server is ready on ${app.get('port')} port`)
 })

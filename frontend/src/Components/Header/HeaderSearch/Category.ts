@@ -8,7 +8,7 @@ export const category = {
       webtoon: '웹툰',
       comic: '만화',
       caricature: '캐리커처',
-      caligraphy: '캘리그래피'
+      caligraphy: '캘리그래피',
     },
   },
   design: {
@@ -36,7 +36,7 @@ export const category = {
     sub: {
       videoEditting: '영상 편집',
       introMaking: '인트로 메이킹',
-      mvpvMaking: 'MV, PV 제작'
-    }
-  }
+      mvpvMaking: 'MV, PV 제작',
+    },
+  },
 }

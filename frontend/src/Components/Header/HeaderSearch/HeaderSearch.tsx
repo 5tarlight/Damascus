@@ -11,7 +11,7 @@ import { filterCategory } from './SearchFilter'
 const cx = classNames.bind(styles)
 
 interface State {
-  value: string,
+  value: string
   items: [DropdownData?]
 }
 
@@ -21,7 +21,7 @@ class HeaderSearch extends Component<{}, State> {
 
     this.state = {
       value: '',
-      items: []
+      items: [],
     }
   }
 
@@ -38,7 +38,7 @@ class HeaderSearch extends Component<{}, State> {
       search.forEach((s: any) => {
         si.push({
           to: s,
-          value: s
+          value: s,
         })
       })
 
@@ -46,17 +46,16 @@ class HeaderSearch extends Component<{}, State> {
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-
       this.setState({
         value: e.target.value,
-        items: getItems(e.target.value) as [DropdownData?]
+        items: getItems(e.target.value) as [DropdownData?],
       })
     }
 
     const setValue = (s: string) => {
       this.setState({
         value: s,
-        items: getItems(s) as [DropdownData?]
+        items: getItems(s) as [DropdownData?],
       })
     }
 

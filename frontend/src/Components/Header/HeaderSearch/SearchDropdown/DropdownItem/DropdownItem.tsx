@@ -12,17 +12,19 @@ interface Props {
 }
 
 const DropdownItem: FC<Props> = ({ closeOnClick, redirect, value, to }) => {
-   return (
-     <div
-       className={cx('profile-link')}
-       onClick={e => {
-         e.preventDefault()
-         e.stopPropagation()
+  return (
+    <div
+      className={cx('profile-link')}
+      onClick={e => {
+        e.preventDefault()
+        e.stopPropagation()
         //  closeOnClick()
-         redirect(to)
-       }}
-     >{value}</div>
-  );
+        redirect(to)
+      }}
+    >
+      {value}
+    </div>
+  )
 }
 
 export default DropdownItem

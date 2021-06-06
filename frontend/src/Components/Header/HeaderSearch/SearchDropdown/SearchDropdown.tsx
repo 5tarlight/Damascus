@@ -17,12 +17,15 @@ interface Props {
   handleHide(): void
 }
 
-const SearchDropdown: FC<Props> = ({ dropdownRef, items, setValue, handleHide }) => {
+const SearchDropdown: FC<Props> = ({
+  dropdownRef,
+  items,
+  setValue,
+  handleHide,
+}) => {
   let dd
-  if (items.length < 1)
-    dd = (<></>)
+  if (items.length < 1) dd = <></>
   else {
-
     dd = (items as [DropdownData]).map(({ to, value }: DropdownData) => {
       return (
         <DropdownItem

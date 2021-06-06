@@ -1,4 +1,3 @@
-
 import { FC, MouseEvent as RMouseEvent, RefObject } from 'react'
 import styles from './DropdownBackground.scss'
 import classNames from 'classnames/bind'

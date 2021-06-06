@@ -15,7 +15,7 @@ const Logo: FC<{}> = () => {
 
   return (
     <div className={cx('logo')} onClick={handleClick}>
-      <img src={logo} alt='DAMASCUS' className={cx('img-logo')} />
+      <img src={logo} alt="DAMASCUS" className={cx('img-logo')} />
     </div>
   )
 }
