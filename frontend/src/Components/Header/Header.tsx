@@ -9,12 +9,14 @@ import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
+interface Props {}
+
 interface State {
   width: number
 }
 
-class Header extends Component<{}, State> {
-  constructor(props: {}) {
+class Header extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       width: window.innerWidth,

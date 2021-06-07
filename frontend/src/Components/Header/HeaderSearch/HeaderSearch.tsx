@@ -7,16 +7,19 @@ import SearchBtn from './SearchBtn/SearchBtn'
 import SearchDropdown, { DropdownData } from './SearchDropdown/SearchDropdown'
 import DropdownBackground from './SearchDropdown/DropdownBackground/DropdownBackground'
 import { filterCategory } from './SearchFilter'
+import history from '../../../history'
 
 const cx = classNames.bind(styles)
+
+interface Props {}
 
 interface State {
   value: string
   items: [DropdownData?]
 }
 
-class HeaderSearch extends Component<{}, State> {
-  constructor(props: {}) {
+class HeaderSearch extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -69,6 +72,11 @@ class HeaderSearch extends Component<{}, State> {
       background.current?.classList.remove('show')
     }
 
+    const handleClick = (text: string) => {
+      handleHide()
+      if (text.trim()) history.push(`/search/${text.trim()}`)
+    }
+
     return (
       <>
         <InputGroup className={cx('mb-3', 'search')}>
@@ -76,6 +84,7 @@ class HeaderSearch extends Component<{}, State> {
             text={this.state.value}
             handleChange={handleChange}
             handleShow={handleShow}
+            handleClick={handleClick}
           />
           <SearchDropdown
             dropdownRef={dropdown}
