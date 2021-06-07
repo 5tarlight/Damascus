@@ -5,6 +5,7 @@ import classNames from 'classnames/bind'
 // import HeaderItem from './HeaderItem/HeaderItem'
 // import HeaderAuthItem from './HeaderAuthItem/HeaderAuthItem'
 import HeaderSearch from './HeaderSearch/HeaderSearch'
+import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
@@ -42,10 +43,9 @@ class Header extends Component<{}, State> {
           </ul>
         </nav>
         <nav>
-          {/* <ul className={cx('item-list')}>
-            <li><HeaderAuthItem text='로그인' to='/auth/login' /></li>
-            <li><HeaderAuthItem text='회원가입' to='/auth/signup' /></li>
-          </ul> */}
+          <ul className={cx('item-list')}>
+            <ProfileIcon />
+          </ul>
         </nav>
       </div>
     )
