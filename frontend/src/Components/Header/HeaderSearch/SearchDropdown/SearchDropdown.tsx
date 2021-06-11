@@ -15,6 +15,7 @@ interface Props {
   items: [DropdownData?]
   setValue(s: string): void
   handleHide(): void
+  isProfile?: boolean
 }
 
 const SearchDropdown: FC<Props> = ({
@@ -22,6 +23,7 @@ const SearchDropdown: FC<Props> = ({
   items,
   setValue,
   handleHide,
+  isProfile,
 }) => {
   let dd
   if (items.length < 1) dd = <></>
@@ -40,7 +42,10 @@ const SearchDropdown: FC<Props> = ({
   }
 
   return (
-    <div ref={dropdownRef} className={cx('dropdown-content')}>
+    <div
+      ref={dropdownRef}
+      className={cx('dropdown-content', { profile: isProfile })}
+    >
       {dd}
     </div>
   )
