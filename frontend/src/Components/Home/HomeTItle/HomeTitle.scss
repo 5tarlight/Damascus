@@ -1,4 +1,21 @@
-title-back {
+.title-back {
   width: 100%;
   height: 500px;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-blend-mode: darken;
+}
+
+.title {
+  text-align: center;
+  line-height: 500px;
+  color: white;
+  font-size: 5rem;
+
+  @media screen and (max-width: 650px) {
+    font-size: 3rem;
+  }
 }

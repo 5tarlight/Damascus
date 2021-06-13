@@ -1,6 +1,7 @@
 import { FC, memo } from 'react'
 import styles from './HomeTitle.scss'
 import classNames from 'classnames/bind'
+import { Properties } from 'csstype'
 import img1 from '../img/home_back1.png'
 import img2 from '../img/home_back2.png'
 import img3 from '../img/home_back3.png'
@@ -11,10 +12,14 @@ const cx = classNames.bind(styles)
 
 const HomeTitle: FC<{}> = () => {
   const imgs = [img1, img2, img3, img4, img5]
-  const img = Math.floor(Math.random() * 5) + 1
+  const img = Math.floor(Math.random() * 5)
 
-  const imgBackStyle = {
-    backgroundImage: `urls(${imgs[img]})`,
+  const imgBackStyle: Properties = {
+    background: `rgba(0, 0, 0, .65) url(${imgs[img]})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center',
+    backgroundBlendMode: 'darken',
   }
 
   console.dir(imgBackStyle)
