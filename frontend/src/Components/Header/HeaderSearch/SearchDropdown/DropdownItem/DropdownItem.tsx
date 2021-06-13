@@ -18,7 +18,7 @@ const DropdownItem: FC<Props> = ({ closeOnClick, redirect, value, to }) => {
       onClick={e => {
         e.preventDefault()
         e.stopPropagation()
-        //  closeOnClick()
+        closeOnClick()
         redirect(to)
       }}
     >
