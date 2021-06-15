@@ -1,8 +1,10 @@
 import { FC } from 'react'
+import AuthBox from '../Components/Auth/AuthBox/AuthBox'
+import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 
 const SignUp: FC<{}> = () => (
-  <>
-    <h1>회원가입</h1>
-  </>
+  <AuthBox>
+    <AuthTitle text="회원가입" />
+  </AuthBox>
 )
 export default SignUp
