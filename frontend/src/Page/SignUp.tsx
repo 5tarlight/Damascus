@@ -6,6 +6,8 @@ import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 const SignUp: FC<{}> = () => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
+  const [pwCon, setPwCon] = useState('')
+  const [username, SetUsername] = useState('')
 
   const handleChnage = (dispatch: Dispatch<SetStateAction<string>>) => {
     return (str: string) => {
@@ -27,6 +29,18 @@ const SignUp: FC<{}> = () => {
         handleChnage={handleChnage(setPw)}
         placeholder="비밀번호"
         password="password"
+      />
+      <AuthInput
+        value={pwCon}
+        handleChnage={handleChnage(setPwCon)}
+        placeholder="비밀번호 확인"
+        password="password"
+      />
+      <AuthInput
+        value={username}
+        handleChnage={handleChnage(SetUsername)}
+        placeholder="이름"
+        password="text"
       />
     </AuthBox>
   )
