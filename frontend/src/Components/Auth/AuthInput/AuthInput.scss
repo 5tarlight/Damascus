@@ -1,0 +1,19 @@
+.auth-input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 3px solid black;
+  margin-bottom: 10px;
+
+  &:focus {
+    border: 3px solid goldenrod;
+  }
+}
+
+.err {
+  border: 3px solid red;
+
+  &:focus {
+    border: 3px solid red;
+  }
+}
