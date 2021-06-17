@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './AuthTitle.scss'
 import classNames from 'classnames/bind'
 
@@ -12,4 +12,4 @@ const AuthTitle: FC<Props> = ({ text }) => (
   <div className={cx('auth-title')}>{text}</div>
 )
 
-export default AuthTitle
+export default memo(AuthTitle)
