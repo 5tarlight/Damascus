@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react'
+import { FC, memo, RefObject } from 'react'
 import styles from './AuthMessage.scss'
 import classNames from 'classnames/bind'
 
@@ -15,4 +15,4 @@ const AuthMessage: FC<Props> = ({ value, reff }) => (
   </div>
 )
 
-export default AuthMessage
+export default memo(AuthMessage)

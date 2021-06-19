@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './AuthBtn.scss'
 import classNames from 'classnames/bind'
 
@@ -16,4 +16,4 @@ const AuthBtn: FC<Props> = ({ value }) => {
   )
 }
 
-export default AuthBtn
+export default memo(AuthBtn)
