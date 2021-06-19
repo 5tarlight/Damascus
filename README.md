@@ -26,7 +26,7 @@ yarn
 
 ### Author
 
-- YEAHx4 (YEAHx4#7777 on discord)
+- YEAHx4 (YEAHx4#5998 on discord)
 
 ### Contact
 
