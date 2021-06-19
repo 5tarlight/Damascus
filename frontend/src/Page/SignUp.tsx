@@ -1,5 +1,6 @@
 import { createRef, Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import AuthBox from '../Components/Auth/AuthBox/AuthBox'
+import AuthBtn from '../Components/Auth/AuthBtn/AuthBtn'
 import AuthInput from '../Components/Auth/AuthInput/AuthInput'
 import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
@@ -58,6 +59,7 @@ const SignUp: FC<{}> = () => {
         value="사용할 수 없는 문자나 이름입니다."
         reff={usernameRef}
       />
+      <AuthBtn value="회원가입" />
     </AuthBox>
   )
 }
