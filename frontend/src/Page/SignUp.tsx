@@ -22,6 +22,40 @@ const SignUp: FC<{}> = () => {
     }
   }
 
+  const emailRegexp =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+  const pwRegexp = /^([a-zA-Z0-9!@#$%^&*\-_]{8,})$/
+
+  const handleClick = () => {
+    if (!emailRegexp.test(email)) {
+      emailRef.current?.classList.add('show')
+      pwRef.current?.classList.remove('show')
+      pwConRef.current?.classList.remove('show')
+      usernameRef.current?.classList.remove('show')
+    } else if (!pwRegexp.test(pw)) {
+      emailRef.current?.classList.remove('show')
+      pwRef.current?.classList.add('show')
+      pwConRef.current?.classList.remove('show')
+      usernameRef.current?.classList.remove('show')
+    } else if (pw !== pwCon) {
+      emailRef.current?.classList.remove('show')
+      pwRef.current?.classList.remove('show')
+      pwConRef.current?.classList.add('show')
+      usernameRef.current?.classList.remove('show')
+    } else if (!username.trim() || username.trim().length < 6) {
+      emailRef.current?.classList.remove('show')
+      pwRef.current?.classList.remove('show')
+      pwConRef.current?.classList.remove('show')
+      usernameRef.current?.classList.add('show')
+    } else {
+      emailRef.current?.classList.remove('show')
+      pwRef.current?.classList.remove('show')
+      pwConRef.current?.classList.remove('show')
+      usernameRef.current?.classList.remove('show')
+      console.log('submit')
+    }
+  }
+
   return (
     <AuthBox>
       <AuthTitle text="회원가입" />
@@ -59,7 +93,7 @@ const SignUp: FC<{}> = () => {
         value="사용할 수 없는 문자나 이름입니다."
         reff={usernameRef}
       />
-      <AuthBtn value="회원가입" />
+      <AuthBtn value="회원가입" handleClick={handleClick} />
     </AuthBox>
   )
 }

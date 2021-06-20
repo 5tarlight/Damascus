@@ -6,11 +6,19 @@ const cx = classNames.bind(styles)
 
 interface Props {
   value: string
+  handleClick(): any
 }
 
-const AuthBtn: FC<Props> = ({ value }) => {
+const AuthBtn: FC<Props> = ({ value, handleClick }) => {
   return (
-    <button className={cx('auth-btn')} type="submit">
+    <button
+      className={cx('auth-btn')}
+      type="submit"
+      onClick={e => {
+        e.preventDefault()
+        handleClick()
+      }}
+    >
       {value}
     </button>
   )
