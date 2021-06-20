@@ -73,7 +73,7 @@ const SignUp: FC<{}> = () => {
         password="password"
       />
       <AuthMessage
-        value="6자리 이상, 특수문자를 포함해야 합니다."
+        value="8자리 이상, 특수문자를 포함해야 합니다."
         reff={pwRef}
       />
       <AuthInput
@@ -90,7 +90,7 @@ const SignUp: FC<{}> = () => {
         password="text"
       />
       <AuthMessage
-        value="사용할 수 없는 문자나 이름입니다."
+        value="6글자 미만이거나, 사용할 수 없는 이름입니다."
         reff={usernameRef}
       />
       <AuthBtn value="회원가입" handleClick={handleClick} />
