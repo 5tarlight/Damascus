@@ -1,4 +1,4 @@
-FROM node:14 as builder
+FROM node:16.0.0-buster-slim
 
 WORKDIR /app/frontend
 ENV PATH /app/frontend/node_modules/.bin:$PATH
