@@ -11,6 +11,7 @@ interface Props {
   password?: inputType
   value: string
   handleChnage(str: string): any
+  handleSubmit(): any
 }
 
 const AuthInput: FC<Props> = ({
@@ -18,6 +19,7 @@ const AuthInput: FC<Props> = ({
   value,
   handleChnage,
   password,
+  handleSubmit,
 }) => (
   <input
     className={cx('auth-input')}
@@ -29,6 +31,9 @@ const AuthInput: FC<Props> = ({
         target: { value },
       } = e
       handleChnage(value)
+    }}
+    onKeyDown={e => {
+      if (e.key === 'Enter') handleSubmit()
     }}
   />
 )

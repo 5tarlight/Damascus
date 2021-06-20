@@ -64,6 +64,7 @@ const SignUp: FC<{}> = () => {
         handleChnage={handleChnage(setEmail)}
         placeholder="이메일"
         password="email"
+        handleSubmit={handleClick}
       />
       <AuthMessage value="유효하지 않은 이메일입니다." reff={emailRef} />
       <AuthInput
@@ -71,6 +72,7 @@ const SignUp: FC<{}> = () => {
         handleChnage={handleChnage(setPw)}
         placeholder="비밀번호"
         password="password"
+        handleSubmit={handleClick}
       />
       <AuthMessage
         value="8자리 이상, 특수문자를 포함해야 합니다."
@@ -81,6 +83,7 @@ const SignUp: FC<{}> = () => {
         handleChnage={handleChnage(setPwCon)}
         placeholder="비밀번호 확인"
         password="password"
+        handleSubmit={handleClick}
       />
       <AuthMessage value="비밀번호가 일치하지 않습니다." reff={pwConRef} />
       <AuthInput
@@ -88,6 +91,7 @@ const SignUp: FC<{}> = () => {
         handleChnage={handleChnage(SetUsername)}
         placeholder="이름"
         password="text"
+        handleSubmit={handleClick}
       />
       <AuthMessage
         value="6글자 미만이거나, 사용할 수 없는 이름입니다."

@@ -44,6 +44,7 @@ const SignIn: FC<{}> = () => {
         handleChnage={handleChnage(setEmail)}
         placeholder="이메일"
         password="email"
+        handleSubmit={handleClick}
       />
       <AuthMessage value="유효하지 않은 이메일입니다." reff={emailRef} />
       <AuthInput
@@ -51,6 +52,7 @@ const SignIn: FC<{}> = () => {
         handleChnage={handleChnage(setPw)}
         placeholder="비밀번호"
         password="password"
+        handleSubmit={handleClick}
       />
       <AuthMessage
         value="8자리 이상, 특수문자를 포함해야 합니다."
