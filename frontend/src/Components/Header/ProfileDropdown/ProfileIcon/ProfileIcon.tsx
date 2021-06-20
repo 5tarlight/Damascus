@@ -27,7 +27,7 @@ const ProfileIcon: FC<{}> = () => {
 
   const items: DropdownData[] = [
     {
-      to: '/auth/login',
+      to: '/auth/signin',
       value: '로그인',
     },
     {
