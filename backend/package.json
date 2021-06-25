@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
+    "@sinclair/typebox": "^0.16.7",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^15.12.4",
     "dotenv": "^8.6.0",
