@@ -1,17 +1,18 @@
-import express from 'express'
+import fastify from 'fastify'
 import dotenv from 'dotenv'
 
+const server = fastify()
 dotenv.config()
 
-const app = express()
-
-app.set('port', process.env.PORT ?? 5676)
-
-app.route('/').get((req, res) => {
-  console.log(req.ip)
-  res.end('Hello World')
+server.get('/test', async (req, rep) => {
+  return 'test!'
 })
 
-app.listen(app.get('port'), () => {
-  console.log(`Server is ready on ${app.get('port')} port`)
+server.listen(process.env.PORT || 5676, (err, addr) => {
+  if (err) {
+    console.error(err)
+    process.exit(0)
+  }
+
+  console.log(`Server listening at ${addr}`)
 })
