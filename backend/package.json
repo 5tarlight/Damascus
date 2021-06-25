@@ -6,14 +6,23 @@
   "dependencies": {
     "@sinclair/typebox": "^0.16.7",
     "@types/dotenv": "^8.2.0",
+    "@types/fastify-cors": "^2.1.0",
     "@types/node": "^15.12.4",
     "dotenv": "^8.6.0",
     "fastify": "^3.18.0",
+    "fastify-compress": "^3.6.0",
+    "fastify-cookie": "^5.3.1",
+    "fastify-cors": "^6.0.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.3.2"
   },
   "scripts": {
     "start": "ts-node src",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "nodemon --config nodemon.json src/index.ts",
+    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
