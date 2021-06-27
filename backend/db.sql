@@ -6,6 +6,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_UN` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='user table with email, pw, username'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='user table with email, pw, username';
