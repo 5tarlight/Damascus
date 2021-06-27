@@ -1,19 +1,23 @@
 import { FastifyPluginCallback } from 'fastify'
 import SignUpBody from './schema/SignUpBody.json'
 
-interface SignUp {}
+interface SignUp {
+  email: string
+  username: string
+  password: string
+}
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
-  /**
-   * POST /api/auth/signup
-   * handle sign up action
-   */
   fastify.get('/', {}, async (req, rep) => {
     rep.send({
       msg: 'Damascus auth api',
     })
   })
 
+  /**
+   * POST /api/auth/signup
+   * handle sign up action
+   */
   fastify.post<{ Body: SignUp }>(
     '/signup',
     {
@@ -22,9 +26,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       },
     },
     async (request, reply) => {
-      reply.send({
-        suc: 'yes',
-      })
+      reply.send(request.body)
     }
   )
 
