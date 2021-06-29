@@ -1,4 +1,5 @@
 import { FastifyPluginCallback } from 'fastify'
+import { user } from '../Database'
 import SignUpBody from './schema/SignUpBody.json'
 
 interface SignUp {
@@ -26,7 +27,14 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       },
     },
     async (request, reply) => {
-      reply.send(request.body)
+      const { email, password, username } = request.body
+      const has = (await user.find({ email: email })).length > 0
+      if (!has) {
+        user.add('email, password, username', email, password, username)
+        reply.code(200).send({ suc: true })
+      } else {
+        reply.code(400).send({ suc: false, msg: 'Already Exists' })
+      }
     }
   )
 
