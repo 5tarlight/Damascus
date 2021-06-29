@@ -6,7 +6,7 @@
   "dependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.12",
-    "@types/node": "^15.3.0",
+    "@types/node": "^15.12.2",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "ts-node": "^9.1.1",
