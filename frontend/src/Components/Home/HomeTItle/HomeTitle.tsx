@@ -22,8 +22,6 @@ const HomeTitle: FC<{}> = () => {
     backgroundBlendMode: 'darken',
   }
 
-  console.dir(imgBackStyle)
-
   return (
     <div className={cx('title-back')} style={imgBackStyle}>
       <h1 className={cx('title')}>We Show Artists</h1>

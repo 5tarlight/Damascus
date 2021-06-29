@@ -92,9 +92,6 @@ class Table<T extends TableType> {
         if (typeof v == 'object') return `'${JSON.stringify(v)}'`
         return `"${v}"`
       })
-      console.log(
-        `INSERT INTO ${this.table} (${seq}) VALUES (${valueArr.join(' , ')})`
-      )
       DB.query(
         `INSERT INTO ${this.table} (${seq}) VALUES (${valueArr.join(' , ')})`,
         err => {
