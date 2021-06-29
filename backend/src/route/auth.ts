@@ -1,5 +1,6 @@
 import { FastifyPluginCallback } from 'fastify'
 import { user } from '../Database'
+import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 
 interface SignUp {
@@ -30,7 +31,12 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       const { email, password, username } = request.body
       const has = (await user.find({ email: email })).length > 0
       if (!has) {
-        user.add('email, password, username', email, password, username)
+        user.add(
+          'email, password, username',
+          email,
+          cryptSha(password),
+          username
+        )
         const reg = await user.findOne({ email: email })
 
         reply.code(200).send({

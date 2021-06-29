@@ -4,7 +4,7 @@ const setting = {
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '3306'),
   user: process.env.DB_USER || 'damascus',
-  password: process.env.DB_PASSWORD || 'damascus',
+  password: process.env.DB_PASSWORD || 'damascus1234',
   database: process.env.DB_DATABASE || 'damascus',
 }
 
