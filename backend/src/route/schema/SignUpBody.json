@@ -1,0 +1,16 @@
+{
+  "title": "Sign Up Body",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "usernane": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    }
+  },
+  "required": ["email", "username", "password"]
+}

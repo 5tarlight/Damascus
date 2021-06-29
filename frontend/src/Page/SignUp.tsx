@@ -1,20 +1,25 @@
+import axios from 'axios'
 import { createRef, Dispatch, FC, memo, SetStateAction, useState } from 'react'
+import { useHistory } from 'react-router'
 import AuthBox from '../Components/Auth/AuthBox/AuthBox'
 import AuthBtn from '../Components/Auth/AuthBtn/AuthBtn'
 import AuthInput from '../Components/Auth/AuthInput/AuthInput'
 import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
+import { server } from '../config'
 
 const SignUp: FC<{}> = () => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwCon, setPwCon] = useState('')
   const [username, SetUsername] = useState('')
+  const history = useHistory()
 
   const emailRef = createRef<HTMLDivElement>()
   const pwRef = createRef<HTMLDivElement>()
   const pwConRef = createRef<HTMLDivElement>()
   const usernameRef = createRef<HTMLDivElement>()
+  const resultRef = createRef<HTMLDivElement>()
 
   const handleChnage = (dispatch: Dispatch<SetStateAction<string>>) => {
     return (str: string) => {
@@ -25,6 +30,7 @@ const SignUp: FC<{}> = () => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
   const pwRegexp = /^([a-zA-Z0-9!@#$%^&*\-_]{8,})$/
+  const usernameExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/
 
   const handleClick = () => {
     if (!emailRegexp.test(email)) {
@@ -32,27 +38,58 @@ const SignUp: FC<{}> = () => {
       pwRef.current?.classList.remove('show')
       pwConRef.current?.classList.remove('show')
       usernameRef.current?.classList.remove('show')
+      resultRef.current?.classList.remove('show')
     } else if (!pwRegexp.test(pw)) {
       emailRef.current?.classList.remove('show')
       pwRef.current?.classList.add('show')
       pwConRef.current?.classList.remove('show')
       usernameRef.current?.classList.remove('show')
+      resultRef.current?.classList.remove('show')
     } else if (pw !== pwCon) {
       emailRef.current?.classList.remove('show')
       pwRef.current?.classList.remove('show')
       pwConRef.current?.classList.add('show')
       usernameRef.current?.classList.remove('show')
-    } else if (!username.trim() || username.trim().length < 6) {
+      resultRef.current?.classList.remove('show')
+    } else if (!username.trim() || !usernameExp.test(username)) {
       emailRef.current?.classList.remove('show')
       pwRef.current?.classList.remove('show')
       pwConRef.current?.classList.remove('show')
       usernameRef.current?.classList.add('show')
+      resultRef.current?.classList.remove('show')
     } else {
       emailRef.current?.classList.remove('show')
       pwRef.current?.classList.remove('show')
       pwConRef.current?.classList.remove('show')
       usernameRef.current?.classList.remove('show')
-      console.log('submit')
+      resultRef.current?.classList.remove('show')
+      handleSubmit()
+    }
+  }
+
+  const handleSubmit = async () => {
+    const data = {
+      email,
+      password: pw,
+      username,
+    }
+
+    try {
+      const result = await axios.post(`http://${server}/api/auth/signup`, data)
+      if (result.data.suc) {
+        // Sign up success
+        localStorage.setItem('login', 'true')
+        localStorage.setItem('id', result.data.id)
+        localStorage.setItem('email', result.data.email)
+        localStorage.setItem('username', result.data.username)
+        history.push('/')
+      } else {
+        // already exists
+        resultRef.current?.classList.add('show')
+      }
+    } catch (err) {
+      console.error(err)
+      resultRef.current?.classList.add('show')
     }
   }
 
@@ -67,6 +104,7 @@ const SignUp: FC<{}> = () => {
         handleSubmit={handleClick}
       />
       <AuthMessage value="유효하지 않은 이메일입니다." reff={emailRef} />
+      <AuthMessage value="사용중인 이메일입니다." reff={resultRef} />
       <AuthInput
         value={pw}
         handleChnage={handleChnage(setPw)}
@@ -93,10 +131,7 @@ const SignUp: FC<{}> = () => {
         password="text"
         handleSubmit={handleClick}
       />
-      <AuthMessage
-        value="6글자 미만이거나, 사용할 수 없는 이름입니다."
-        reff={usernameRef}
-      />
+      <AuthMessage value="사용할 수 없는 이름입니다." reff={usernameRef} />
       <AuthBtn value="회원가입" handleClick={handleClick} />
     </AuthBox>
   )
