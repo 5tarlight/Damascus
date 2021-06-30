@@ -7,7 +7,11 @@ import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
-const Header: FC<{}> = () => (
+interface Props {
+  login: boolean
+}
+
+const Header: FC<Props> = ({ login }) => (
   <div className={cx('header')}>
     <Logo />
     <nav>
@@ -17,7 +21,7 @@ const Header: FC<{}> = () => (
     </nav>
     <nav>
       <ul className={cx('item-list')}>
-        <ProfileIcon />
+        <ProfileIcon login={login} />
       </ul>
     </nav>
   </div>

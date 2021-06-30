@@ -5,7 +5,11 @@ import AuthInput from '../Components/Auth/AuthInput/AuthInput'
 import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 
-const SignIn: FC<{}> = () => {
+interface Props {
+  setLogin: Dispatch<SetStateAction<boolean>>
+}
+
+const SignIn: FC<Props> = ({ setLogin }) => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
 

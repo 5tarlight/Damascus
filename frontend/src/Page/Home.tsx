@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import HomeTitle from '../Components/Home/HomeTItle/HomeTitle'
 
 const Home: FC<{}> = () => (
@@ -6,4 +6,4 @@ const Home: FC<{}> = () => (
     <HomeTitle />
   </>
 )
-export default Home
+export default memo(Home)
