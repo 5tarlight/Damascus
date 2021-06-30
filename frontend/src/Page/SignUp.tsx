@@ -8,7 +8,11 @@ import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 import { server } from '../config'
 
-const SignUp: FC<{}> = () => {
+interface Props {
+  setLogin: Dispatch<SetStateAction<boolean>>
+}
+
+const SignUp: FC<Props> = ({ setLogin }) => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwCon, setPwCon] = useState('')
@@ -82,6 +86,7 @@ const SignUp: FC<{}> = () => {
         localStorage.setItem('id', result.data.id)
         localStorage.setItem('email', result.data.email)
         localStorage.setItem('username', result.data.username)
+        setLogin(true)
         history.push('/')
       } else {
         // already exists

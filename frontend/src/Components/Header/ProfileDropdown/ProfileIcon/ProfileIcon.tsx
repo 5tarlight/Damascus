@@ -10,7 +10,11 @@ import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackgr
 
 const cx = classNames.bind(styles)
 
-const ProfileIcon: FC<{}> = () => {
+interface Props {
+  login: boolean
+}
+
+const ProfileIcon: FC<Props> = ({ login }) => {
   const history = useHistory()
   const dropdown = createRef<HTMLDivElement>()
   const background = createRef<HTMLDivElement>()
@@ -25,16 +29,27 @@ const ProfileIcon: FC<{}> = () => {
     background.current?.classList.remove('show')
   }
 
-  const items: DropdownData[] = [
-    {
-      to: '/auth/signin',
-      value: '로그인',
-    },
-    {
-      to: '/auth/signup',
-      value: '회원가입',
-    },
-  ]
+  const items: DropdownData[] = login
+    ? [
+        {
+          to: '/profile',
+          value: '프로필',
+        },
+        {
+          to: '/auth/logout',
+          value: '로그아웃',
+        },
+      ]
+    : [
+        {
+          to: '/auth/signin',
+          value: '로그인',
+        },
+        {
+          to: '/auth/signup',
+          value: '회원가입',
+        },
+      ]
 
   const redirect = (s: string) => {
     history.push(s)

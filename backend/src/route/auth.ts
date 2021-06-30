@@ -2,10 +2,16 @@ import { FastifyPluginCallback } from 'fastify'
 import { user } from '../Database'
 import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
+import SignInBody from './schema/LoginBody.json'
 
 interface SignUp {
   email: string
   username: string
+  password: string
+}
+
+interface SignIn {
+  email: string
   password: string
 }
 
@@ -47,6 +53,40 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         })
       } else {
         reply.code(200).send({ suc: false, msg: 'Already Exists' })
+      }
+    }
+  )
+
+  /**
+   * POST /api/auth/signin
+   * handle sign in action
+   */
+  fastify.post<{ Body: SignIn }>(
+    '/signin',
+    {
+      schema: {
+        body: SignInBody,
+      },
+    },
+    async (request, reply) => {
+      const {
+        body: { email, password },
+      } = request
+
+      const pw = cryptSha(password)
+
+      const check = await user.find({ email: email, password: pw })
+      if (check.length < 1) {
+        reply.code(200).send({ suc: false })
+      } else {
+        reply
+          .code(200)
+          .send({
+            suc: true,
+            id: check[0].id,
+            email: check[0].email,
+            username: check[0].username,
+          })
       }
     }
   )
