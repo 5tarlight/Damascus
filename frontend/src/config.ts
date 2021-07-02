@@ -1,1 +1,1 @@
-export const server = 'localhost:5676'
+export const server = 'yeahx4.kro.kr:5676'

@@ -2,7 +2,6 @@ import fastify from 'fastify'
 import corsPlugin from 'fastify-cors'
 import cookie from 'fastify-cookie'
 import compress from 'fastify-compress'
-import authRoute from './route/auth'
 import apiRoute from './route/router'
 
 const PORT = process.env.PORT! || 5676
@@ -17,6 +16,7 @@ export default class Server {
   setup() {
     this.app.register(corsPlugin, {
       origin: (origin, callback) => {
+        // callback(null, true)
         if (!origin) {
           return callback(null, true)
         }
@@ -26,7 +26,9 @@ export default class Server {
           'localhost:3000',
           'yeahx4.kro.kr:3000',
           'yeahx4.kro.kr',
+          'yeahx4.kro.kr:5676',
         ]
+        console.log(origin)
         const allowed = allowedHost.includes(host)
         callback(null, allowed)
       },
@@ -49,7 +51,7 @@ export default class Server {
   }
 
   start() {
-    return this.app.listen(PORT)
+    return this.app.listen(PORT, '0.0.0.0')
   }
 
   close() {
