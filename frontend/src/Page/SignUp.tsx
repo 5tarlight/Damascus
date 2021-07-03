@@ -6,6 +6,8 @@ import AuthBtn from '../Components/Auth/AuthBtn/AuthBtn'
 import AuthInput from '../Components/Auth/AuthInput/AuthInput'
 import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
+import AuthLink from '../Components/Auth/AuthLink/AuthLink'
+import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import { server } from '../config'
 
 interface Props {
@@ -138,6 +140,12 @@ const SignUp: FC<Props> = ({ setLogin }) => {
       />
       <AuthMessage value="사용할 수 없는 이름입니다." reff={usernameRef} />
       <AuthBtn value="회원가입" handleClick={handleClick} />
+
+      <AuthLinkBox>
+        <AuthLink value="로그인" to="/auth/signin" />
+        <AuthLink value="아이디 찾기" to="/auth/searchid" />
+        <AuthLink value="비밀번호 찾기" to="/auth/searchpw" />
+      </AuthLinkBox>
     </AuthBox>
   )
 }
