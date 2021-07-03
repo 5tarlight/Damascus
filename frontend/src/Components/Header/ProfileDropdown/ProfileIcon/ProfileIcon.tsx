@@ -32,7 +32,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
   const items: DropdownData[] = login
     ? [
         {
-          to: '/profile',
+          to: `/profile/${localStorage.getItem('id')}`,
           value: '프로필',
         },
         {
