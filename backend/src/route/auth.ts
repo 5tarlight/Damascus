@@ -3,6 +3,7 @@ import { user } from '../Database'
 import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
+import GetUserById from './schema/GetUserById.json'
 
 interface SignUp {
   email: string
@@ -13,6 +14,10 @@ interface SignUp {
 interface SignIn {
   email: string
   password: string
+}
+
+interface UserById {
+  id: number
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
@@ -88,6 +93,29 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
           admin: check[0].admin,
         })
       }
+    }
+  )
+
+  fastify.get<{ Querystring: UserById }>(
+    '/getuserbyid',
+    {
+      schema: {
+        querystring: GetUserById,
+      },
+    },
+    async (request, reply) => {
+      const {
+        query: { id },
+      } = request
+
+      const result = (await user.find({ id: id })).map(v => ({
+        id: v.id,
+        email: v.email,
+        admin: v.admin,
+        username: v.username,
+      }))
+
+      reply.code(200).send(result)
     }
   )
 
