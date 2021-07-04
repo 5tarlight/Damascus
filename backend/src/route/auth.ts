@@ -96,6 +96,10 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
     }
   )
 
+  /**
+   * GET /api/auth/getuserbyid
+   * return user from database fit to id
+   */
   fastify.get<{ Querystring: UserById }>(
     '/getuserbyid',
     {
