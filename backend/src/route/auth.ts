@@ -50,6 +50,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
           id: reg.id,
           email: reg.email,
           username: reg.username,
+          admin: reg.admin.data,
         })
       } else {
         reply.code(200).send({ suc: false, msg: 'Already Exists' })
@@ -79,14 +80,13 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       if (check.length < 1) {
         reply.code(200).send({ suc: false })
       } else {
-        reply
-          .code(200)
-          .send({
-            suc: true,
-            id: check[0].id,
-            email: check[0].email,
-            username: check[0].username,
-          })
+        reply.code(200).send({
+          suc: true,
+          id: check[0].id,
+          email: check[0].email,
+          username: check[0].username,
+          admin: check[0].admin,
+        })
       }
     }
   )

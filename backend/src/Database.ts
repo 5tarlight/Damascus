@@ -1,4 +1,5 @@
 import { createConnection, escape } from 'mysql'
+import { Bit } from './types/type'
 
 const setting = {
   host: process.env.DB_HOST || 'localhost',
@@ -22,6 +23,7 @@ interface SearchType {
     password: string
     username: string
     email: string
+    admin: Bit
   }
 }
 

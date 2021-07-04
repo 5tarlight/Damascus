@@ -14,6 +14,17 @@ interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
 }
 
+interface SignInResponse {
+  email: string
+  id: number
+  suc: boolean
+  username: string
+  admin: {
+    data: Array<0 | 1>
+    type: 'Buffer'
+  }
+}
+
 const SignIn: FC<Props> = ({ setLogin }) => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
@@ -59,13 +70,20 @@ const SignIn: FC<Props> = ({ setLogin }) => {
     }
 
     try {
-      const result = await axios.post(`http://${server}/api/auth/signin`, data)
+      const result = await axios.post<SignInResponse>(
+        `http://${server}/api/auth/signin`,
+        data
+      )
+
       if (result.data.suc) {
-        // Sign up success
+        // Sign in success
+        const admin = result.data.admin.data[0] === 1 ? 'true' : 'false'
+
         localStorage.setItem('login', 'true')
-        localStorage.setItem('id', result.data.id)
+        localStorage.setItem('id', result.data.id.toString())
         localStorage.setItem('email', result.data.email)
         localStorage.setItem('username', result.data.username)
+        localStorage.setItem('admin', admin)
         setLogin(true)
         history.push('/')
       } else {
