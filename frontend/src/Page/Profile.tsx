@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { FC, memo, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import ProfileDesc from '../Components/Profile/ProfileDesc/ProfileDesc'
 import ProfileDiv from '../Components/Profile/ProfileDiv/ProfileDiv'
 import { server } from '../config'
 
@@ -59,9 +60,12 @@ const Profile: FC<{}> = () => {
 
   return (
     <ProfileDiv failed={failed} loaded={loaded}>
-      <h1>{profile?.username}</h1>
-      <h2>{profile?.email}</h2>
-      {profile?.admin ? <h3>관리자</h3> : null}
+      <ProfileDesc
+        admin={profile?.admin}
+        email={profile?.email}
+        id={profile?.id || -1}
+        username={profile?.username}
+      />
     </ProfileDiv>
   )
 }
