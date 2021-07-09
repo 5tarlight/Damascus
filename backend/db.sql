@@ -11,3 +11,12 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_UN` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='user table with email, pw, username';
+
+-- damascus.profile definition
+
+CREATE TABLE `profile` (
+  `id` int(11) NOT NULL,
+  `bio` varchar(50) DEFAULT '',
+  `profile` varchar(200) DEFAULT '',
+  UNIQUE KEY `profile_UN` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

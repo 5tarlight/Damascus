@@ -1,5 +1,5 @@
 import { FastifyPluginCallback } from 'fastify'
-import { user } from '../Database'
+import { profile, user } from '../Database'
 import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
@@ -49,6 +49,8 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
           username
         )
         const reg = await user.findOne({ email: email })
+
+        await profile.add('id', reg.id)
 
         reply.code(200).send({
           suc: true,
