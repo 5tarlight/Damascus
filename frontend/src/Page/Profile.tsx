@@ -56,6 +56,10 @@ const Profile: FC<{}> = () => {
           setFailed(false)
         }
       })
+      .catch(err => {
+        setFailed(true)
+        setLoaded(true)
+      })
   }, [id])
 
   return (
