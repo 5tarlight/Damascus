@@ -20,7 +20,7 @@
     "fastify-cors": "^6.0.1",
     "mysql": "^2.18.1",
     "ts-node": "^9.1.1",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.4"
   },
   "scripts": {
     "start": "ts-node src",
