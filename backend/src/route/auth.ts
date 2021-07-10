@@ -1,8 +1,9 @@
 import { FastifyPluginCallback } from 'fastify'
-import { user } from '../Database'
+import { profile, user } from '../Database'
 import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
+import GetUserById from './schema/GetUserById.json'
 
 interface SignUp {
   email: string
@@ -13,6 +14,10 @@ interface SignUp {
 interface SignIn {
   email: string
   password: string
+}
+
+interface UserById {
+  id: number
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
@@ -45,11 +50,14 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         )
         const reg = await user.findOne({ email: email })
 
+        await profile.add('id', reg.id)
+
         reply.code(200).send({
           suc: true,
           id: reg.id,
           email: reg.email,
           username: reg.username,
+          admin: reg.admin,
         })
       } else {
         reply.code(200).send({ suc: false, msg: 'Already Exists' })
@@ -79,15 +87,45 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       if (check.length < 1) {
         reply.code(200).send({ suc: false })
       } else {
-        reply
-          .code(200)
-          .send({
-            suc: true,
-            id: check[0].id,
-            email: check[0].email,
-            username: check[0].username,
-          })
+        const p = await profile.findOne({ id: check[0].id })
+
+        reply.code(200).send({
+          suc: true,
+          id: check[0].id,
+          email: check[0].email,
+          username: check[0].username,
+          admin: check[0].admin,
+          bio: p.bio,
+          profile: p.profile,
+        })
       }
+    }
+  )
+
+  /**
+   * GET /api/auth/getuserbyid
+   * return user from database fit to id
+   */
+  fastify.get<{ Querystring: UserById }>(
+    '/getuserbyid',
+    {
+      schema: {
+        querystring: GetUserById,
+      },
+    },
+    async (request, reply) => {
+      const {
+        query: { id },
+      } = request
+
+      const result = (await user.find({ id: id })).map(v => ({
+        id: v.id,
+        email: v.email,
+        admin: v.admin,
+        username: v.username,
+      }))
+
+      reply.code(200).send(result)
     }
   )
 

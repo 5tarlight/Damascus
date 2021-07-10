@@ -11,8 +11,11 @@ const Logout: FC<Props> = ({ setLogin }) => {
   useEffect(() => {
     localStorage.setItem('login', 'false')
     localStorage.setItem('id', '')
-    localStorage.setItem('username', '')
     localStorage.setItem('email', '')
+    localStorage.setItem('username', '')
+    localStorage.setItem('admin', '')
+    localStorage.setItem('bio', '')
+    localStorage.setItem('profile', '')
     setLogin(false)
 
     history.push('/')

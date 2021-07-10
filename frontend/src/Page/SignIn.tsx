@@ -1,15 +1,30 @@
 import axios from 'axios'
-import { createRef, Dispatch, FC, SetStateAction, useState } from 'react'
+import { createRef, Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import { useHistory } from 'react-router'
 import AuthBox from '../Components/Auth/AuthBox/AuthBox'
 import AuthBtn from '../Components/Auth/AuthBtn/AuthBtn'
 import AuthInput from '../Components/Auth/AuthInput/AuthInput'
 import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
 import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
+import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
+import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import { server } from '../config'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
+}
+
+interface SignInResponse {
+  email: string
+  id: number
+  suc: boolean
+  username: string
+  admin: {
+    data: Array<0 | 1>
+    type: 'Buffer'
+  }
+  bio: string
+  profile: string
 }
 
 const SignIn: FC<Props> = ({ setLogin }) => {
@@ -57,13 +72,22 @@ const SignIn: FC<Props> = ({ setLogin }) => {
     }
 
     try {
-      const result = await axios.post(`http://${server}/api/auth/signin`, data)
+      const result = await axios.post<SignInResponse>(
+        `http://${server}/api/auth/signin`,
+        data
+      )
+
       if (result.data.suc) {
-        // Sign up success
+        // Sign in success
+        const admin = result.data.admin.data[0] === 1 ? 'true' : 'false'
+
         localStorage.setItem('login', 'true')
-        localStorage.setItem('id', result.data.id)
+        localStorage.setItem('id', result.data.id.toString())
         localStorage.setItem('email', result.data.email)
         localStorage.setItem('username', result.data.username)
+        localStorage.setItem('admin', admin)
+        localStorage.setItem('bio', result.data.bio)
+        localStorage.setItem('profile', result.data.profile)
         setLogin(true)
         history.push('/')
       } else {
@@ -103,8 +127,13 @@ const SignIn: FC<Props> = ({ setLogin }) => {
         reff={resultRef}
       />
       <AuthBtn value="로그인" handleClick={handleClick} />
+      <AuthLinkBox>
+        <AuthLink value="회원가입" to="/auth/signup" />
+        <AuthLink value="아이디 찾기" to="/auth/searchid" />
+        <AuthLink value="비밀번호 찾기" to="/auth/searchpw" />
+      </AuthLinkBox>
     </AuthBox>
   )
 }
 
-export default SignIn
+export default memo(SignIn)

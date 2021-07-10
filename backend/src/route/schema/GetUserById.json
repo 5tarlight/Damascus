@@ -1,0 +1,9 @@
+{
+  "title": "Get user by id querystring",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    }
+  }
+}

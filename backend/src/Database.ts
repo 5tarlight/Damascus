@@ -1,4 +1,5 @@
 import { createConnection, escape } from 'mysql'
+import { Bit } from './types/type'
 
 const setting = {
   host: process.env.DB_HOST || 'localhost',
@@ -22,11 +23,17 @@ interface SearchType {
     password: string
     username: string
     email: string
+    admin: Bit
+  }
+  profile: {
+    id: string
+    bio: string
+    profile: string
   }
 }
 
 export const DB = createConnection(setting)
-export type TableType = 'user'
+export type TableType = 'user' | 'profile'
 
 class Table<T extends TableType> {
   private table: T
@@ -136,3 +143,4 @@ class Table<T extends TableType> {
 }
 
 export const user = new Table('user')
+export const profile = new Table('profile')
