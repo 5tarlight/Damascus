@@ -23,6 +23,8 @@ interface SignInResponse {
     data: Array<0 | 1>
     type: 'Buffer'
   }
+  bio: string
+  profile: string
 }
 
 const SignIn: FC<Props> = ({ setLogin }) => {
@@ -84,6 +86,8 @@ const SignIn: FC<Props> = ({ setLogin }) => {
         localStorage.setItem('email', result.data.email)
         localStorage.setItem('username', result.data.username)
         localStorage.setItem('admin', admin)
+        localStorage.setItem('bio', result.data.bio)
+        localStorage.setItem('profile', result.data.profile)
         setLogin(true)
         history.push('/')
       } else {

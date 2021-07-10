@@ -96,6 +96,7 @@ const SignUp: FC<Props> = ({ setLogin }) => {
         `http://${server}/api/auth/signup`,
         data
       )
+
       if (result.data.suc) {
         // Sign up success
         const admin = result.data.admin.data[0] === 1 ? 'true' : 'false'
