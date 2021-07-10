@@ -10,6 +10,8 @@ interface ProfileState {
   email: string
   username: string
   admin: boolean
+  profile: string
+  bio: string
 }
 
 interface ProfileParam {
@@ -24,6 +26,8 @@ interface ProfileResponse {
     data: Array<0 | 1>
     type: 'Buffer'
   }
+  profile: string
+  bio: string
 }
 
 const Profile: FC<{}> = () => {
@@ -40,17 +44,23 @@ const Profile: FC<{}> = () => {
           setFailed(true)
           setLoaded(true)
         } else {
+          console.dir(res.data)
           const {
             id,
             email,
             username,
             admin: { data },
+            profile,
+            bio,
           } = res.data[0]
+          console.dir(data)
           setProfile({
             id,
             email,
             username,
             admin: data[0] === 1,
+            profile,
+            bio,
           })
           setLoaded(true)
           setFailed(false)
@@ -69,6 +79,8 @@ const Profile: FC<{}> = () => {
         email={profile?.email}
         id={profile?.id || -1}
         username={profile?.username}
+        profile={profile?.profile}
+        bio={profile?.bio}
       />
     </ProfileDiv>
   )

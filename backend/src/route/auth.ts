@@ -4,6 +4,7 @@ import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
 import GetUserById from './schema/GetUserById.json'
+import { Bit } from '../types/type'
 
 interface SignUp {
   email: string
@@ -18,6 +19,15 @@ interface SignIn {
 
 interface UserById {
   id: number
+}
+
+interface GetUser {
+  id: string
+  email: string
+  username: string
+  admin: Bit
+  profile: string
+  bio: string
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
@@ -118,12 +128,23 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         query: { id },
       } = request
 
-      const result = (await user.find({ id: id })).map(v => ({
-        id: v.id,
-        email: v.email,
-        admin: v.admin,
-        username: v.username,
-      }))
+      const result: GetUser[] = []
+
+      const a = await user.find({ id: id })
+      a.forEach(async v => {
+        const p = await profile.findOne({ id: id })
+
+        result.push({
+          id: v.id,
+          email: v.email,
+          admin: v.admin,
+          username: v.username,
+          profile: p.profile,
+          bio: p.bio,
+        })
+      })
+
+      console.log(result)
 
       reply.code(200).send(result)
     }
