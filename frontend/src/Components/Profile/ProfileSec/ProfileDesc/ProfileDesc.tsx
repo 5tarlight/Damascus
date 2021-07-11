@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './ProfileDesc.scss'
 import classNames from 'classnames/bind'
 import ProfileImg from '../ProfileImg/ProfileImg'
@@ -36,4 +36,4 @@ const ProfileDesc: FC<Props> = ({
   )
 }
 
-export default ProfileDesc
+export default memo(ProfileDesc)

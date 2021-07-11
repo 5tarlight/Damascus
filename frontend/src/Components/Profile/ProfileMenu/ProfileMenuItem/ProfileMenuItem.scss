@@ -1,0 +1,11 @@
+.profile-menu-item {
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  width: 80%;
+  margin: 0px auto 10px auto;
+  border-bottom: 2px solid goldenrod;
+  font-size: 1.5rem;
+}
