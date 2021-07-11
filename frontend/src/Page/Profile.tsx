@@ -1,6 +1,5 @@
 import { FC, memo, useState } from 'react'
 import { useParams } from 'react-router'
-import ProfileSec from '../Components/Profile/ProfileSec/ProfileSec'
 import ProfileTable from '../Components/Profile/ProfileTable/ProfileTable'
 
 interface ProfileParam {
@@ -34,9 +33,12 @@ const Profile: FC<{}> = () => {
   ]
 
   return (
-    <ProfileTable items={items} curMenu={curMenu} setCurMenu={setCurMenu}>
-      <ProfileSec userId={id} />
-    </ProfileTable>
+    <ProfileTable
+      items={items}
+      curMenu={curMenu}
+      setCurMenu={setCurMenu}
+      userId={id}
+    ></ProfileTable>
   )
 }
 
