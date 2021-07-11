@@ -131,20 +131,19 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       const result: GetUser[] = []
 
       const a = await user.find({ id: id })
-      a.forEach(async v => {
+
+      for (let i = 0; i < a.length; i++) {
         const p = await profile.findOne({ id: id })
 
         result.push({
-          id: v.id,
-          email: v.email,
-          admin: v.admin,
-          username: v.username,
+          id: a[i].id,
+          email: a[i].email,
+          admin: a[i].admin,
+          username: a[i].username,
           profile: p.profile,
           bio: p.bio,
         })
-      })
-
-      console.log(result)
+      }
 
       reply.code(200).send(result)
     }
