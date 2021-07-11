@@ -45,7 +45,6 @@ const ProfileSec: FC<Props> = ({ userId }) => {
           setFailed(true)
           setLoaded(true)
         } else {
-          console.dir(res.data)
           const {
             id,
             email,
@@ -54,7 +53,6 @@ const ProfileSec: FC<Props> = ({ userId }) => {
             profile,
             bio,
           } = res.data[0]
-          console.dir(data)
           setProfile({
             id,
             email,
