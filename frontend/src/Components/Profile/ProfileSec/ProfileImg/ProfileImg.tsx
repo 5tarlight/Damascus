@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styles from './ProfileImg.scss'
 import classNames from 'classnames/bind'
-import ProfileIcon from '../../Header/ProfileDropdown/ProfileIcon/profile.png'
+import ProfileIcon from '../../../Header/ProfileDropdown/ProfileIcon/profile.png'
 
 const cx = classNames.bind(styles)
 
