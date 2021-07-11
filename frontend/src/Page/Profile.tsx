@@ -1,76 +1,44 @@
-import axios from 'axios'
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo, useState } from 'react'
 import { useParams } from 'react-router'
-import ProfileDesc from '../Components/Profile/ProfileDesc/ProfileDesc'
-import ProfileDiv from '../Components/Profile/ProfileDiv/ProfileDiv'
-import { server } from '../config'
-
-interface ProfileState {
-  id: number
-  email: string
-  username: string
-  admin: boolean
-}
+import ProfileTable from '../Components/Profile/ProfileTable/ProfileTable'
 
 interface ProfileParam {
   id: string
 }
 
-interface ProfileResponse {
-  email: string
-  id: number
-  username: string
-  admin: {
-    data: Array<0 | 1>
-    type: 'Buffer'
-  }
+export type ProfileMenuType = 'profile' | 'manage-post' | 'setting'
+
+export interface ProfileMenuProps {
+  id: ProfileMenuType
+  value: string
 }
 
 const Profile: FC<{}> = () => {
-  const [profile, setProfile] = useState<ProfileState>()
-  const [failed, setFailed] = useState(false)
-  const [loaded, setLoaded] = useState(false)
   const id = parseInt(useParams<ProfileParam>().id)
+  const [curMenu, setCurMenu] = useState<ProfileMenuType>('profile')
 
-  useEffect(() => {
-    axios
-      .get<ProfileResponse[]>(`http://${server}/api/auth/getuserbyid?id=${id}`)
-      .then(res => {
-        if (res.status !== 200 || res.data.length < 1) {
-          setFailed(true)
-          setLoaded(true)
-        } else {
-          const {
-            id,
-            email,
-            username,
-            admin: { data },
-          } = res.data[0]
-          setProfile({
-            id,
-            email,
-            username,
-            admin: data[0] === 1,
-          })
-          setLoaded(true)
-          setFailed(false)
-        }
-      })
-      .catch(err => {
-        setFailed(true)
-        setLoaded(true)
-      })
-  }, [id])
+  const items: ProfileMenuProps[] = [
+    {
+      id: 'profile',
+      value: '프로필',
+    },
+    {
+      id: 'manage-post',
+      value: '게시글 관리',
+    },
+    {
+      id: 'setting',
+      value: '설정',
+    },
+  ]
 
   return (
-    <ProfileDiv failed={failed} loaded={loaded}>
-      <ProfileDesc
-        admin={profile?.admin}
-        email={profile?.email}
-        id={profile?.id || -1}
-        username={profile?.username}
-      />
-    </ProfileDiv>
+    <ProfileTable
+      items={items}
+      curMenu={curMenu}
+      setCurMenu={setCurMenu}
+      userId={id}
+    ></ProfileTable>
   )
 }
 
