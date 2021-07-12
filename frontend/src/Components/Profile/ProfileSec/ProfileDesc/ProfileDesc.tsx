@@ -2,6 +2,7 @@ import { FC, memo } from 'react'
 import styles from './ProfileDesc.scss'
 import classNames from 'classnames/bind'
 import ProfileImg from '../ProfileImg/ProfileImg'
+import EditableTxt from '../../EditableTxt/EditableTxt'
 
 const cx = classNames.bind(styles)
 
@@ -25,9 +26,12 @@ const ProfileDesc: FC<Props> = ({
   return (
     <div className={cx('profile-desc')}>
       <ProfileImg id={id || -1} />
-      <div>
-        {username}({id})
-      </div>
+      <EditableTxt
+        value={username || ''}
+        handleChange={e => {}}
+        placeholder="username"
+      />
+      <div>{id}</div>
       <div>{email}</div>
       <div>profile: {profile}</div>
       <div>bio: {bio}</div>
