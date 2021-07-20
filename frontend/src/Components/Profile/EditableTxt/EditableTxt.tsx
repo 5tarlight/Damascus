@@ -8,9 +8,15 @@ interface Props {
   value: string
   handleChange(e: ChangeEvent<HTMLInputElement>): any
   placeholder?: string
+  isOwner?: boolean
 }
 
-const EditableTxt: FC<Props> = ({ value, handleChange, placeholder }) => {
+const EditableTxt: FC<Props> = ({
+  value,
+  handleChange,
+  placeholder,
+  isOwner = false,
+}) => {
   const [isEdit, setIsEdit] = useState(false)
   const inputRef = createRef<HTMLInputElement>()
 
@@ -29,8 +35,10 @@ const EditableTxt: FC<Props> = ({ value, handleChange, placeholder }) => {
         <div
           className={cx('edit-value')}
           onClick={() => {
-            setIsEdit(true)
-            inputRef.current?.focus()
+            if (isOwner) {
+              setIsEdit(true)
+              inputRef.current?.focus()
+            }
           }}
         >
           {value}

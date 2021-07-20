@@ -23,6 +23,8 @@ const ProfileDesc: FC<Props> = ({
   profile,
   bio,
 }) => {
+  const isOwner = parseInt(localStorage.getItem('id') || '-1') === id
+
   return (
     <div className={cx('profile-desc')}>
       <ProfileImg id={id || -1} />
@@ -30,6 +32,7 @@ const ProfileDesc: FC<Props> = ({
         value={username || ''}
         handleChange={e => {}}
         placeholder="username"
+        isOwner={isOwner}
       />
       <div>{id}</div>
       <div>{email}</div>
