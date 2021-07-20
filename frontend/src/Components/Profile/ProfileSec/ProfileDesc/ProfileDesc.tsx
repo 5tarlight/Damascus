@@ -30,7 +30,7 @@ const ProfileDesc: FC<Props> = ({
       <ProfileImg id={id || -1} />
       <EditableTxt
         value={username || ''}
-        handleChange={e => {}}
+        // handleChange={e => {}}
         placeholder="username"
         isOwner={isOwner}
       />
