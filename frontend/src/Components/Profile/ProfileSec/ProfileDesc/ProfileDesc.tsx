@@ -32,9 +32,15 @@ const ProfileDesc: FC<Props> = ({
         // handleChange={e => {}}
         placeholder="username"
         isOwner={isCurrentUser(id!)}
+        type="username"
       />
       {/* <div>{id}</div> */}
-      <div>{email}</div>
+      <EditableTxt
+        value={email || ''}
+        placeholder="email"
+        isOwner={isCurrentUser(id!)}
+        type="email"
+      />
       <div>profile: {profile}</div>
       <div>bio: {bio}</div>
       {admin ? <div>관리자</div> : null}

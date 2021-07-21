@@ -38,7 +38,7 @@ const EditableTxt: FC<Props> = ({
       {isEdit ? (
         <div>
           <input
-            className={cx('edit-input')}
+            className={cx('edit-input', type)}
             value={changedValue}
             onChange={e => {
               setChangedValue(e.target.value)
@@ -50,6 +50,7 @@ const EditableTxt: FC<Props> = ({
             }}
           />
           <button
+            className={cx('btn-cancel', `btn-${type}`)}
             onClick={e => {
               e.stopPropagation()
               e.preventDefault()
@@ -58,7 +59,7 @@ const EditableTxt: FC<Props> = ({
           >
             취소
           </button>
-          <button>확인</button>
+          <button className={cx('btn-submit', `btn-${type}`)}>확인</button>
         </div>
       ) : (
         <div
