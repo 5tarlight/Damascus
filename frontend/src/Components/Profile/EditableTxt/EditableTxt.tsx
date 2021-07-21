@@ -63,7 +63,7 @@ const EditableTxt: FC<Props> = ({
         </div>
       ) : (
         <div
-          className={cx('edit-value', type)}
+          className={cx('edit-value', type, { owner: isOwner })}
           onClick={() => {
             if (isOwner) {
               setIsEdit(true)
