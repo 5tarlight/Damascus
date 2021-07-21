@@ -1,8 +1,9 @@
-import { FC, memo } from 'react'
+import { FC } from 'react'
 import styles from './ProfileDesc.scss'
 import classNames from 'classnames/bind'
 import ProfileImg from '../ProfileImg/ProfileImg'
 import EditableTxt from '../../EditableTxt/EditableTxt'
+import { isCurrentUser } from '../../../../util'
 
 const cx = classNames.bind(styles)
 
@@ -23,8 +24,6 @@ const ProfileDesc: FC<Props> = ({
   profile,
   bio,
 }) => {
-  const isOwner = parseInt(localStorage.getItem('id') || '-1') === id
-
   return (
     <div className={cx('profile-desc')}>
       <ProfileImg id={id || -1} />
@@ -32,9 +31,9 @@ const ProfileDesc: FC<Props> = ({
         value={username || ''}
         // handleChange={e => {}}
         placeholder="username"
-        isOwner={isOwner}
+        isOwner={isCurrentUser(id!)}
       />
-      <div>{id}</div>
+      {/* <div>{id}</div> */}
       <div>{email}</div>
       <div>profile: {profile}</div>
       <div>bio: {bio}</div>
@@ -43,4 +42,4 @@ const ProfileDesc: FC<Props> = ({
   )
 }
 
-export default memo(ProfileDesc)
+export default ProfileDesc

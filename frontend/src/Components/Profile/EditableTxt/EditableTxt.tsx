@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styles from './EditableTxt.scss'
 import classNames from 'classnames/bind'
 
@@ -22,7 +22,11 @@ const EditableTxt: FC<Props> = ({
   type = 'normal',
 }) => {
   const [isEdit, setIsEdit] = useState(false)
-  const [changedValue, setChangedValue] = useState(value)
+  const [changedValue, setChangedValue] = useState('')
+
+  useEffect(() => {
+    setChangedValue(value)
+  }, [value])
 
   const handleCancel = () => {
     setIsEdit(false)
@@ -72,4 +76,4 @@ const EditableTxt: FC<Props> = ({
   )
 }
 
-export default memo(EditableTxt)
+export default EditableTxt
