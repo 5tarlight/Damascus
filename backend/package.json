@@ -12,7 +12,7 @@
     "crypto": "^1.0.1",
     "crypto-js": "^4.0.0",
     "crypto-ts": "^1.0.2",
-    "@types/node": "^15.12.2",
+    "@types/node": "^15.14.0",
     "dotenv": "^8.6.0",
     "fastify": "^3.18.1",
     "fastify-compress": "^3.6.0",
