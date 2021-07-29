@@ -10,7 +10,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/bootstrap": "4.6.1",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^26.0.24",
     "@types/node": "^15.12.5",
     "@types/react": "^17.0.13",
     "@types/react-bootstrap": "^0.32.25",
