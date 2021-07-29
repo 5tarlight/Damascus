@@ -16,7 +16,6 @@
     "@types/react-bootstrap": "^0.32.25",
     "@types/react-router": "^5.1.16",
     "@types/react-dom": "^17.0.9",
-    "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
