@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import ProfileDesc from './ProfileDesc/ProfileDesc'
 import ProfileDiv from './ProfileDiv/ProfileDiv'
@@ -85,4 +85,4 @@ const ProfileSec: FC<Props> = ({ userId }) => {
   )
 }
 
-export default memo(ProfileSec)
+export default ProfileSec

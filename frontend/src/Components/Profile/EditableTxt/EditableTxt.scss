@@ -1,0 +1,15 @@
+.username {
+  font-size: 40px;
+}
+
+.email {
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+  margin-top: -15px;
+}
+
+.owner {
+  &:hover {
+    cursor: pointer;
+  }
+}
