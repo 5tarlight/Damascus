@@ -3,7 +3,12 @@ import styles from './ProfileDesc.scss'
 import classNames from 'classnames/bind'
 import ProfileImg from '../ProfileImg/ProfileImg'
 import EditableTxt from '../../EditableTxt/EditableTxt'
-import { isCurrentUser, parseBit } from '../../../../util'
+import {
+  emailRegexp,
+  isCurrentUser,
+  parseBit,
+  usernameExp,
+} from '../../../../util'
 import axios from 'axios'
 import { server } from '../../../../config'
 
@@ -54,6 +59,10 @@ const ProfileDesc: FC<Props> = ({
   }
 
   const handleUsernameChange = async (value: string) => {
+    if (!usernameExp.test(value)) {
+      alert('잘못된 이름입니다.') // TODO alert -> text
+      return
+    }
     const result = await axios.post<UpdateResult>(
       `http://${server}/api/auth/update`,
       getBody('username', value)
@@ -61,6 +70,10 @@ const ProfileDesc: FC<Props> = ({
     handleResponse(result.data)
   }
   const handleEmailChange = async (value: string) => {
+    if (!emailRegexp.test(value)) {
+      alert('잘못된 이메일입니다.') // TODO alert -> text
+      return
+    }
     const result = await axios.post<UpdateResult>(
       `http://${server}/api/auth/update`,
       getBody('email', value)
