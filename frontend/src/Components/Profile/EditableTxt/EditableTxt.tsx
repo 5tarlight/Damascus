@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, MouseEvent as ME } from 'react'
 import styles from './EditableTxt.scss'
 import classNames from 'classnames/bind'
+import { emailRegexp, usernameExp } from '../../../util'
 
 const cx = classNames.bind(styles)
 
@@ -26,6 +27,7 @@ const EditableTxt: FC<Props> = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false)
   const [changedValue, setChangedValue] = useState('')
+  const [hasError, setHasError] = useState(false)
   let origin = value
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const EditableTxt: FC<Props> = ({
       {isEdit ? (
         <div>
           <input
-            className={cx('edit-input', type)}
+            className={cx('edit-input', type, { error: hasError })}
             value={changedValue}
             onChange={e => {
               setChangedValue(e.target.value)
@@ -79,6 +81,23 @@ const EditableTxt: FC<Props> = ({
           <button
             className={cx('btn-submit', `btn-${type}`)}
             onClick={event => {
+              let regexp
+              switch (type) {
+                case 'email':
+                  regexp = emailRegexp
+                  break
+                case 'username':
+                  regexp = usernameExp
+                  break
+                default:
+                  regexp = usernameExp
+              }
+
+              if (!regexp.test(changedValue)) {
+                setHasError(true)
+                return
+              }
+
               origin = changedValue
               getHandler(event, handleSubmit, changedValue)()
               setIsEdit(false)
