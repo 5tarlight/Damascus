@@ -24,6 +24,9 @@ const ProfileDesc: FC<Props> = ({
   profile,
   bio,
 }) => {
+  const handleUsernameChange = (value: string) => {}
+  const handleEmailChange = (value: string) => {}
+
   return (
     <div className={cx('profile-desc')}>
       <ProfileImg id={id || -1} />
@@ -33,6 +36,7 @@ const ProfileDesc: FC<Props> = ({
         placeholder="username"
         isOwner={isCurrentUser(id!)}
         type="username"
+        handleSubmit={handleUsernameChange}
       />
       {/* <div>{id}</div> */}
       <EditableTxt
@@ -40,6 +44,7 @@ const ProfileDesc: FC<Props> = ({
         placeholder="email"
         isOwner={isCurrentUser(id!)}
         type="email"
+        handleSubmit={handleEmailChange}
       />
       <div>profile: {profile}</div>
       <div>bio: {bio}</div>

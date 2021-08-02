@@ -91,27 +91,31 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       },
     },
     async (request, reply) => {
-      const {
-        body: { email, password },
-      } = request
+      try {
+        const {
+          body: { email, password },
+        } = request
 
-      const pw = cryptSha(password)
+        const pw = cryptSha(password)
 
-      const check = await user.find({ email: email, password: pw })
-      if (check.length < 1) {
-        reply.code(200).send({ suc: false })
-      } else {
-        const p = await profile.findOne({ id: check[0].id })
+        const check = await user.find({ email: email, password: pw })
+        if (check.length < 1) {
+          reply.code(200).send({ suc: false })
+        } else {
+          const p = await profile.findOne({ id: check[0].id })
 
-        reply.code(200).send({
-          suc: true,
-          id: check[0].id,
-          email: check[0].email,
-          username: check[0].username,
-          admin: check[0].admin,
-          bio: p.bio,
-          profile: p.profile,
-        })
+          reply.code(200).send({
+            suc: true,
+            id: check[0].id,
+            email: check[0].email,
+            username: check[0].username,
+            admin: check[0].admin,
+            bio: p.bio,
+            profile: p.profile,
+          })
+        }
+      } catch (e) {
+        console.log(e)
       }
     }
   )
