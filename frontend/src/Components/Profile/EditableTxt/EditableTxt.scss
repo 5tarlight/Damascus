@@ -5,11 +5,17 @@
 .email {
   color: rgba(0, 0, 0, 0.7);
   font-style: italic;
-  margin-top: -15px;
 }
 
 .owner {
   &:hover {
     cursor: pointer;
+  }
+}
+
+.edit-input {
+  width: 200px;
+  & .email {
+    text-decoration: none;
   }
 }
