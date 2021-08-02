@@ -26,14 +26,15 @@ const EditableTxt: FC<Props> = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false)
   const [changedValue, setChangedValue] = useState('')
+  let origin = value
 
   useEffect(() => {
-    setChangedValue(value)
-  }, [value])
+    setChangedValue(origin)
+  }, [origin])
 
   const handleCancel = () => {
     setIsEdit(false)
-    setChangedValue(value)
+    setChangedValue(origin)
   }
 
   const getHandler = (
@@ -77,7 +78,11 @@ const EditableTxt: FC<Props> = ({
           </button>
           <button
             className={cx('btn-submit', `btn-${type}`)}
-            onClick={event => getHandler(event, handleSubmit, changedValue)}
+            onClick={event => {
+              origin = changedValue
+              getHandler(event, handleSubmit, changedValue)()
+              setIsEdit(false)
+            }}
           >
             확인
           </button>

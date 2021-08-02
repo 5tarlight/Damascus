@@ -3,9 +3,19 @@ import styles from './ProfileDesc.scss'
 import classNames from 'classnames/bind'
 import ProfileImg from '../ProfileImg/ProfileImg'
 import EditableTxt from '../../EditableTxt/EditableTxt'
-import { isCurrentUser } from '../../../../util'
+import { isCurrentUser, parseBit } from '../../../../util'
+import axios from 'axios'
+import { server } from '../../../../config'
 
 const cx = classNames.bind(styles)
+
+interface UpdateResult {
+  msg: string
+  id?: string
+  email?: string
+  username?: string
+  admin?: Bit
+}
 
 interface Props {
   username?: string
@@ -24,8 +34,39 @@ const ProfileDesc: FC<Props> = ({
   profile,
   bio,
 }) => {
-  const handleUsernameChange = (value: string) => {}
-  const handleEmailChange = (value: string) => {}
+  const getBody = (type: string, value: string) => {
+    return {
+      id: localStorage.getItem('id'),
+      update: type,
+      value: value,
+    }
+  }
+  const handleResponse = (res: UpdateResult) => {
+    if (res.msg === 'success') {
+      const { email, username, admin } = res
+      localStorage.setItem('email', email || '')
+      localStorage.setItem('username', username || '')
+      localStorage.setItem('admin', parseBit(admin))
+      window.location.reload()
+    } else {
+      alert(res.msg)
+    }
+  }
+
+  const handleUsernameChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('username', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleEmailChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('email', value)
+    )
+    handleResponse(result.data)
+  }
 
   return (
     <div className={cx('profile-desc')}>

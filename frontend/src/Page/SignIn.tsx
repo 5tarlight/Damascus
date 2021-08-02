@@ -9,6 +9,7 @@ import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import { server } from '../config'
+import { emailRegexp, parseBit, pwRegexp } from '../util'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -19,10 +20,7 @@ interface SignInResponse {
   id: number
   suc: boolean
   username: string
-  admin: {
-    data: Array<0 | 1>
-    type: 'Buffer'
-  }
+  admin: Bit
   bio: string
   profile: string
 }
@@ -42,10 +40,6 @@ const SignIn: FC<Props> = ({ setLogin }) => {
       dispatch(str)
     }
   }
-
-  const emailRegexp =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-  const pwRegexp = /^([a-zA-Z0-9!@#$%^&*\-_]{8,})$/
 
   const handleClick = () => {
     if (!emailRegexp.test(email)) {
@@ -79,7 +73,7 @@ const SignIn: FC<Props> = ({ setLogin }) => {
 
       if (result.data.suc) {
         // Sign in success
-        const admin = result.data.admin.data[0] === 1 ? 'true' : 'false'
+        const admin = parseBit(result.data.admin)
 
         localStorage.setItem('login', 'true')
         localStorage.setItem('id', result.data.id.toString())
