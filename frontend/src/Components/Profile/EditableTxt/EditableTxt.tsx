@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, MouseEvent as ME } from 'react'
 import styles from './EditableTxt.scss'
 import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)
 
 type TxtType = 'normal' | 'email' | 'username' | 'id'
+type SubimtHandler = (value: string) => void
 
 interface Props {
   value: string
@@ -12,6 +13,7 @@ interface Props {
   placeholder?: string
   isOwner?: boolean
   type?: TxtType
+  handleSubmit: SubimtHandler
 }
 
 const EditableTxt: FC<Props> = ({
@@ -20,17 +22,32 @@ const EditableTxt: FC<Props> = ({
   placeholder,
   isOwner = false,
   type = 'normal',
+  handleSubmit,
 }) => {
   const [isEdit, setIsEdit] = useState(false)
   const [changedValue, setChangedValue] = useState('')
+  let origin = value
 
   useEffect(() => {
-    setChangedValue(value)
-  }, [value])
+    setChangedValue(origin)
+  }, [origin])
 
   const handleCancel = () => {
     setIsEdit(false)
-    setChangedValue(value)
+    setChangedValue(origin)
+  }
+
+  const getHandler = (
+    event: ME<HTMLButtonElement, MouseEvent>,
+    handler: SubimtHandler,
+    value: string
+  ) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    return () => {
+      handler(value)
+    }
   }
 
   return (
@@ -59,7 +76,16 @@ const EditableTxt: FC<Props> = ({
           >
             취소
           </button>
-          <button className={cx('btn-submit', `btn-${type}`)}>확인</button>
+          <button
+            className={cx('btn-submit', `btn-${type}`)}
+            onClick={event => {
+              origin = changedValue
+              getHandler(event, handleSubmit, changedValue)()
+              setIsEdit(false)
+            }}
+          >
+            확인
+          </button>
         </div>
       ) : (
         <div
