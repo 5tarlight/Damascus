@@ -4,6 +4,7 @@ import { cryptSha } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
 import GetUserById from './schema/GetUserById.json'
+import UpdateBody from './schema/UpdateUser.json'
 import { Bit } from '../types/type'
 
 interface SignUp {
@@ -28,6 +29,12 @@ interface GetUser {
   admin: Bit
   profile: string
   bio: string
+}
+
+interface Update {
+  id: string
+  update: 'email' | 'username'
+  value: string
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
@@ -157,6 +164,55 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
     }
   )
 
+  /**
+   * POST /api/auth/update
+   * modify user's profile or something
+   */
+  fastify.post<{ Body: Update }>(
+    '/update',
+    {
+      schema: {
+        body: UpdateBody,
+      },
+    },
+    async (req, res) => {
+      const { id, update, value } = req.body
+      let updateCon = { [update]: value }
+
+      // switch (update) {
+      //   case 'email':
+      //     updateCon = {
+      //       email: value,
+      //     }
+      //     break
+      //   case 'username':
+      //     updateCon = {
+      //       username: value,
+      //     }
+      //     break
+      //   default:
+      //     res.code(400).send({ msg: 'bad update type' })
+      //     return
+      // }
+
+      const has = (await user.find({ id: id })).length > 0
+      if (!has) {
+        res.code(400).send({ msg: 'no user with that id' })
+        return
+      }
+
+      user.update([{ id: id }], [updateCon])
+
+      const { email, username, admin } = await user.findOne({ id: id })
+      res.code(200).send({
+        msg: 'success',
+        id,
+        email,
+        username,
+        admin,
+      })
+    }
+  )
   done()
 }
 
