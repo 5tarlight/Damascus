@@ -1,0 +1,21 @@
+.username {
+  font-size: 40px;
+}
+
+.email {
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+}
+
+.owner {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.edit-input {
+  width: 200px;
+  & .email {
+    text-decoration: none;
+  }
+}

@@ -49,28 +49,32 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       },
     },
     async (request, reply) => {
-      const { email, password, username } = request.body
-      const has = (await user.find({ email: email })).length > 0
-      if (!has) {
-        user.add(
-          'email, password, username',
-          email,
-          cryptSha(password),
-          username
-        )
-        const reg = await user.findOne({ email: email })
+      try {
+        const { email, password, username } = request.body
+        const has = (await user.find({ email: email })).length > 0
+        if (!has) {
+          user.add(
+            'email, password, username',
+            email,
+            cryptSha(password),
+            username
+          )
+          const reg = await user.findOne({ email: email })
 
-        await profile.add('id', reg.id)
+          await profile.add('id', reg.id)
 
-        reply.code(200).send({
-          suc: true,
-          id: reg.id,
-          email: reg.email,
-          username: reg.username,
-          admin: reg.admin,
-        })
-      } else {
-        reply.code(200).send({ suc: false, msg: 'Already Exists' })
+          reply.code(200).send({
+            suc: true,
+            id: reg.id,
+            email: reg.email,
+            username: reg.username,
+            admin: reg.admin,
+          })
+        } else {
+          reply.code(200).send({ suc: false, msg: 'Already Exists' })
+        }
+      } catch (e) {
+        console.log(e)
       }
     }
   )

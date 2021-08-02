@@ -27,6 +27,8 @@ export default class Server {
           'yeahx4.kro.kr:3000',
           'yeahx4.kro.kr',
           'yeahx4.kro.kr:5676',
+          'damascus.kro.kr',
+          'damascus.kro.kr:3000'
         ]
         console.log(origin)
         const allowed = allowedHost.includes(host)

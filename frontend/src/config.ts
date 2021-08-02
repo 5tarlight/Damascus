@@ -1,1 +1,1 @@
-export const server = 'yeahx4.kro.kr:5676'
+export const server = window.location.host.split(':')[0] + ':5676'

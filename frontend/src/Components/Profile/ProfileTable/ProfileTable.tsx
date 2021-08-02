@@ -7,6 +7,7 @@ import ProfileMenuItem from '../ProfileMenu/ProfileMenuItem/ProfileMenuItem'
 import ProfileSec from '../ProfileSec/ProfileSec'
 import ManagePostSec from '../ManagePostSec/ManagePostSec'
 import SettingSec from '../SettingSec/SettingSec'
+import { isCurrentUser } from '../../../util'
 
 const cx = classNames.bind(styles)
 
@@ -18,9 +19,14 @@ interface Props {
 }
 
 const ProfileTable: FC<Props> = ({ items, setCurMenu, curMenu, userId }) => {
-  const profileItems = items.map(({ id, value }) => (
-    <ProfileMenuItem item={{ id, value }} setCurMenu={setCurMenu} key={id} />
-  ))
+  const profileItems = items.map(({ id, value }) => {
+    if ((id === 'manage-post' || id === 'setting') && !isCurrentUser(userId))
+      return null
+
+    return (
+      <ProfileMenuItem item={{ id, value }} setCurMenu={setCurMenu} key={id} />
+    )
+  })
 
   return (
     <div className={cx('profile-table')}>
