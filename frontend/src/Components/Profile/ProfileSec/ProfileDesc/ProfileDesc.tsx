@@ -11,10 +11,7 @@ const cx = classNames.bind(styles)
 
 interface UpdateResult {
   msg: string
-  id?: string
-  email?: string
-  username?: string
-  admin?: Bit
+  user: User[]
 }
 
 interface Props {
@@ -43,9 +40,11 @@ const ProfileDesc: FC<Props> = ({
   }
   const handleResponse = (res: UpdateResult) => {
     if (res.msg === 'success') {
-      const { email, username, admin } = res
-      localStorage.setItem('email', email || '')
-      localStorage.setItem('username', username || '')
+      const { email, username, admin, bio, profile } = res.user[0]
+      localStorage.setItem('email', email)
+      localStorage.setItem('username', username)
+      localStorage.setItem('bio', bio)
+      localStorage.setItem('profile', profile)
       localStorage.setItem('admin', parseBit(admin))
       window.location.reload()
     } else {
@@ -64,6 +63,20 @@ const ProfileDesc: FC<Props> = ({
     const result = await axios.post<UpdateResult>(
       `http://${server}/api/auth/update`,
       getBody('email', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleBioChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('bio', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleProfileChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('profile', value)
     )
     handleResponse(result.data)
   }
@@ -87,8 +100,20 @@ const ProfileDesc: FC<Props> = ({
         type="email"
         handleSubmit={handleEmailChange}
       />
-      <div>profile: {profile}</div>
-      <div>bio: {bio}</div>
+      <EditableTxt
+        value={bio || '상태'}
+        placeholder="bio"
+        isOwner={isCurrentUser(id!)}
+        handleSubmit={handleBioChange}
+        type="bio"
+      />
+      <EditableTxt
+        value={profile || '프로필'}
+        placeholder="profile"
+        isOwner={isCurrentUser(id!)}
+        handleSubmit={handleProfileChange}
+        type="profile"
+      />
       {admin ? <div>관리자</div> : null}
     </div>
   )
