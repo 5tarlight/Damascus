@@ -4,4 +4,8 @@
   border-radius: 5px;
   float: left;
   margin-right: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
