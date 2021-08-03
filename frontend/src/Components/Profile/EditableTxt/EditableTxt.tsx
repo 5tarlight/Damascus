@@ -5,7 +5,7 @@ import { emailRegexp, usernameExp } from '../../../util'
 
 const cx = classNames.bind(styles)
 
-type TxtType = 'normal' | 'email' | 'username' | 'id'
+type TxtType = 'normal' | 'email' | 'username' | 'id' | 'bio' | 'profile'
 type SubimtHandler = (value: string) => void
 
 interface Props {
@@ -89,11 +89,21 @@ const EditableTxt: FC<Props> = ({
                 case 'username':
                   regexp = usernameExp
                   break
-                default:
-                  regexp = usernameExp
+                case 'bio':
+                  if (changedValue.length > 50) {
+                    setHasError(true)
+                    return
+                  }
+                  break
+                case 'profile':
+                  if (changedValue.length > 200) {
+                    setHasError(true)
+                    return
+                  }
+                  break
               }
 
-              if (!regexp.test(changedValue)) {
+              if (!(regexp || usernameExp).test(changedValue)) {
                 setHasError(true)
                 return
               }

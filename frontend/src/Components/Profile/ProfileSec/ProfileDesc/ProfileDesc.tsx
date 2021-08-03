@@ -105,12 +105,14 @@ const ProfileDesc: FC<Props> = ({
         placeholder="bio"
         isOwner={isCurrentUser(id!)}
         handleSubmit={handleBioChange}
+        type="bio"
       />
       <EditableTxt
         value={profile || '프로필'}
         placeholder="profile"
         isOwner={isCurrentUser(id!)}
         handleSubmit={handleProfileChange}
+        type="profile"
       />
       {admin ? <div>관리자</div> : null}
     </div>
