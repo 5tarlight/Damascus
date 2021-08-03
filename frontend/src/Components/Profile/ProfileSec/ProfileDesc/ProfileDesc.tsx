@@ -66,6 +66,20 @@ const ProfileDesc: FC<Props> = ({
     )
     handleResponse(result.data)
   }
+  const handleBioChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('bio', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleProfileChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('profile', value)
+    )
+    handleResponse(result.data)
+  }
 
   return (
     <div className={cx('profile-desc')}>
@@ -86,8 +100,18 @@ const ProfileDesc: FC<Props> = ({
         type="email"
         handleSubmit={handleEmailChange}
       />
-      <div>profile: {profile}</div>
-      <div>bio: {bio}</div>
+      <EditableTxt
+        value={bio || '상태'}
+        placeholder="bio"
+        isOwner={isCurrentUser(id!)}
+        handleSubmit={handleBioChange}
+      />
+      <EditableTxt
+        value={profile || '프로필'}
+        placeholder="profile"
+        isOwner={isCurrentUser(id!)}
+        handleSubmit={handleProfileChange}
+      />
       {admin ? <div>관리자</div> : null}
     </div>
   )
