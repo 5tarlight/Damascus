@@ -11,10 +11,7 @@ const cx = classNames.bind(styles)
 
 interface UpdateResult {
   msg: string
-  id?: string
-  email?: string
-  username?: string
-  admin?: Bit
+  user: User[]
 }
 
 interface Props {
@@ -43,9 +40,11 @@ const ProfileDesc: FC<Props> = ({
   }
   const handleResponse = (res: UpdateResult) => {
     if (res.msg === 'success') {
-      const { email, username, admin } = res
-      localStorage.setItem('email', email || '')
-      localStorage.setItem('username', username || '')
+      const { email, username, admin, bio, profile } = res.user[0]
+      localStorage.setItem('email', email)
+      localStorage.setItem('username', username)
+      localStorage.setItem('bio', bio)
+      localStorage.setItem('profile', profile)
       localStorage.setItem('admin', parseBit(admin))
       window.location.reload()
     } else {

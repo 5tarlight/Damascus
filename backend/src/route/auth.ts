@@ -19,7 +19,7 @@ interface SignIn {
 }
 
 interface UserById {
-  id: number
+  id: string
 }
 
 interface GetUser {
@@ -33,7 +33,7 @@ interface GetUser {
 
 interface Update {
   id: string
-  update: 'email' | 'username'
+  update: 'email' | 'username' | 'bio' | 'profile'
   value: string
 }
 
@@ -127,6 +127,27 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
     }
   )
 
+  const getUser = async (id: string) => {
+    const result: GetUser[] = []
+
+    const a = await user.find({ id: id })
+
+    for (let i = 0; i < a.length; i++) {
+      const p = await profile.findOne({ id: id })
+
+      result.push({
+        id: a[i].id,
+        email: a[i].email,
+        admin: a[i].admin,
+        username: a[i].username,
+        profile: p.profile,
+        bio: p.bio,
+      })
+    }
+
+    return result
+  }
+
   /**
    * GET /api/auth/getuserbyid
    * return user from database fit to id
@@ -143,22 +164,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         query: { id },
       } = request
 
-      const result: GetUser[] = []
-
-      const a = await user.find({ id: id })
-
-      for (let i = 0; i < a.length; i++) {
-        const p = await profile.findOne({ id: id })
-
-        result.push({
-          id: a[i].id,
-          email: a[i].email,
-          admin: a[i].admin,
-          username: a[i].username,
-          profile: p.profile,
-          bio: p.bio,
-        })
-      }
+      const result = await getUser(id)
 
       reply.code(200).send(result)
     }
@@ -201,16 +207,23 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         return
       }
 
-      user.update([{ id: id }], [updateCon])
+      if (update == 'email' || update == 'username') {
+        user.update([{ id: id }], [updateCon])
 
-      const { email, username, admin } = await user.findOne({ id: id })
-      res.code(200).send({
-        msg: 'success',
-        id,
-        email,
-        username,
-        admin,
-      })
+        const users = await getUser(id)
+        res.code(200).send({
+          msg: 'success',
+          user: users,
+        })
+      } else {
+        profile.update([{ id: id }], [updateCon])
+
+        const users = await getUser(id)
+        res.code(200).send({
+          msg: 'success',
+          user: users,
+        })
+      }
     }
   )
   done()
