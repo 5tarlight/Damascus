@@ -6,11 +6,11 @@ import ProfileDiv from './ProfileDiv/ProfileDiv'
 import { server } from '../../../config'
 
 interface Props {
-  userId: number
+  userId: string
 }
 
 interface ProfileState {
-  id: number
+  id: string
   email: string
   username: string
   admin: boolean
@@ -20,7 +20,7 @@ interface ProfileState {
 
 interface ProfileResponse {
   email: string
-  id: number
+  id: string
   username: string
   admin: {
     data: Array<0 | 1>
@@ -76,7 +76,7 @@ const ProfileSec: FC<Props> = ({ userId }) => {
       <ProfileDesc
         admin={profile?.admin}
         email={profile?.email}
-        id={profile?.id || -1}
+        id={profile?.id || ''}
         username={profile?.username}
         profile={profile?.profile}
         bio={profile?.bio}

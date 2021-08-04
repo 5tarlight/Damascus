@@ -29,7 +29,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
       .catch(err => {
         setImage(profileIcon)
       })
-  }, [])
+  }, [login])
 
   const handleShow = () => {
     dropdown.current?.classList.add('show')

@@ -12,8 +12,8 @@ export const cryptPassword = (password: string) => {
   return hashSync(password, salt)
 }
 
-export const isCurrentUser = (id: number) => {
-  return parseInt(localStorage.getItem('id') || '-1') === id
+export const isCurrentUser = (id: string) => {
+  return (localStorage.getItem('id') || '-1') === id
 }
 
 export const emailRegexp =

@@ -15,7 +15,7 @@ interface Props {
   items: ProfileMenuProps[]
   setCurMenu: Dispatch<SetStateAction<ProfileMenuType>>
   curMenu: ProfileMenuType
-  userId: number
+  userId: string
 }
 
 const ProfileTable: FC<Props> = ({ items, setCurMenu, curMenu, userId }) => {

@@ -9,7 +9,7 @@ import { getProfilePicture } from '../../../../util'
 const cx = classNames.bind(styles)
 
 interface Props {
-  id: number
+  id: string
 }
 
 interface UploadPictureResult {
@@ -19,7 +19,7 @@ interface UploadPictureResult {
   image?: string
 }
 
-const ProfileImg: FC<Props> = () => {
+const ProfileImg: FC<Props> = ({ id }) => {
   const inputFile = createRef<HTMLInputElement>()
   const [image, setImage] = useState(profileIcon)
   const [error, setError] = useState(false)
@@ -64,14 +64,14 @@ const ProfileImg: FC<Props> = () => {
   }
 
   useEffect(() => {
-    getProfilePicture(localStorage.getItem('id'))
+    getProfilePicture(id)
       .then(url => {
         setImage(url)
       })
       .catch(err => {
         setImage(profileIcon)
       })
-  }, [])
+  }, [id])
 
   return (
     <div>
