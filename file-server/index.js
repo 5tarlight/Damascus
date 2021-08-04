@@ -2,7 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
 const helmet = require('helmet')
+const scrf = require('csurf')
 
+const scrfProtection = scrf({ cookie: false })
 const app = express()
 app.disable('x-powered-by')
 
@@ -22,7 +24,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('profile_img')
 
-app.post('/profile/image', (req, res) => {
+app.post('/profile/image', scrfProtection, (req, res) => {
   upload(req, res, err => {
     if (err) {
       return res.json({ success: false, err })
@@ -35,7 +37,7 @@ app.post('/profile/image', (req, res) => {
   })
 })
 
-app.get('/', (req, res) => {
+app.get('/', scrfProtection, (req, res) => {
   res.end('damascus file server')
 })
 
