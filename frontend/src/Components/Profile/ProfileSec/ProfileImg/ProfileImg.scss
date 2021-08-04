@@ -1,5 +1,7 @@
 .profile-img {
   width: 200px;
+  height: 200px;
+  overflow: auto;
   border: 5px solid goldenrod;
   border-radius: 5px;
   float: left;
@@ -8,4 +10,8 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.error {
+  border-color: red;
 }

@@ -5,6 +5,7 @@ const multer = require('multer')
 const app = express()
 
 app.use(cors())
+app.use('/', express.static(`${__dirname}/files`))
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
