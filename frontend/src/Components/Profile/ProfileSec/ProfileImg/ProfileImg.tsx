@@ -1,7 +1,7 @@
 import { ChangeEvent, createRef, FC, memo, useEffect, useState } from 'react'
 import styles from './ProfileImg.scss'
 import classNames from 'classnames/bind'
-import ProfileIcon from '../../../Header/ProfileDropdown/ProfileIcon/profile.png'
+import profileIcon from '../../../Header/ProfileDropdown/ProfileIcon/profile.png'
 import axios from 'axios'
 import { fileServer } from '../../../../config'
 import { getProfilePicture } from '../../../../util'
@@ -21,7 +21,7 @@ interface UploadPictureResult {
 
 const ProfileImg: FC<Props> = () => {
   const inputFile = createRef<HTMLInputElement>()
-  const [image, setImage] = useState(ProfileIcon)
+  const [image, setImage] = useState(profileIcon)
   const [error, setError] = useState(false)
 
   const handleChnage = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -64,9 +64,13 @@ const ProfileImg: FC<Props> = () => {
   }
 
   useEffect(() => {
-    getProfilePicture(localStorage.getItem('id')).then(url => {
-      setImage(url)
-    })
+    getProfilePicture(localStorage.getItem('id'))
+      .then(url => {
+        setImage(url)
+      })
+      .catch(err => {
+        setImage(profileIcon)
+      })
   }, [])
 
   return (

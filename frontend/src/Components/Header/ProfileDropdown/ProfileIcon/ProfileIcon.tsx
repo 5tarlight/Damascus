@@ -22,9 +22,13 @@ const ProfileIcon: FC<Props> = ({ login }) => {
   const [image, setImage] = useState(profileIcon)
 
   useEffect(() => {
-    getProfilePicture(localStorage.getItem('id')).then(url => {
-      setImage(url)
-    })
+    getProfilePicture(localStorage.getItem('id'))
+      .then(url => {
+        setImage(url)
+      })
+      .catch(err => {
+        setImage(profileIcon)
+      })
   }, [])
 
   const handleShow = () => {
