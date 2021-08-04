@@ -3,6 +3,7 @@ const cors = require('cors')
 const multer = require('multer')
 
 const app = express()
+app.disable('x-powered-by')
 
 app.use(cors())
 app.use('/', express.static(`${__dirname}/files`))
