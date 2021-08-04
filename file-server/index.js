@@ -1,11 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
+const helmet = require('helmet')
 
 const app = express()
 app.disable('x-powered-by')
 
 app.use(cors())
+app.use(helmet())
 app.use('/', express.static(`${__dirname}/files`))
 
 const storage = multer.diskStorage({
