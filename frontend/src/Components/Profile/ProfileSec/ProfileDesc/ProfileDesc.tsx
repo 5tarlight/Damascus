@@ -18,7 +18,7 @@ interface Props {
   username?: string
   admin?: boolean
   email?: string
-  id?: number
+  id?: string
   profile?: string
   bio?: string
 }
@@ -83,7 +83,7 @@ const ProfileDesc: FC<Props> = ({
 
   return (
     <div className={cx('profile-desc')}>
-      <ProfileImg id={id || -1} />
+      <ProfileImg id={id || ''} />
       <EditableTxt
         value={username || ''}
         // handleChange={e => {}}

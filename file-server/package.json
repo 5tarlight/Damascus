@@ -1,0 +1,21 @@
+{
+  "name": "damascus-fileserver",
+  "version": "1.0.0",
+  "description": "file server for damascus",
+  "main": "index.js",
+  "author": "5tarlight",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  }
+}

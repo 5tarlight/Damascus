@@ -38,8 +38,8 @@ interface Update {
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
-  fastify.get('/', {}, async (req, rep) => {
-    rep.send({
+  fastify.get('/', {}, async (req, res) => {
+    res.send({
       msg: 'Damascus auth api',
     })
   })

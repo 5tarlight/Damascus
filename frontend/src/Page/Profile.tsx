@@ -14,7 +14,7 @@ export interface ProfileMenuProps {
 }
 
 const Profile: FC<{}> = () => {
-  const id = parseInt(useParams<ProfileParam>().id)
+  const id = useParams<ProfileParam>().id
   const [curMenu, setCurMenu] = useState<ProfileMenuType>('profile')
 
   const items: ProfileMenuProps[] = [
