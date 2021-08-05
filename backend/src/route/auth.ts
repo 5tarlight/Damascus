@@ -30,6 +30,7 @@ interface GetUser {
   admin: Bit
   profile: string
   bio: string
+  email_verify: Bit
 }
 
 interface Update {
@@ -124,6 +125,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
             admin: check[0].admin,
             bio: p.bio,
             profile: p.profile,
+            email_verify: check[0].email_verify
           })
         }
       } catch (e) {
@@ -147,6 +149,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         username: a[i].username,
         profile: p.profile,
         bio: p.bio,
+        email_verify: a[i].email_verify
       })
     }
 

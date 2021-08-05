@@ -23,6 +23,7 @@ interface SignInResponse {
   admin: Bit
   bio: string
   profile: string
+  email_verify: Bit
 }
 
 const SignIn: FC<Props> = ({ setLogin }) => {
@@ -82,6 +83,7 @@ const SignIn: FC<Props> = ({ setLogin }) => {
         localStorage.setItem('admin', admin)
         localStorage.setItem('bio', result.data.bio)
         localStorage.setItem('profile', result.data.profile)
+        localStorage.setItem('email_verify', parseBit(result.data.email_verify))
         setLogin(true)
         history.push('/')
       } else {

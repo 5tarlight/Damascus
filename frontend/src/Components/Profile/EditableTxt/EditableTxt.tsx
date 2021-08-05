@@ -15,6 +15,7 @@ interface Props {
   isOwner?: boolean
   type?: TxtType
   handleSubmit: SubimtHandler
+  email_verify?: boolean
 }
 
 const EditableTxt: FC<Props> = ({
@@ -24,6 +25,7 @@ const EditableTxt: FC<Props> = ({
   isOwner = false,
   type = 'normal',
   handleSubmit,
+  email_verify,
 }) => {
   const [isEdit, setIsEdit] = useState(false)
   const [changedValue, setChangedValue] = useState('')
@@ -125,7 +127,9 @@ const EditableTxt: FC<Props> = ({
             }
           }}
         >
-          {changedValue}
+          {type === 'email'
+            ? `${changedValue} (${email_verify ? '인증됨' : '인증하기'})`
+            : changedValue}
         </div>
       )}
     </>

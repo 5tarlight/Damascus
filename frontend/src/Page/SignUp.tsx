@@ -99,6 +99,7 @@ const SignUp: FC<Props> = ({ setLogin }) => {
         localStorage.setItem('email', result.data.email)
         localStorage.setItem('username', result.data.username)
         localStorage.setItem('admin', admin)
+        localStorage.setItem('email_verify', 'false')
         setLogin(true)
         history.push('/')
       } else {

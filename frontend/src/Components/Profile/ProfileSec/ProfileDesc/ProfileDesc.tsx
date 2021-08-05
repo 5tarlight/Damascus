@@ -21,6 +21,7 @@ interface Props {
   id?: string
   profile?: string
   bio?: string
+  email_verify?: boolean
 }
 
 const ProfileDesc: FC<Props> = ({
