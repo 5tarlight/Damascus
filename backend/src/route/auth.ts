@@ -213,7 +213,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       }
 
       if (update == 'email' || update == 'username') {
-        user.update([{ id: id }], [updateCon])
+        user.update([{ id: id }], [updateCon, { email_verify: 0 }])
 
         const users = await getUser(id)
         res.code(200).send({
