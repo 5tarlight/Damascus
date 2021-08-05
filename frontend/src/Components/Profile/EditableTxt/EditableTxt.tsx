@@ -2,6 +2,7 @@ import { FC, useEffect, useState, MouseEvent as ME } from 'react'
 import styles from './EditableTxt.scss'
 import classNames from 'classnames/bind'
 import { emailRegexp, usernameExp } from '../../../util'
+import VerifyEmail from './VerifyEmail/VerifyEmail'
 
 const cx = classNames.bind(styles)
 
@@ -53,6 +54,8 @@ const EditableTxt: FC<Props> = ({
       handler(value)
     }
   }
+
+  const handleVerifyEmail = async () => {}
 
   return (
     <>
@@ -127,9 +130,18 @@ const EditableTxt: FC<Props> = ({
             }
           }}
         >
-          {type === 'email'
-            ? `${changedValue} (${email_verify ? '인증됨' : '인증하기'})`
-            : changedValue}
+          {type === 'email' ? (
+            email_verify ? (
+              `${changedValue} (인증됨)`
+            ) : (
+              <>
+                {changedValue}
+                <VerifyEmail handleClick={handleVerifyEmail} />
+              </>
+            )
+          ) : (
+            changedValue
+          )}
         </div>
       )}
     </>
