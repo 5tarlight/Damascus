@@ -24,6 +24,7 @@ interface SearchType {
     username: string
     email: string
     admin: Bit
+    email_verify: Bit
   }
   profile: {
     id: string
