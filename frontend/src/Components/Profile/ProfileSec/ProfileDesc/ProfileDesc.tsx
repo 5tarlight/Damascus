@@ -81,14 +81,16 @@ const ProfileDesc: FC<Props> = ({
     handleResponse(result.data)
   }
 
+  const owner = isCurrentUser(`${id}` || '')
+
   return (
     <div className={cx('profile-desc')}>
-      <ProfileImg id={`${id}` || ''} />
+      <ProfileImg id={`${id}`} owner={owner} />
       <EditableTxt
         value={username || ''}
         // handleChange={e => {}}
         placeholder="username"
-        isOwner={isCurrentUser(`${id}` || '')}
+        isOwner={owner}
         type="username"
         handleSubmit={handleUsernameChange}
       />
@@ -96,21 +98,21 @@ const ProfileDesc: FC<Props> = ({
       <EditableTxt
         value={email || ''}
         placeholder="email"
-        isOwner={isCurrentUser(`${id}` || '')}
+        isOwner={owner}
         type="email"
         handleSubmit={handleEmailChange}
       />
       <EditableTxt
         value={bio || '상태'}
         placeholder="bio"
-        isOwner={isCurrentUser(`${id}` || '')}
+        isOwner={owner}
         handleSubmit={handleBioChange}
         type="bio"
       />
       <EditableTxt
         value={profile || '프로필'}
         placeholder="profile"
-        isOwner={isCurrentUser(`${id}` || '')}
+        isOwner={owner}
         handleSubmit={handleProfileChange}
         type="profile"
       />
