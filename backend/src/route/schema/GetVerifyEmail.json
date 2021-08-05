@@ -1,8 +1,8 @@
 {
-  "title": "Get user by id querystring",
+  "title": "Send verify email",
   "type": "object",
   "properties": {
-    "id": {
+    "email": {
       "type": "string"
     }
   }

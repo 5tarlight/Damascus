@@ -1,12 +1,13 @@
 import { FastifyPluginCallback } from 'fastify'
 import { profile, user } from '../Database'
-import { cryptSha } from '../util'
+import { cryptSha, emailRegexp } from '../util'
 import SignUpBody from './schema/SignUpBody.json'
 import SignInBody from './schema/LoginBody.json'
 import GetUserById from './schema/GetUserById.json'
 import UpdateBody from './schema/UpdateUser.json'
+import GetVerifyEmailBody from './schema/GetVerifyEmail.json'
 import { Bit } from '../types/type'
-
+import emailService from '../email'
 interface SignUp {
   email: string
   username: string
@@ -35,6 +36,10 @@ interface Update {
   id: string
   update: 'email' | 'username' | 'bio' | 'profile'
   value: string
+}
+
+interface VerifyEmail {
+  email: string
 }
 
 const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
@@ -226,6 +231,63 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       }
     }
   )
+
+  const getRandom = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min + 1)) + min
+
+  /**
+   * POST /api/auth/verifyemail
+   * modify user's profile or something
+   */
+  fastify.post<{ Body: VerifyEmail }>(
+    '/verifyemail',
+    {
+      schema: {
+        body: GetVerifyEmailBody,
+      },
+    },
+    (req, res) => {
+      const {
+        body: { email },
+      } = req
+
+      if (!emailRegexp.test(email)) {
+        res.send({
+          success: false,
+          msg: 'email is not fit to RegExp',
+        })
+        return
+      }
+
+      const number = getRandom(111111, 999999)
+
+      const mailOptions = {
+        from: 'Damascus',
+        to: email,
+        subject: '[Damascus] 인증 메일',
+        text: '오른쪽 숫자 6자리를 입력해주세요 : ' + number,
+      }
+
+      emailService.sendMail(mailOptions, (err, response) => {
+        if (err) {
+          console.log(err)
+
+          res.code(503).send({
+            success: false,
+            msg: 'Something wrong with email api',
+          })
+          return
+        }
+
+        res.code(200).send({
+          success: true,
+          msg: '',
+          verify: number,
+        })
+      })
+    }
+  )
+
   done()
 }
 
