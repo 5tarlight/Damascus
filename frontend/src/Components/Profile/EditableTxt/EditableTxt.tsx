@@ -136,7 +136,7 @@ const EditableTxt: FC<Props> = ({
             ) : (
               <>
                 {changedValue}
-                <VerifyEmail handleClick={handleVerifyEmail} />
+                <VerifyEmail handleSuccess={handleVerifyEmail} />
               </>
             )
           ) : (

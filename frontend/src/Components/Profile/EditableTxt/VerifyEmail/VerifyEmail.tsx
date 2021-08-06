@@ -1,25 +1,38 @@
-import { FC, memo } from 'react'
+import { createRef, FC, memo } from 'react'
 import styles from './VerifyEmail.scss'
 import classNames from 'classnames/bind'
+import VerifyPopup from './VerifyPopup'
 
 const cx = classNames.bind(styles)
 
 interface Props {
-  handleClick(): void
+  handleSuccess(): void
 }
 
-const VerifyEmail: FC<Props> = ({ handleClick }) => {
+const VerifyEmail: FC<Props> = ({ handleSuccess }) => {
+  const popup = createRef<HTMLDivElement>()
+
+  const handleShow = () => (popup.current!.style.display = 'block')
+  const handleHide = () => (popup.current!.style.display = 'none')
+
   return (
-    <div
-      className={cx('verify-email')}
-      onClick={event => {
-        event.stopPropagation()
-        event.preventDefault()
-        handleClick()
-      }}
-    >
-      인증하기
-    </div>
+    <>
+      <VerifyPopup
+        refer={popup}
+        handleHide={handleHide}
+        handleSuccess={handleSuccess}
+      />
+      <div
+        className={cx('verify-email')}
+        onClick={event => {
+          event.stopPropagation()
+          event.preventDefault()
+          handleShow()
+        }}
+      >
+        인증하기
+      </div>
+    </>
   )
 }
 

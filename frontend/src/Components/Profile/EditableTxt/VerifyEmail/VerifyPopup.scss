@@ -1,0 +1,29 @@
+.verify-popup {
+  font-style: normal;
+  width: 200px;
+  border: 1px solid black;
+  padding: 0px 10px 20px 10px;
+  border-radius: 5px;
+  z-index: 100;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 300px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:hover {
+    cursor: auto;
+  }
+
+  .verify-input {
+    width: 100%;
+  }
+
+  .popup-exit:hover {
+    cursor: pointer;
+  }
+}
