@@ -17,4 +17,5 @@ interface User {
   profile: string
   bio: string
   username: string
+  email_verify: Bit
 }

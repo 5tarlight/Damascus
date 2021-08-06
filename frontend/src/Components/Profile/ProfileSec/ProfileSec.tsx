@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import ProfileDesc from './ProfileDesc/ProfileDesc'
 import ProfileDiv from './ProfileDiv/ProfileDiv'
 import { server } from '../../../config'
+import { parseBit } from '../../../util'
 
 interface Props {
   userId: string
@@ -16,18 +17,17 @@ interface ProfileState {
   admin: boolean
   profile: string
   bio: string
+  email_verify: boolean
 }
 
 interface ProfileResponse {
   email: string
   id: string
   username: string
-  admin: {
-    data: Array<0 | 1>
-    type: 'Buffer'
-  }
+  admin: Bit
   profile: string
   bio: string
+  email_verify: Bit
 }
 
 const ProfileSec: FC<Props> = ({ userId }) => {
@@ -45,21 +45,16 @@ const ProfileSec: FC<Props> = ({ userId }) => {
           setFailed(true)
           setLoaded(true)
         } else {
-          const {
-            id,
-            email,
-            username,
-            admin: { data },
-            profile,
-            bio,
-          } = res.data[0]
+          const { id, email, username, admin, profile, bio, email_verify } =
+            res.data[0]
           setProfile({
             id,
             email,
             username,
-            admin: data[0] === 1,
+            admin: parseBit(admin) === 'true',
             profile,
             bio,
+            email_verify: parseBit(email_verify) === 'true',
           })
           setLoaded(true)
           setFailed(false)
@@ -80,6 +75,7 @@ const ProfileSec: FC<Props> = ({ userId }) => {
         username={profile?.username}
         profile={profile?.profile}
         bio={profile?.bio}
+        email_verify={profile?.email_verify}
       />
     </ProfileDiv>
   )

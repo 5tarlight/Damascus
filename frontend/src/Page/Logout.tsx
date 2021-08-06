@@ -16,6 +16,7 @@ const Logout: FC<Props> = ({ setLogin }) => {
     localStorage.setItem('admin', '')
     localStorage.setItem('bio', '')
     localStorage.setItem('profile', '')
+    localStorage.setItem('email_verify', '')
     setLogin(false)
 
     history.push('/')

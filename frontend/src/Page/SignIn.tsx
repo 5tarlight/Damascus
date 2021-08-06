@@ -9,7 +9,7 @@ import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
 import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import { server } from '../config'
-import { emailRegexp, parseBit, pwRegexp } from '../util'
+import { applyLocalStorage, emailRegexp, pwRegexp } from '../util'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -17,12 +17,13 @@ interface Props {
 
 interface SignInResponse {
   email: string
-  id: number
+  id: string
   suc: boolean
   username: string
   admin: Bit
   bio: string
   profile: string
+  email_verify: Bit
 }
 
 const SignIn: FC<Props> = ({ setLogin }) => {
@@ -73,15 +74,17 @@ const SignIn: FC<Props> = ({ setLogin }) => {
 
       if (result.data.suc) {
         // Sign in success
-        const admin = parseBit(result.data.admin)
+        const user: User = {
+          id: result.data.id,
+          bio: result.data.bio,
+          email: result.data.email,
+          profile: result.data.profile,
+          admin: result.data.admin,
+          email_verify: result.data.email_verify,
+          username: result.data.username,
+        }
 
-        localStorage.setItem('login', 'true')
-        localStorage.setItem('id', result.data.id.toString())
-        localStorage.setItem('email', result.data.email)
-        localStorage.setItem('username', result.data.username)
-        localStorage.setItem('admin', admin)
-        localStorage.setItem('bio', result.data.bio)
-        localStorage.setItem('profile', result.data.profile)
+        applyLocalStorage(user)
         setLogin(true)
         history.push('/')
       } else {

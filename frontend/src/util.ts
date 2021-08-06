@@ -46,3 +46,16 @@ export const getProfilePicture = async (
     return defaultImage
   }
 }
+
+export const applyLocalStorage = (user: User) => {
+  const admin = parseBit(user.admin)
+
+  localStorage.setItem('login', 'true')
+  localStorage.setItem('id', user.id.toString())
+  localStorage.setItem('email', user.email)
+  localStorage.setItem('username', user.username)
+  localStorage.setItem('admin', admin)
+  localStorage.setItem('bio', user.bio)
+  localStorage.setItem('profile', user.profile)
+  localStorage.setItem('email_verify', parseBit(user.email_verify))
+}

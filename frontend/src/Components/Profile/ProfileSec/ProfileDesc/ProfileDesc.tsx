@@ -9,7 +9,7 @@ import { server } from '../../../../config'
 
 const cx = classNames.bind(styles)
 
-interface UpdateResult {
+export interface UpdateResult {
   msg: string
   user: User[]
 }
@@ -21,6 +21,7 @@ interface Props {
   id?: string
   profile?: string
   bio?: string
+  email_verify?: boolean
 }
 
 const ProfileDesc: FC<Props> = ({
@@ -30,6 +31,7 @@ const ProfileDesc: FC<Props> = ({
   id,
   profile,
   bio,
+  email_verify,
 }) => {
   const getBody = (type: string, value: string) => {
     return {
@@ -81,14 +83,16 @@ const ProfileDesc: FC<Props> = ({
     handleResponse(result.data)
   }
 
+  const owner = isCurrentUser(`${id}` || '')
+
   return (
     <div className={cx('profile-desc')}>
-      <ProfileImg id={id || ''} />
+      <ProfileImg id={`${id}`} owner={owner} />
       <EditableTxt
         value={username || ''}
         // handleChange={e => {}}
         placeholder="username"
-        isOwner={isCurrentUser(id!)}
+        isOwner={owner}
         type="username"
         handleSubmit={handleUsernameChange}
       />
@@ -96,21 +100,22 @@ const ProfileDesc: FC<Props> = ({
       <EditableTxt
         value={email || ''}
         placeholder="email"
-        isOwner={isCurrentUser(id!)}
+        isOwner={owner}
         type="email"
         handleSubmit={handleEmailChange}
+        email_verify={email_verify}
       />
       <EditableTxt
         value={bio || '상태'}
         placeholder="bio"
-        isOwner={isCurrentUser(id!)}
+        isOwner={owner}
         handleSubmit={handleBioChange}
         type="bio"
       />
       <EditableTxt
         value={profile || '프로필'}
         placeholder="profile"
-        isOwner={isCurrentUser(id!)}
+        isOwner={owner}
         handleSubmit={handleProfileChange}
         type="profile"
       />

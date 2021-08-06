@@ -10,6 +10,7 @@ const cx = classNames.bind(styles)
 
 interface Props {
   id: string
+  owner: boolean
 }
 
 interface UploadPictureResult {
@@ -19,7 +20,7 @@ interface UploadPictureResult {
   image?: string
 }
 
-const ProfileImg: FC<Props> = ({ id }) => {
+const ProfileImg: FC<Props> = ({ id, owner }) => {
   const inputFile = createRef<HTMLInputElement>()
   const [image, setImage] = useState(profileIcon)
   const [error, setError] = useState(false)
@@ -83,10 +84,11 @@ const ProfileImg: FC<Props> = ({ id }) => {
         onChange={handleChnage}
       />
       <img
-        className={cx('profile-img', { error: error })}
+        className={cx('profile-img', { error: error, owner })}
         src={image}
         alt="profile img"
         onClick={e => {
+          if (!owner) return
           e.preventDefault()
           e.stopPropagation()
           inputFile.current?.click()
