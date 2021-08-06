@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react'
+import { ChangeEvent, FC, RefObject } from 'react'
 import styles from './VerifyPopup.scss'
 import classNames from 'classnames/bind'
 
@@ -8,9 +8,36 @@ interface Props {
   refer: RefObject<HTMLDivElement>
   handleHide(): void
   handleSuccess(): void
+  sendingEmail: boolean
+  email: string
+  err: boolean
+  checkCode(code: number): boolean
 }
 
-const VerifyPopup: FC<Props> = ({ refer, handleHide }) => {
+const VerifyPopup: FC<Props> = ({
+  refer,
+  handleHide,
+  sendingEmail,
+  email,
+  err,
+  checkCode,
+  handleSuccess,
+}) => {
+  if (err) {
+    alert('오류가 발생했습니다.')
+  }
+
+  const handleChnage = (event: ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value },
+    } = event
+
+    if (value.length === 6 && checkCode(parseInt(value))) {
+      handleSuccess()
+      handleHide()
+    }
+  }
+
   return (
     <div
       ref={refer}
@@ -30,8 +57,13 @@ const VerifyPopup: FC<Props> = ({ refer, handleHide }) => {
       >
         x
       </div>
-      인증코드 6자리를 입력하세요
-      <input className={cx('verify-input')} />
+      <div>
+        {sendingEmail
+          ? email + '로 이메일이 발송되었습니다.'
+          : '이메일 발송중...'}
+      </div>
+      인증코드 6자리를 입력하세요.
+      <input className={cx('verify-input')} onChange={handleChnage} />
     </div>
   )
 }

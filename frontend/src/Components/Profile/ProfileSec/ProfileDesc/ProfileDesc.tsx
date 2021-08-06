@@ -9,7 +9,7 @@ import { server } from '../../../../config'
 
 const cx = classNames.bind(styles)
 
-interface UpdateResult {
+export interface UpdateResult {
   msg: string
   user: User[]
 }
@@ -31,6 +31,7 @@ const ProfileDesc: FC<Props> = ({
   id,
   profile,
   bio,
+  email_verify,
 }) => {
   const getBody = (type: string, value: string) => {
     return {
@@ -102,6 +103,7 @@ const ProfileDesc: FC<Props> = ({
         isOwner={owner}
         type="email"
         handleSubmit={handleEmailChange}
+        email_verify={email_verify}
       />
       <EditableTxt
         value={bio || '상태'}

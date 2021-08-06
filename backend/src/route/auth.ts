@@ -35,7 +35,7 @@ interface GetUser {
 
 interface Update {
   id: string
-  update: 'email' | 'username' | 'bio' | 'profile'
+  update: 'email' | 'username' | 'bio' | 'profile' | 'email_verify'
   value: string
 }
 
@@ -125,7 +125,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
             admin: check[0].admin,
             bio: p.bio,
             profile: p.profile,
-            email_verify: check[0].email_verify
+            email_verify: check[0].email_verify,
           })
         }
       } catch (e) {
@@ -149,7 +149,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         username: a[i].username,
         profile: p.profile,
         bio: p.bio,
-        email_verify: a[i].email_verify
+        email_verify: a[i].email_verify,
       })
     }
 
@@ -215,23 +215,21 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         return
       }
 
-      if (update == 'email' || update == 'username') {
-        user.update([{ id: id }], [updateCon, { email_verify: 0 }])
-
-        const users = await getUser(id)
-        res.code(200).send({
-          msg: 'success',
-          user: users,
-        })
+      if (update === 'email' || update === 'username') {
+        if (update === 'email')
+          user.update([{ id: id }], [updateCon, { email_verify: 0 }])
+        else user.update([{ id: id }], [updateCon])
+      } else if (update === 'email_verify') {
+        user.update([{ id }], [{ email_verify: parseInt(value) }])
       } else {
         profile.update([{ id: id }], [updateCon])
-
-        const users = await getUser(id)
-        res.code(200).send({
-          msg: 'success',
-          user: users,
-        })
       }
+
+      const users = await getUser(id)
+      res.code(200).send({
+        msg: 'success',
+        user: users,
+      })
     }
   )
 

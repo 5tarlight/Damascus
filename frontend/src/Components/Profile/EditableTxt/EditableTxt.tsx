@@ -1,8 +1,10 @@
 import { FC, useEffect, useState, MouseEvent as ME } from 'react'
 import styles from './EditableTxt.scss'
 import classNames from 'classnames/bind'
-import { emailRegexp, usernameExp } from '../../../util'
+import { applyLocalStorage, emailRegexp, usernameExp } from '../../../util'
 import VerifyEmail from './VerifyEmail/VerifyEmail'
+import axios from 'axios'
+import { UpdateResult } from '../ProfileSec/ProfileDesc/ProfileDesc'
 
 const cx = classNames.bind(styles)
 
@@ -55,7 +57,20 @@ const EditableTxt: FC<Props> = ({
     }
   }
 
-  const handleVerifyEmail = async () => {}
+  const handleVerifyEmail = async () => {
+    const {
+      data: { user: users },
+    } = await axios.post<UpdateResult>(
+      'http://localhost:5676/api/auth/update',
+      {
+        id: localStorage.getItem('id'),
+        update: 'email_verify',
+        value: 1,
+      }
+    )
+
+    applyLocalStorage(users[0])
+  }
 
   return (
     <>
