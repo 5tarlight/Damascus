@@ -12,6 +12,7 @@ interface Props {
   email: string
   err: boolean
   checkCode(code: number): boolean
+  active: boolean
 }
 
 const VerifyPopup: FC<Props> = ({
@@ -22,6 +23,7 @@ const VerifyPopup: FC<Props> = ({
   err,
   checkCode,
   handleSuccess,
+  active,
 }) => {
   if (err) {
     alert('오류가 발생했습니다.')
@@ -41,7 +43,7 @@ const VerifyPopup: FC<Props> = ({
   return (
     <div
       ref={refer}
-      className={cx('verify-popup')}
+      className={cx('verify-popup', { active })}
       onClick={event => {
         event.preventDefault()
         event.stopPropagation()

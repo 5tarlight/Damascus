@@ -1,4 +1,4 @@
-import { createRef, FC, memo, useState } from 'react'
+import { createRef, FC, memo, useEffect, useState } from 'react'
 import styles from './VerifyEmail.scss'
 import classNames from 'classnames/bind'
 import VerifyPopup from './VerifyPopup'
@@ -24,9 +24,16 @@ const VerifyEmail: FC<Props> = ({ handleSuccess }) => {
   const [code, setCode] = useState(-1)
   const [err, setErr] = useState(false)
   const email = localStorage.getItem('email') || ''
+  const [isActive, setIsActive] = useState(false)
 
-  const handleShow = () => (popup.current!.style.display = 'block')
-  const handleHide = () => (popup.current!.style.display = 'none')
+  const handleShow = () => {
+    popup.current!.style.display = 'block'
+    setIsActive(true)
+  }
+  const handleHide = () => {
+    popup.current!.style.display = 'none'
+    setIsActive(false)
+  }
 
   const sendEmail = async () => {
     if (emailSent) {
@@ -61,6 +68,7 @@ const VerifyEmail: FC<Props> = ({ handleSuccess }) => {
         email={email}
         err={err}
         checkCode={checkCode}
+        active={isActive}
       />
       <div
         className={cx('verify-email')}
