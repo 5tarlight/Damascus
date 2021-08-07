@@ -80,7 +80,11 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         handleHide={handleHide}
         isProfile
       />
-      <DropdownBackground backRef={background} onHide={handleHide} />
+      <DropdownBackground
+        backRef={background}
+        onHide={handleHide}
+        forSearch={false}
+      />
     </>
   )
 }

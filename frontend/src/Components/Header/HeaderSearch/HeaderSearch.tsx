@@ -93,7 +93,11 @@ class HeaderSearch extends Component<Props, State> {
             handleHide={handleHide}
           />
           <SearchBtn text={this.state.value} handleHide={handleHide} />
-          <DropdownBackground backRef={background} onHide={handleHide} />
+          <DropdownBackground
+            backRef={background}
+            onHide={handleHide}
+            forSearch
+          />
         </InputGroup>
       </>
     )

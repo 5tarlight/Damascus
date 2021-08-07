@@ -4,14 +4,23 @@ import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)
 
-type Props = {
+interface Props {
   onHide(e: RMouseEvent<HTMLDivElement>): any
   backRef: RefObject<HTMLDivElement>
+  forSearch: boolean
 }
 
-const DropdownBackground: FC<Props> = ({ onHide, backRef }) => {
+const DropdownBackground: FC<Props> = ({
+  onHide,
+  backRef,
+  forSearch = true,
+}) => {
   return (
-    <div className={cx('dropdown-background')} ref={backRef} onClick={onHide} />
+    <div
+      className={cx('dropdown-background', { 'for-search': forSearch })}
+      ref={backRef}
+      onClick={onHide}
+    />
   )
 }
 
