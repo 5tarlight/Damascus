@@ -2,11 +2,11 @@ import { createRef, FC, useEffect, useState } from 'react'
 import styles from './ProfileIcon.scss'
 import classNames from 'classnames/bind'
 import profileIcon from './profile.png'
-import SearchDropdown, {
-  DropdownData,
-} from '../../HeaderSearch/SearchDropdown/SearchDropdown'
-import { useHistory } from 'react-router'
-import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
+// import SearchDropdown, {
+//   DropdownData,
+// } from '../../HeaderSearch/SearchDropdown/SearchDropdown'
+// import { useHistory } from 'react-router'
+// import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
 import { getProfilePicture } from '../../../../util'
 
 const cx = classNames.bind(styles)
@@ -16,9 +16,9 @@ interface Props {
 }
 
 const ProfileIcon: FC<Props> = ({ login }) => {
-  const history = useHistory()
-  const dropdown = createRef<HTMLDivElement>()
-  const background = createRef<HTMLDivElement>()
+  // const history = useHistory()
+  // const dropdown = createRef<HTMLDivElement>()
+  // const background = createRef<HTMLDivElement>()
   const [image, setImage] = useState(profileIcon)
 
   useEffect(() => {
@@ -32,44 +32,44 @@ const ProfileIcon: FC<Props> = ({ login }) => {
   }, [login])
 
   const handleShow = () => {
-    dropdown.current?.classList.add('show')
-    background.current?.classList.add('back-show')
+    // dropdown.current?.classList.add('show')
+    // background.current?.classList.add('back-show')
   }
 
-  const handleHide = () => {
-    dropdown.current?.classList.remove('show')
-    background.current?.classList.add('hide')
-    background.current?.classList.remove('back-show')
-    setTimeout(() => {
-      background.current?.classList.remove('hide')
-    }, 200)
-  }
+  // const handleHide = () => {
+  //   dropdown.current?.classList.remove('show')
+  //   background.current?.classList.add('hide')
+  //   background.current?.classList.remove('back-show')
+  //   setTimeout(() => {
+  //     background.current?.classList.remove('hide')
+  //   }, 200)
+  // }
 
-  const items: DropdownData[] = login
-    ? [
-        {
-          to: `/profile/${localStorage.getItem('id')}`,
-          value: '프로필',
-        },
-        {
-          to: '/auth/logout',
-          value: '로그아웃',
-        },
-      ]
-    : [
-        {
-          to: '/auth/signin',
-          value: '로그인',
-        },
-        {
-          to: '/auth/signup',
-          value: '회원가입',
-        },
-      ]
+  // const items: DropdownData[] = login
+  //   ? [
+  //       {
+  //         to: `/profile/${localStorage.getItem('id')}`,
+  //         value: '프로필',
+  //       },
+  //       {
+  //         to: '/auth/logout',
+  //         value: '로그아웃',
+  //       },
+  //     ]
+  //   : [
+  //       {
+  //         to: '/auth/signin',
+  //         value: '로그인',
+  //       },
+  //       {
+  //         to: '/auth/signup',
+  //         value: '회원가입',
+  //       },
+  //     ]
 
-  const redirect = (s: string) => {
-    history.push(s)
-  }
+  // const redirect = (s: string) => {
+  //   history.push(s)
+  // }
 
   return (
     <>
@@ -77,7 +77,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         <img src={image} alt="profile" />
       </div>
 
-      <SearchDropdown
+      {/* <SearchDropdown
         dropdownRef={dropdown}
         items={items as [DropdownData?]}
         setValue={redirect}
@@ -88,7 +88,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         backRef={background}
         onHide={handleHide}
         forSearch={false}
-      />
+      /> */}
     </>
   )
 }

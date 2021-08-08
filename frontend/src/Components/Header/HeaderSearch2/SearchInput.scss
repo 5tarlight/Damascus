@@ -1,0 +1,13 @@
+.search-input {
+  background-color: transparent;
+  border: none;
+  display: block;
+  float: left;
+  height: 42px;
+  margin-left: 5px;
+  width: calc(256px - 10px - 42px - 5px);
+
+  &:focus {
+    outline: none;
+  }
+}
