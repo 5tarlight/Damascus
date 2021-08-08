@@ -1,4 +1,4 @@
-import { createRef, FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styles from './ProfileIcon.scss'
 import classNames from 'classnames/bind'
 import profileIcon from './profile.png'

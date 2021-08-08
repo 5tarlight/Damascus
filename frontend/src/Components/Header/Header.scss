@@ -3,7 +3,14 @@
   height: 120px;
   line-height: calc(120px - 48px);
   align-items: center;
-  border-bottom: 1px solid #aeaeae;
+  border-bottom: 1px solid #e7e7e7;
+
+  box-shadow: 0 0.1px 0.6px rgba(0, 0, 0, 0.006),
+    0 0.2px 1.3px rgba(0, 0, 0, 0.009), 0 0.3px 2.2px rgba(0, 0, 0, 0.011),
+    0 0.4px 3.3px rgba(0, 0, 0, 0.013), 0 0.6px 4.8px rgba(0, 0, 0, 0.015),
+    0 0.9px 6.7px rgba(0, 0, 0, 0.017), 0 1.3px 9.6px rgba(0, 0, 0, 0.019),
+    0 1.8px 13.9px rgba(0, 0, 0, 0.021), 0 2.8px 21.4px rgba(0, 0, 0, 0.024),
+    0 5px 38px rgba(0, 0, 0, 0.03);
 
   /* 스마트폰 세로 */
   @media only screen and (max-width: 768px) {

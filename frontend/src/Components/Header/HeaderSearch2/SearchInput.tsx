@@ -1,14 +1,16 @@
-import { FC, useState } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import styles from './SearchInput.scss'
 import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)
 
-interface Props {}
+interface Props {
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
+  handleSubmit(): void
+}
 
-const SearchInput: FC<Props> = () => {
-  const [value, setValue] = useState('')
-
+const SearchInput: FC<Props> = ({ value, setValue, handleSubmit }) => {
   return (
     <input
       className={cx('search-input')}
@@ -16,6 +18,10 @@ const SearchInput: FC<Props> = () => {
       value={value}
       onChange={event => {
         setValue(event.target.value)
+      }}
+      onKeyDown={e => {
+        const { key } = e
+        if (key === 'Enter') handleSubmit()
       }}
     />
   )

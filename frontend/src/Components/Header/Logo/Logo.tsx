@@ -1,5 +1,5 @@
 import { FC, memo, MouseEvent as ME } from 'react'
-import logo from './logo.png'
+// import logo from './logo.png'
 import styles from './Logo.scss'
 import classNames from 'classnames/bind'
 import { useHistory } from 'react-router'
