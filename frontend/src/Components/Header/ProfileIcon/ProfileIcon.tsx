@@ -7,7 +7,7 @@ import profileIcon from './profile.png'
 // } from '../../HeaderSearch/SearchDropdown/SearchDropdown'
 // import { useHistory } from 'react-router'
 // import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
-import { getProfilePicture } from '../../../../util'
+import { getProfilePicture } from '../../../util'
 
 const cx = classNames.bind(styles)
 

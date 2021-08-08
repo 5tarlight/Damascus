@@ -4,7 +4,7 @@ import styles from './Header.scss'
 import classNames from 'classnames/bind'
 import SearchBox from './HeaderSearch2/SearchBox'
 // import HeaderSearch from './HeaderSearch/HeaderSearch'
-import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
+import ProfileIcon from './ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
