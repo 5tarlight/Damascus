@@ -2,8 +2,9 @@ import { FC, memo } from 'react'
 import Logo from './Logo/Logo'
 import styles from './Header.scss'
 import classNames from 'classnames/bind'
-import HeaderSearch from './HeaderSearch/HeaderSearch'
-import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
+import SearchBox from './HeaderSearch2/SearchBox'
+// import HeaderSearch from './HeaderSearch/HeaderSearch'
+// import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
@@ -14,7 +15,8 @@ interface Props {
 const Header: FC<Props> = ({ login }) => (
   <div className={cx('header')}>
     <Logo />
-    <nav>
+    <SearchBox />
+    {/* <nav>
       <ul className={cx('item-list')}>
         <HeaderSearch />
       </ul>
@@ -23,7 +25,7 @@ const Header: FC<Props> = ({ login }) => (
       <ul className={cx('item-list')}>
         <ProfileIcon login={login} />
       </ul>
-    </nav>
+    </nav> */}
   </div>
 )
 
