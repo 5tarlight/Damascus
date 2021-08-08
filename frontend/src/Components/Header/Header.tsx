@@ -4,7 +4,7 @@ import styles from './Header.scss'
 import classNames from 'classnames/bind'
 import SearchBox from './HeaderSearch2/SearchBox'
 // import HeaderSearch from './HeaderSearch/HeaderSearch'
-// import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
+import ProfileIcon from './ProfileDropdown/ProfileIcon/ProfileIcon'
 
 const cx = classNames.bind(styles)
 
@@ -16,6 +16,7 @@ const Header: FC<Props> = ({ login }) => (
   <div className={cx('header')}>
     <Logo />
     <SearchBox />
+    <ProfileIcon login={login} />
     {/* <nav>
       <ul className={cx('item-list')}>
         <HeaderSearch />
