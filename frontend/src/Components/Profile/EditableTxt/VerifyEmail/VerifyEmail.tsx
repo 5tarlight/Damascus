@@ -1,4 +1,4 @@
-import { createRef, FC, memo, useEffect, useState } from 'react'
+import { createRef, FC, memo, useState } from 'react'
 import styles from './VerifyEmail.scss'
 import classNames from 'classnames/bind'
 import VerifyPopup from './VerifyPopup'

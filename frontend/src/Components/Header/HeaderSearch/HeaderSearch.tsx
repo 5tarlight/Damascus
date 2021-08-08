@@ -64,12 +64,16 @@ class HeaderSearch extends Component<Props, State> {
 
     const handleShow = () => {
       dropdown.current?.classList.add('show')
-      background.current?.classList.add('show')
+      background.current?.classList.add('back-show')
     }
 
     const handleHide = () => {
       dropdown.current?.classList.remove('show')
-      background.current?.classList.remove('show')
+      background.current?.classList.add('hide')
+      background.current?.classList.remove('back-show')
+      setTimeout(() => {
+        background.current?.classList.remove('hide')
+      }, 200)
     }
 
     const handleClick = (text: string) => {
