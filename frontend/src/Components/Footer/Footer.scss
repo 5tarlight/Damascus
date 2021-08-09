@@ -1,0 +1,28 @@
+.footer {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid #afafaf;
+  min-height: 160px;
+  line-height: 160px;
+
+  div {
+    float: right;
+    margin-left: 10px;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .copy {
+    float: left;
+    margin: 0;
+
+    &:hover {
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+}

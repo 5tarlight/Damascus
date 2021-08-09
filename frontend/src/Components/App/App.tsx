@@ -8,6 +8,7 @@ import Search from '../../Page/Search'
 import SignIn from '../../Page/SignIn'
 import SignUp from '../../Page/SignUp'
 import Content from '../Content/Content'
+import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Redirect from="*" to="/404" />
         </Switch>
       </Content>
+      <Footer />
     </BrowserRouter>
   )
 }
