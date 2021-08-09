@@ -14,7 +14,7 @@ const SearchBox: FC<Props> = () => {
   const history = useHistory()
 
   const handleSubmit = () => {
-    history.push(`/search/${search}`)
+    if (search.trim()) history.push(`/search/${search}`)
   }
 
   return (
