@@ -1,7 +1,7 @@
 import { ChangeEvent, createRef, FC, memo, useEffect, useState } from 'react'
 import styles from './ProfileImg.scss'
 import classNames from 'classnames/bind'
-import profileIcon from '../../../Header/ProfileDropdown/ProfileIcon/profile.png'
+import profileIcon from '../../../Header/ProfileIcon/profile.png'
 import axios from 'axios'
 import { fileServer } from '../../../../config'
 import { getProfilePicture } from '../../../../util'

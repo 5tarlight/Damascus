@@ -1,6 +1,6 @@
 import { genSaltSync, hashSync } from 'bcryptjs'
 import { fileServer } from './config'
-import defaultImage from './Components/Header/ProfileDropdown/ProfileIcon/profile.png'
+import defaultImage from './Components/Header/ProfileIcon/profile.png'
 
 interface ImageResult {
   url: string

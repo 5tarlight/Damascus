@@ -79,7 +79,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         <img src={image} alt="profile" />
       </div>
 
-      <ProfileDropdown refer={dropdown} login={login} />
+      <ProfileDropdown refer={dropdown} login={login} onHide={handleHide} />
       <ProfileDropdownBack refer={background} handleHide={handleHide} />
       {/* <SearchDropdown
         dropdownRef={dropdown}

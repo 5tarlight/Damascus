@@ -7,9 +7,30 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   top: 100px;
   right: 50px;
-  border-radius: 5px;
+  border-radius: 7px;
   color: black;
   opacity: 1 !important;
+  line-height: normal;
+  border: 1px solid #afafaf;
+  padding: 7px 0px;
+
+  div {
+    padding: 10px 15px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #d6d6d6;
+    }
+  }
+
+  .sep {
+    border-bottom: 1px solid #afafaf;
+  }
+
+  .head:hover {
+    cursor: default;
+    background-color: transparent;
+  }
 }
 
 .show {
