@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { createRef, FC, useEffect, useState } from 'react'
 import styles from './ProfileIcon.scss'
 import classNames from 'classnames/bind'
 import profileIcon from './profile.png'
@@ -8,6 +8,8 @@ import profileIcon from './profile.png'
 // import { useHistory } from 'react-router'
 // import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
 import { getProfilePicture } from '../../../util'
+import ProfileDropdown from './ProfileDropdown'
+import ProfileDropdownBack from './ProfileDropdownBack'
 
 const cx = classNames.bind(styles)
 
@@ -17,8 +19,8 @@ interface Props {
 
 const ProfileIcon: FC<Props> = ({ login }) => {
   // const history = useHistory()
-  // const dropdown = createRef<HTMLDivElement>()
-  // const background = createRef<HTMLDivElement>()
+  const dropdown = createRef<HTMLDivElement>()
+  const background = createRef<HTMLDivElement>()
   const [image, setImage] = useState(profileIcon)
 
   useEffect(() => {
@@ -32,18 +34,18 @@ const ProfileIcon: FC<Props> = ({ login }) => {
   }, [login])
 
   const handleShow = () => {
-    // dropdown.current?.classList.add('show')
-    // background.current?.classList.add('back-show')
+    dropdown.current?.classList.add('show')
+    background.current?.classList.add('back-show')
   }
 
-  // const handleHide = () => {
-  //   dropdown.current?.classList.remove('show')
-  //   background.current?.classList.add('hide')
-  //   background.current?.classList.remove('back-show')
-  //   setTimeout(() => {
-  //     background.current?.classList.remove('hide')
-  //   }, 200)
-  // }
+  const handleHide = () => {
+    dropdown.current?.classList.remove('show')
+    background.current?.classList.add('hide')
+    background.current?.classList.remove('back-show')
+    setTimeout(() => {
+      background.current?.classList.remove('hide')
+    }, 200)
+  }
 
   // const items: DropdownData[] = login
   //   ? [
@@ -77,6 +79,8 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         <img src={image} alt="profile" />
       </div>
 
+      <ProfileDropdown refer={dropdown} login={login} />
+      <ProfileDropdownBack refer={background} handleHide={handleHide} />
       {/* <SearchDropdown
         dropdownRef={dropdown}
         items={items as [DropdownData?]}
