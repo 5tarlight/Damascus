@@ -4,7 +4,7 @@ export const filterCategory = (str: string) => {
   const bigCat = Object.keys(category)
   const cat = category as any
   let isBigSearch = false
-  let result: any = []
+  let result: string[] = []
 
   bigCat.forEach(c => {
     // search with wide category name

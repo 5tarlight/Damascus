@@ -1,0 +1,22 @@
+.search-box {
+  float: left;
+  width: 256px;
+  height: 52px;
+  background-color: #efefef;
+  border-radius: 5px;
+  padding: 5px;
+  line-height: calc(64px - 10px);
+  margin: calc((72px - 52px) / 2) 0px;
+
+  .search-icon {
+    width: 42px;
+    height: 100%;
+    // margin-top: -15px;
+    border-right: 1px solid white;
+    float: left;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

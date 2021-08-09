@@ -2,12 +2,14 @@ import { createRef, FC, useEffect, useState } from 'react'
 import styles from './ProfileIcon.scss'
 import classNames from 'classnames/bind'
 import profileIcon from './profile.png'
-import SearchDropdown, {
-  DropdownData,
-} from '../../HeaderSearch/SearchDropdown/SearchDropdown'
-import { useHistory } from 'react-router'
-import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
-import { getProfilePicture } from '../../../../util'
+// import SearchDropdown, {
+//   DropdownData,
+// } from '../../HeaderSearch/SearchDropdown/SearchDropdown'
+// import { useHistory } from 'react-router'
+// import DropdownBackground from '../../HeaderSearch/SearchDropdown/DropdownBackground/DropdownBackground'
+import { getProfilePicture } from '../../../util'
+import ProfileDropdown from './ProfileDropdown'
+import ProfileDropdownBack from './ProfileDropdownBack'
 
 const cx = classNames.bind(styles)
 
@@ -16,7 +18,7 @@ interface Props {
 }
 
 const ProfileIcon: FC<Props> = ({ login }) => {
-  const history = useHistory()
+  // const history = useHistory()
   const dropdown = createRef<HTMLDivElement>()
   const background = createRef<HTMLDivElement>()
   const [image, setImage] = useState(profileIcon)
@@ -45,31 +47,31 @@ const ProfileIcon: FC<Props> = ({ login }) => {
     }, 200)
   }
 
-  const items: DropdownData[] = login
-    ? [
-        {
-          to: `/profile/${localStorage.getItem('id')}`,
-          value: '프로필',
-        },
-        {
-          to: '/auth/logout',
-          value: '로그아웃',
-        },
-      ]
-    : [
-        {
-          to: '/auth/signin',
-          value: '로그인',
-        },
-        {
-          to: '/auth/signup',
-          value: '회원가입',
-        },
-      ]
+  // const items: DropdownData[] = login
+  //   ? [
+  //       {
+  //         to: `/profile/${localStorage.getItem('id')}`,
+  //         value: '프로필',
+  //       },
+  //       {
+  //         to: '/auth/logout',
+  //         value: '로그아웃',
+  //       },
+  //     ]
+  //   : [
+  //       {
+  //         to: '/auth/signin',
+  //         value: '로그인',
+  //       },
+  //       {
+  //         to: '/auth/signup',
+  //         value: '회원가입',
+  //       },
+  //     ]
 
-  const redirect = (s: string) => {
-    history.push(s)
-  }
+  // const redirect = (s: string) => {
+  //   history.push(s)
+  // }
 
   return (
     <>
@@ -77,7 +79,9 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         <img src={image} alt="profile" />
       </div>
 
-      <SearchDropdown
+      <ProfileDropdown refer={dropdown} login={login} onHide={handleHide} />
+      <ProfileDropdownBack refer={background} handleHide={handleHide} />
+      {/* <SearchDropdown
         dropdownRef={dropdown}
         items={items as [DropdownData?]}
         setValue={redirect}
@@ -88,7 +92,7 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         backRef={background}
         onHide={handleHide}
         forSearch={false}
-      />
+      /> */}
     </>
   )
 }

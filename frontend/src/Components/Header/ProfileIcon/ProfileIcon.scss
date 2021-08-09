@@ -1,0 +1,19 @@
+.profile-icon {
+  width: 64px;
+  height: 64px;
+  // margin: calc((72px - 50px) / 2) 0px;
+  border-radius: 52px;
+  background-color: white;
+  float: right;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    margin: calc((72px - 64px) / 2) 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 64px;
+  }
+}
