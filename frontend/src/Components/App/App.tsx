@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { getLang } from '../../lang/lang'
 import Home from '../../Page/Home'
 import Logout from '../../Page/Logout'
 import NotFound from '../../Page/NotFound'
@@ -36,9 +37,16 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
+  const { header } = getLang(lang)
+
   return (
     <BrowserRouter>
-      <Header login={isLoggedIn} lang={lang} switchLang={switchLang} />
+      <Header
+        login={isLoggedIn}
+        lang={lang}
+        switchLang={switchLang}
+        headerLang={header}
+      />
       <Content>
         <Switch>
           <Route exact component={Home} path="/" />

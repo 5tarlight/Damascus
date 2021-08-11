@@ -8,13 +8,19 @@ interface Props {
   value: string
   setValue: Dispatch<SetStateAction<string>>
   handleSubmit(): void
+  placeholder: string
 }
 
-const SearchInput: FC<Props> = ({ value, setValue, handleSubmit }) => {
+const SearchInput: FC<Props> = ({
+  value,
+  setValue,
+  handleSubmit,
+  placeholder,
+}) => {
   return (
     <input
       className={cx('search-input')}
-      placeholder="Search"
+      placeholder={placeholder}
       value={value}
       onChange={event => {
         setValue(event.target.value)

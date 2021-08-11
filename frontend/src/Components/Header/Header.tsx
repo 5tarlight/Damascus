@@ -6,6 +6,7 @@ import SearchBox from './HeaderSearch2/SearchBox'
 // import HeaderSearch from './HeaderSearch/HeaderSearch'
 import ProfileIcon from './ProfileIcon/ProfileIcon'
 import LangSwitch, { Lang } from './LangSwitch/LangSwitch'
+import { HeaderLang } from '../../lang/lang'
 
 const cx = classNames.bind(styles)
 
@@ -13,12 +14,18 @@ interface Props {
   login: boolean
   lang: Lang
   switchLang: (lang: Lang) => void
+  headerLang: HeaderLang
 }
 
-const Header: FC<Props> = ({ login, lang, switchLang }) => (
+const Header: FC<Props> = ({
+  login,
+  lang,
+  switchLang,
+  headerLang: { search },
+}) => (
   <div className={cx('header')}>
     <Logo />
-    <SearchBox />
+    <SearchBox text={search} />
     <ProfileIcon login={login} />
     <LangSwitch lang={lang} switchLang={switchLang} />
     {/* <nav>
