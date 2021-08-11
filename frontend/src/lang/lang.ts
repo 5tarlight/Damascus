@@ -16,8 +16,14 @@ export interface HeaderLang {
   logout: string
 }
 
+export interface FooterLang {
+  privacy: string
+  terms: string
+}
+
 export interface Language {
   header: HeaderLang
+  footer: FooterLang
 }
 
 export const getLang = (lang: Lang) => {

@@ -14,6 +14,10 @@ const ko: Language = {
     storagedPosts: '저장한 글',
     logout: '로그아웃',
   },
+  footer: {
+    privacy: '개인정보',
+    terms: '이용약관',
+  },
 }
 
 export default ko

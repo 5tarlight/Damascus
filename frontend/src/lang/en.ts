@@ -14,6 +14,10 @@ const en: Language = {
     storagedPosts: 'Kept Posts',
     logout: 'Logout',
   },
+  footer: {
+    privacy: 'Privacy',
+    terms: 'Terms',
+  },
 }
 
 export default en

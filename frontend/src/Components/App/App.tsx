@@ -37,7 +37,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header } = getLang(lang)
+  const { header, footer } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -73,7 +73,7 @@ const App = () => {
           <Redirect from="*" to="/404" />
         </Switch>
       </Content>
-      <Footer />
+      <Footer footerLang={footer} />
     </BrowserRouter>
   )
 }
