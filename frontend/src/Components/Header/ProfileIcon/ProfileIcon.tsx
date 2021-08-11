@@ -10,14 +10,16 @@ import profileIcon from './profile.png'
 import { getProfilePicture } from '../../../util'
 import ProfileDropdown from './ProfileDropdown'
 import ProfileDropdownBack from './ProfileDropdownBack'
+import { HeaderLang } from '../../../lang/lang'
 
 const cx = classNames.bind(styles)
 
 interface Props {
   login: boolean
+  headerLang: HeaderLang
 }
 
-const ProfileIcon: FC<Props> = ({ login }) => {
+const ProfileIcon: FC<Props> = ({ login, headerLang }) => {
   // const history = useHistory()
   const dropdown = createRef<HTMLDivElement>()
   const background = createRef<HTMLDivElement>()
@@ -79,7 +81,12 @@ const ProfileIcon: FC<Props> = ({ login }) => {
         <img src={image} alt="profile" />
       </div>
 
-      <ProfileDropdown refer={dropdown} login={login} onHide={handleHide} />
+      <ProfileDropdown
+        refer={dropdown}
+        login={login}
+        onHide={handleHide}
+        headerLang={headerLang}
+      />
       <ProfileDropdownBack refer={background} handleHide={handleHide} />
       {/* <SearchDropdown
         dropdownRef={dropdown}

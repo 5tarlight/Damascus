@@ -7,9 +7,11 @@ import { useHistory } from 'react-router'
 
 const cx = classNames.bind(styles)
 
-interface Props {}
+interface Props {
+  text: string
+}
 
-const SearchBox: FC<Props> = () => {
+const SearchBox: FC<Props> = ({ text }) => {
   const [search, setSearch] = useState('')
   const history = useHistory()
 
@@ -29,6 +31,7 @@ const SearchBox: FC<Props> = () => {
         value={search}
         setValue={setSearch}
         handleSubmit={handleSubmit}
+        placeholder={text}
       />
     </div>
   )

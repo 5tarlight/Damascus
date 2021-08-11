@@ -12,6 +12,10 @@
   color: #ceb478;
   font-weight: bolder;
   float: left;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
   // margin-top: -5px;
 
   @media screen and (max-width: 600px) {

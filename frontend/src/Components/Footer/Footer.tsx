@@ -1,14 +1,19 @@
 import { FC } from 'react'
 import styles from './Footer.scss'
 import classNames from 'classnames/bind'
+import { FooterLang } from '../../lang/lang'
 
 const cx = classNames.bind(styles)
 
-const Footer: FC<{}> = () => (
+interface Props {
+  footerLang: FooterLang
+}
+
+const Footer: FC<Props> = ({ footerLang: { privacy, terms } }) => (
   <footer className={cx('footer')}>
     <div className={cx('copy')}>&copy; 2021 5tarlight.</div>
-    <div>이용약관</div>
-    <div>개인정보 이용약관</div>
+    <div>{terms}</div>
+    <div>{privacy}</div>
   </footer>
 )
 

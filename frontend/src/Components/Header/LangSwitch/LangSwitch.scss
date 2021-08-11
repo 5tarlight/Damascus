@@ -1,0 +1,13 @@
+.lang {
+  float: right;
+  margin-right: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+  cursor: default;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

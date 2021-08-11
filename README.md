@@ -21,6 +21,12 @@ Please open ports below
 - 5676 - Prod and Dev backend
 - 5677 - Prod and Dev file server
 
+### Configs
+
+- .env
+- Database.ts
+- chat.js
+
 ### Set up
 
 - Front-end
