@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@sinclair/typebox": "^0.17.1",
+    "@sinclair/typebox": "^0.18.0",
     "@types/crypto-js": "^4.0.2",
     "@types/dotenv": "^8.2.0",
     "@types/fastify-cors": "^2.1.0",
