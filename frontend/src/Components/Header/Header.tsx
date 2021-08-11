@@ -12,14 +12,15 @@ const cx = classNames.bind(styles)
 interface Props {
   login: boolean
   lang: Lang
+  switchLang: (lang: Lang) => void
 }
 
-const Header: FC<Props> = ({ login, lang }) => (
+const Header: FC<Props> = ({ login, lang, switchLang }) => (
   <div className={cx('header')}>
     <Logo />
     <SearchBox />
     <ProfileIcon login={login} />
-    <LangSwitch lang={lang} />
+    <LangSwitch lang={lang} switchLang={switchLang} />
     {/* <nav>
       <ul className={cx('item-list')}>
         <HeaderSearch />

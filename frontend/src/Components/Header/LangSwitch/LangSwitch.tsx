@@ -8,9 +8,10 @@ export type Lang = 'ko' | 'en'
 
 interface Props {
   lang: Lang
+  switchLang: (lang: Lang) => void
 }
 
-const LangSwitch: FC<Props> = ({ lang }) => {
+const LangSwitch: FC<Props> = ({ lang, switchLang }) => {
   let icon: string
   switch (lang) {
     case 'en':
@@ -21,7 +22,18 @@ const LangSwitch: FC<Props> = ({ lang }) => {
       break
   }
 
-  return <div className={cx('lang')}>{`${icon} ${lang}`}</div>
+  return (
+    <div
+      className={cx('lang')}
+      onClick={e => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (lang == 'en') switchLang('ko')
+        else switchLang('en')
+      }}
+    >{`${icon} ${lang}`}</div>
+  )
 }
 
 export default LangSwitch

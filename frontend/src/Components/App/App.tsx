@@ -13,8 +13,24 @@ import Header from '../Header/Header'
 import { Lang } from '../Header/LangSwitch/LangSwitch'
 
 const App = () => {
+  const isLang = (str: string): str is Lang => {
+    return ['ko', 'en'].includes(str)
+  }
+
+  let defaultLang: Lang = 'en'
+  if (isLang(localStorage.getItem('lang') || '')) {
+    defaultLang = localStorage.getItem('lang') as Lang
+  } else {
+    localStorage.setItem('lang', 'en')
+  }
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [lang, setLang] = useState<Lang>('en')
+  const [lang, setLang] = useState<Lang>(defaultLang)
+
+  const switchLang = (lang: Lang) => {
+    localStorage.setItem('lang', lang)
+    setLang(lang)
+  }
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
@@ -22,7 +38,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header login={isLoggedIn} lang={lang} />
+      <Header login={isLoggedIn} lang={lang} switchLang={switchLang} />
       <Content>
         <Switch>
           <Route exact component={Home} path="/" />
