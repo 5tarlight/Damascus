@@ -29,7 +29,7 @@ const LangSwitch: FC<Props> = ({ lang, switchLang }) => {
         e.preventDefault()
         e.stopPropagation()
 
-        if (lang == 'en') switchLang('ko')
+        if (lang === 'en') switchLang('ko')
         else switchLang('en')
       }}
     >{`${icon} ${lang}`}</div>
