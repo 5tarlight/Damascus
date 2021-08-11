@@ -17,16 +17,11 @@ interface Props {
   headerLang: HeaderLang
 }
 
-const Header: FC<Props> = ({
-  login,
-  lang,
-  switchLang,
-  headerLang: { search },
-}) => (
+const Header: FC<Props> = ({ login, lang, switchLang, headerLang }) => (
   <div className={cx('header')}>
     <Logo />
-    <SearchBox text={search} />
-    <ProfileIcon login={login} />
+    <SearchBox text={headerLang.search} />
+    <ProfileIcon login={login} headerLang={headerLang} />
     <LangSwitch lang={lang} switchLang={switchLang} />
     {/* <nav>
       <ul className={cx('item-list')}>

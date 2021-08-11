@@ -2,6 +2,7 @@ import { FC, RefObject } from 'react'
 import styles from './ProfileDropdown.scss'
 import classNames from 'classnames/bind'
 import { useHistory } from 'react-router'
+import { HeaderLang } from '../../../lang/lang'
 
 const cx = classNames.bind(styles)
 
@@ -9,9 +10,26 @@ interface Props {
   refer: RefObject<HTMLDivElement>
   login: boolean
   onHide(): void
+  headerLang: HeaderLang
 }
 
-const ProfileDropdown: FC<Props> = ({ refer, login, onHide }) => {
+const ProfileDropdown: FC<Props> = ({
+  refer,
+  login,
+  onHide,
+  headerLang: {
+    loggedinAs,
+    myProfile,
+    myPosts,
+    subscribes,
+    likedPosts,
+    storagedPosts,
+    logout,
+    notLoggedin,
+    signin,
+    signup,
+  },
+}) => {
   const history = useHistory()
 
   const click = (path: string) => () => {
@@ -24,24 +42,27 @@ const ProfileDropdown: FC<Props> = ({ refer, login, onHide }) => {
       {login ? (
         <>
           <div className={cx('sep', 'head')}>
-            {localStorage.getItem('username')}으로 로그인됨
+            {loggedinAs.replace(
+              '{name}',
+              localStorage.getItem('username') || 'unknown'
+            )}
           </div>
           <div onClick={click(`/profile/${localStorage.getItem('id')}`)}>
-            내 프로필
+            {myProfile}
           </div>
-          <div onClick={click('/')}>내 글</div>
-          <div onClick={click('/')}>구독함</div>
-          <div onClick={click('/')}>좋아요 표시한 글</div>
+          <div onClick={click('/')}>{myPosts}</div>
+          <div onClick={click('/')}>{subscribes}</div>
+          <div onClick={click('/')}>{likedPosts}</div>
           <div className={cx('sep')} onClick={click('/')}>
-            저장한 글
+            {storagedPosts}
           </div>
-          <div onClick={click('/auth/logout')}>로그아웃</div>
+          <div onClick={click('/auth/logout')}>{logout}</div>
         </>
       ) : (
         <>
-          <div className={cx('sep', 'head')}>로그인되지 않음</div>
-          <div onClick={click('/auth/signin')}>로그인</div>
-          <div onClick={click('/auth/signup')}>회원가입</div>
+          <div className={cx('sep', 'head')}>{notLoggedin}</div>
+          <div onClick={click('/auth/signin')}>{signin}</div>
+          <div onClick={click('/auth/signup')}>{signup}</div>
         </>
       )}
     </div>

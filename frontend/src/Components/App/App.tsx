@@ -49,8 +49,8 @@ const App = () => {
       />
       <Content>
         <Switch>
-          <Route exact component={Home} path="/" />
-          <Route exact component={Search} path="/search/:search" />
+          <Route exact component={() => <Home />} path="/" />
+          <Route exact component={() => <Search />} path="/search/:search" />
 
           <Route
             exact
@@ -67,9 +67,9 @@ const App = () => {
             component={() => <Logout setLogin={setIsLoggedIn} />}
             path="/auth/logout"
           />
-          <Route exact component={Profile} path="/profile/:id" />
+          <Route exact component={() => <Profile />} path="/profile/:id" />
 
-          <Route exact path="/404" component={NotFound} />
+          <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />
         </Switch>
       </Content>
