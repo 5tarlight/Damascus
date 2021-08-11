@@ -10,9 +10,11 @@ import SignUp from '../../Page/SignUp'
 import Content from '../Content/Content'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
+import { Lang } from '../Header/LangSwitch/LangSwitch'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [lang, setLang] = useState<Lang>('en')
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
@@ -20,7 +22,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header login={isLoggedIn} />
+      <Header login={isLoggedIn} lang={lang} />
       <Content>
         <Switch>
           <Route exact component={Home} path="/" />
