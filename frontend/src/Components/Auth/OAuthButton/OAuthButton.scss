@@ -1,0 +1,23 @@
+.o-auth-btn {
+  width: 50px;
+  height: 50px;
+  flex: 1;
+  padding: 2px;
+  border: 1px solid #efefef;
+  border-radius: 50px;
+  box-shadow: 0 0.1px 0.2px rgba(0, 0, 0, 0.015),
+    0 0.2px 0.4px rgba(0, 0, 0, 0.022), 0 0.4px 0.7px rgba(0, 0, 0, 0.027),
+    0 0.6px 1.1px rgba(0, 0, 0, 0.031), 0 0.9px 1.6px rgba(0, 0, 0, 0.035),
+    0 1.2px 2.3px rgba(0, 0, 0, 0.039), 0 1.8px 3.3px rgba(0, 0, 0, 0.043),
+    0 2.6px 4.7px rgba(0, 0, 0, 0.048), 0 3.9px 7.3px rgba(0, 0, 0, 0.055),
+    0 7px 13px rgba(0, 0, 0, 0.07);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.o-auth {
+  display: inline-flex;
+  margin-top: 15px;
+}

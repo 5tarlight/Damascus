@@ -10,6 +10,7 @@ import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import { server } from '../config'
 import { applyLocalStorage, emailRegexp, pwRegexp } from '../util'
+import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -124,6 +125,7 @@ const SignIn: FC<Props> = ({ setLogin }) => {
         reff={resultRef}
       />
       <AuthBtn value="로그인" handleClick={handleClick} />
+      <OAuthContainer />
       <AuthLinkBox>
         <AuthLink value="회원가입" to="/auth/signup" />
         <AuthLink value="아이디 찾기" to="/auth/searchid" />
