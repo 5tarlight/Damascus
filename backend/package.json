@@ -14,7 +14,7 @@
     "crypto-js": "^4.0.0",
     "crypto-ts": "^1.0.2",
     "dotenv": "^8.6.0",
-    "fastify": "^3.18.1",
+    "fastify": "^3.19.2",
     "fastify-compress": "^3.6.0",
     "fastify-cookie": "^5.3.1",
     "fastify-cors": "^6.0.2",
