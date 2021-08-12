@@ -10,6 +10,7 @@
     "@types/fastify-cors": "^2.1.0",
     "@types/mysql": "^2.15.19",
     "@types/node": "^15.14.0",
+    "@types/nodemailer": "^6.4.4",
     "crypto": "^1.0.1",
     "crypto-js": "^4.0.0",
     "crypto-ts": "^1.0.2",
