@@ -161,8 +161,6 @@ const SignUp: FC<Props> = ({ setLogin }) => {
 
       <AuthLinkBox>
         <AuthLink value="로그인" to="/auth/signin" />
-        <AuthLink value="아이디 찾기" to="/auth/searchid" />
-        <AuthLink value="비밀번호 찾기" to="/auth/searchpw" />
       </AuthLinkBox>
     </AuthBox>
   )
