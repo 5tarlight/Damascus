@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 code {
@@ -20,4 +21,5 @@ ul {
 a {
   text-decoration: none;
   outline: none;
+  box-sizing: inherit;
 }

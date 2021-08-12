@@ -37,7 +37,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header, footer } = getLang(lang)
+  const { header, footer, auth } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -54,12 +54,12 @@ const App = () => {
 
           <Route
             exact
-            component={() => <SignUp setLogin={setIsLoggedIn} />}
+            component={() => <SignUp setLogin={setIsLoggedIn} lang={auth} />}
             path="/auth/signup"
           />
           <Route
             exact
-            component={() => <SignIn setLogin={setIsLoggedIn} />}
+            component={() => <SignIn setLogin={setIsLoggedIn} lang={auth} />}
             path="/auth/signin"
           />
           <Route

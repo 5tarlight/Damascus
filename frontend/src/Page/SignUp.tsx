@@ -11,9 +11,11 @@ import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import { server } from '../config'
 import { applyLocalStorage, emailRegexp, pwRegexp, usernameExp } from '../util'
 import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
+import { AuthLang } from '../lang/lang'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
+  lang: AuthLang
 }
 
 interface SignUpResponse {
@@ -24,7 +26,22 @@ interface SignUpResponse {
   admin: Bit
 }
 
-const SignUp: FC<Props> = ({ setLogin }) => {
+const SignUp: FC<Props> = ({
+  setLogin,
+  lang: {
+    signup,
+    signin,
+    email: emailText,
+    password,
+    confirmPassword,
+    username: usernameText,
+    notValidEmail,
+    emailAlreadyTaken,
+    notValidPassword,
+    notValidUsername,
+    confirmPasswordFail,
+  },
+}) => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwCon, setPwCon] = useState('')
@@ -121,48 +138,45 @@ const SignUp: FC<Props> = ({ setLogin }) => {
 
   return (
     <AuthBox>
-      <AuthTitle text="회원가입" />
+      <AuthTitle text={signup} />
       <AuthInput
         value={email}
         handleChnage={handleChnage(setEmail)}
-        placeholder="이메일"
+        placeholder={emailText}
         password="email"
         handleSubmit={handleClick}
       />
-      <AuthMessage value="유효하지 않은 이메일입니다." reff={emailRef} />
-      <AuthMessage value="사용중인 이메일입니다." reff={resultRef} />
+      <AuthMessage value={notValidEmail} reff={emailRef} />
+      <AuthMessage value={emailAlreadyTaken} reff={resultRef} />
       <AuthInput
         value={pw}
         handleChnage={handleChnage(setPw)}
-        placeholder="비밀번호"
+        placeholder={password}
         password="password"
         handleSubmit={handleClick}
       />
-      <AuthMessage
-        value="8자리 이상, 특수문자를 포함해야 합니다."
-        reff={pwRef}
-      />
+      <AuthMessage value={notValidPassword} reff={pwRef} />
       <AuthInput
         value={pwCon}
         handleChnage={handleChnage(setPwCon)}
-        placeholder="비밀번호 확인"
+        placeholder={confirmPassword}
         password="password"
         handleSubmit={handleClick}
       />
-      <AuthMessage value="비밀번호가 일치하지 않습니다." reff={pwConRef} />
+      <AuthMessage value={confirmPasswordFail} reff={pwConRef} />
       <AuthInput
         value={username}
         handleChnage={handleChnage(SetUsername)}
-        placeholder="이름"
+        placeholder={usernameText}
         password="text"
         handleSubmit={handleClick}
       />
-      <AuthMessage value="사용할 수 없는 이름입니다." reff={usernameRef} />
-      <AuthBtn value="회원가입" handleClick={handleClick} />
+      <AuthMessage value={notValidUsername} reff={usernameRef} />
+      <AuthBtn value={signup} handleClick={handleClick} />
 
       <OAuthContainer />
       <AuthLinkBox>
-        <AuthLink value="로그인" to="/auth/signin" />
+        <AuthLink value={signin} to="/auth/signin" />
       </AuthLinkBox>
     </AuthBox>
   )
