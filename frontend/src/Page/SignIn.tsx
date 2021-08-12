@@ -11,9 +11,11 @@ import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import { server } from '../config'
 import { applyLocalStorage, emailRegexp, pwRegexp } from '../util'
 import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
+import { AuthLang } from '../lang/lang'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
+  lang: AuthLang
 }
 
 interface SignInResponse {

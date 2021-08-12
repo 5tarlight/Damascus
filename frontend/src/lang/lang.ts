@@ -21,9 +21,21 @@ export interface FooterLang {
   terms: string
 }
 
+export interface AuthLang {
+  signin: string
+  signup: string
+  email: string
+  password: string
+  confirmPassword: string
+  searchEmail: string
+  searchPassword: string
+  username: string
+}
+
 export interface Language {
   header: HeaderLang
   footer: FooterLang
+  auth: AuthLang
 }
 
 export const getLang = (lang: Lang) => {

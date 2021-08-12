@@ -18,6 +18,16 @@ const ko: Language = {
     privacy: '개인정보',
     terms: '이용약관',
   },
+  auth: {
+    confirmPassword: '비밀번호 확인',
+    email: '이메일',
+    password: '비밀번호',
+    searchEmail: '이메일 찾기',
+    searchPassword: '비밀번호 찾기',
+    signin: '로그인',
+    signup: '회원가입',
+    username: '이름',
+  },
 }
 
 export default ko

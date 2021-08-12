@@ -11,9 +11,11 @@ import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import { server } from '../config'
 import { applyLocalStorage, emailRegexp, pwRegexp, usernameExp } from '../util'
 import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
+import { AuthLang } from '../lang/lang'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
+  lang: AuthLang
 }
 
 interface SignUpResponse {
