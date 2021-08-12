@@ -10,6 +10,7 @@ import AuthLink from '../Components/Auth/AuthLink/AuthLink'
 import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
 import { server } from '../config'
 import { applyLocalStorage, emailRegexp, pwRegexp, usernameExp } from '../util'
+import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -159,6 +160,7 @@ const SignUp: FC<Props> = ({ setLogin }) => {
       <AuthMessage value="사용할 수 없는 이름입니다." reff={usernameRef} />
       <AuthBtn value="회원가입" handleClick={handleClick} />
 
+      <OAuthContainer />
       <AuthLinkBox>
         <AuthLink value="로그인" to="/auth/signin" />
       </AuthLinkBox>
