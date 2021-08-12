@@ -27,6 +27,12 @@ const ko: Language = {
     signin: '로그인',
     signup: '회원가입',
     username: '이름',
+    confirmPasswordFail: '비밀번호가 일치하지 않습니다.',
+    emailAlreadyTaken: '이미 사용중인 이메일입니다.',
+    loginFailed: '이메일이나 비밀번호가 일치하지 않습니다.',
+    notValidEmail: '유효하지 않은 이메일입니다.',
+    notValidPassword: '8자리 이상, 특수문자를 포함해야 합니다.',
+    notValidUsername: '사용할 수 없는 이름입니다.',
   },
 }
 

@@ -29,7 +29,20 @@ interface SignInResponse {
   email_verify: Bit
 }
 
-const SignIn: FC<Props> = ({ setLogin }) => {
+const SignIn: FC<Props> = ({
+  setLogin,
+  lang: {
+    email: emailText,
+    password,
+    searchEmail,
+    searchPassword,
+    signup,
+    signin,
+    notValidEmail,
+    notValidPassword,
+    loginFailed,
+  },
+}) => {
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
 
@@ -102,36 +115,30 @@ const SignIn: FC<Props> = ({ setLogin }) => {
 
   return (
     <AuthBox>
-      <AuthTitle text="로그인" />
+      <AuthTitle text={signin} />
       <AuthInput
         value={email}
         handleChnage={handleChnage(setEmail)}
-        placeholder="이메일"
+        placeholder={emailText}
         password="email"
         handleSubmit={handleClick}
       />
-      <AuthMessage value="유효하지 않은 이메일입니다." reff={emailRef} />
+      <AuthMessage value={notValidEmail} reff={emailRef} />
       <AuthInput
         value={pw}
         handleChnage={handleChnage(setPw)}
-        placeholder="비밀번호"
+        placeholder={password}
         password="password"
         handleSubmit={handleClick}
       />
-      <AuthMessage
-        value="8자리 이상, 특수문자를 포함해야 합니다."
-        reff={pwRef}
-      />
-      <AuthMessage
-        value="이메일이나 비밀번호가 일치하지 않습니다."
-        reff={resultRef}
-      />
-      <AuthBtn value="로그인" handleClick={handleClick} />
+      <AuthMessage value={notValidPassword} reff={pwRef} />
+      <AuthMessage value={loginFailed} reff={resultRef} />
+      <AuthBtn value={signin} handleClick={handleClick} />
       <OAuthContainer />
       <AuthLinkBox>
-        <AuthLink value="회원가입" to="/auth/signup" />
-        <AuthLink value="아이디 찾기" to="/auth/searchid" />
-        <AuthLink value="비밀번호 찾기" to="/auth/searchpw" />
+        <AuthLink value={signup} to="/auth/signup" />
+        <AuthLink value={searchEmail} to="/auth/searchemail" />
+        <AuthLink value={searchPassword} to="/auth/searchpw" />
       </AuthLinkBox>
     </AuthBox>
   )

@@ -24,9 +24,16 @@ const en: Language = {
     email: 'Email',
     confirmPassword: 'Confirm Password',
     password: 'Password',
-    searchEmail: 'Lost Email?',
-    searchPassword: 'Lost Password?',
+    searchEmail: 'Forgot Email?',
+    searchPassword: 'Forgot Password?',
     username: 'Username',
+    confirmPasswordFail: 'Password is not equal.',
+    emailAlreadyTaken: 'Already taken email',
+    loginFailed: 'Email or password is incorrect.',
+    notValidEmail: 'Not valid email',
+    notValidPassword:
+      'Password must be longer than 8 and include special characters.',
+    notValidUsername: 'Invalid username',
   },
 }
 

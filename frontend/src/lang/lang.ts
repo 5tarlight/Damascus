@@ -30,6 +30,12 @@ export interface AuthLang {
   searchEmail: string
   searchPassword: string
   username: string
+  notValidEmail: string
+  notValidPassword: string
+  loginFailed: string
+  emailAlreadyTaken: string
+  confirmPasswordFail: string
+  notValidUsername: string
 }
 
 export interface Language {
