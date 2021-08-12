@@ -6,8 +6,8 @@ const service = createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'developerstarlight@gmail.com',
-    pass: 'kgm030115**',
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PW,
   },
 })
 
