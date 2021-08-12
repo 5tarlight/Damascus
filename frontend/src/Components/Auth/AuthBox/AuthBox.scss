@@ -3,12 +3,13 @@
 }
 
 .auth-box {
-  border: solid 5px goldenrod;
-  width: 500px;
-  padding: 50px 40px;
+  // border: solid 5px goldenrod;
+  border: solid 1px #e4e4e4;
+  width: 400px;
+  padding: 30px 30px;
   border-radius: 5px;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 50px;
   box-shadow: 0px 27px 32px -12px rgba(0, 0, 0, 0.22);
 
   @media screen and (max-width: 500px) {
