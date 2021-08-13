@@ -38,7 +38,6 @@ const ProfileImg: FC<Props> = ({ id, owner }) => {
     const file = files[0]
 
     const formData = new FormData()
-    console.log(files[0])
     formData.append(
       'profile_img',
       file,

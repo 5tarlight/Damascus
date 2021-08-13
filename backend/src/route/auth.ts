@@ -8,6 +8,8 @@ import UpdateBody from './schema/UpdateUser.json'
 import GetVerifyEmailBody from './schema/GetVerifyEmail.json'
 import { Bit } from '../types/type'
 import emailService from '../email'
+import { v4 as uuid4 } from 'uuid'
+
 interface SignUp {
   email: string
   username: string
@@ -67,7 +69,8 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         const has = (await user.find({ email: email })).length > 0
         if (!has) {
           user.add(
-            'email, password, username',
+            'id, email, password, username',
+            uuid4(),
             email,
             cryptSha(password),
             username
