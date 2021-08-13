@@ -2,10 +2,23 @@ const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
 const helmet = require('helmet')
-const scrf = require('csurf')
+// const scrf = require('csurf')
+// const sessions = require('express-session')
 
-const scrfProtection = scrf({ cookie: false })
+// const scrfProtection = scrf({ cookie: false })
 const app = express()
+
+// app.use(
+//   sessions({
+//     cookieName: 'demo-session',
+//     secret: 'this is a secret msg',
+//     duration: 30 * 60 * 1000,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// )
+
+// const scrfProtection = scrf({ sessionKey: 'demo-session', cookie: false })
 app.disable('x-powered-by')
 
 app.use(cors())
@@ -24,22 +37,28 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('profile_img')
 
-app.post('/profile/image', scrfProtection, (req, res) => {
-  upload(req, res, err => {
-    if (err) {
-      return res.json({ success: false, err })
-    }
-    return res.json({
-      success: true,
-      image: res.req.file.path,
-      fileName: res.req.file.filename,
+app.post(
+  '/profile/image',
+  /* scrfProtection , */ (req, res) => {
+    upload(req, res, err => {
+      if (err) {
+        return res.json({ success: false, err })
+      }
+      return res.json({
+        success: true,
+        image: res.req.file.path,
+        fileName: res.req.file.filename,
+      })
     })
-  })
-})
+  }
+)
 
-app.get('/', scrfProtection, (req, res) => {
-  res.end('damascus file server')
-})
+app.get(
+  '/',
+  /* scrfProtection, */ (req, res) => {
+    res.end('damascus file server')
+  }
+)
 
 app.listen(5677, () => {
   console.log('file server is on port 5677')
