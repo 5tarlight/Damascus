@@ -12,7 +12,7 @@
     "@types/node": "^15.14.0",
     "@types/nodemailer": "^6.4.4",
     "crypto": "^1.0.1",
-    "crypto-js": "^4.0.0",
+    "crypto-js": "^4.1.1",
     "crypto-ts": "^1.0.2",
     "dotenv": "^8.6.0",
     "fastify": "^3.19.2",
