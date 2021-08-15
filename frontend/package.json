@@ -12,7 +12,7 @@
     "@types/bootstrap": "4.6.1",
     "@types/jest": "^26.0.24",
     "@types/node": "^15.12.5",
-    "@types/react": "^17.0.13",
+    "@types/react": "^17.0.15",
     "@types/react-bootstrap": "^0.32.26",
     "@types/react-dom": "^17.0.9",
     "@types/react-router": "^5.1.16",
