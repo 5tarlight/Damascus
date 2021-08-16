@@ -9,10 +9,10 @@
   dependencies:
     ajv "^6.12.6"
 
-"@sinclair/typebox@^0.18.0":
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.18.1.tgz#2d01fe5109dfa9b97188aa98081b4ef2c9a29beb"
-  integrity sha512-bl1omaQJ7RKyEmhfQGGIqv9XxwngP0P1MpUFhyBQZcLpFQyNu213DRva8NMorkf+YpX833IUZL5VrqSkaCOL7Q==
+"@sinclair/typebox@^0.19.2":
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.19.2.tgz#3a526594d6f652ada78e6c00be84463ae48047e4"
+  integrity sha512-0U/RVPZQw1QxhrbKV0o281ZWI1Ve3osJnyEYnwOp3slydIQHyXumbJANJeNv9BqABDiHWlmzsxSVopPHMvt3Aw==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
