@@ -35,6 +35,10 @@ const en: Language = {
       'Password must be longer than 8 and include special characters.',
     notValidUsername: 'Invalid username',
   },
+  userProfile: {
+    loading: 'Loading...',
+    failedToLoad: 'Unable to load user.',
+  },
 }
 
 export default en

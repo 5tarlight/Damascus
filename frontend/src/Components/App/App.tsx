@@ -38,7 +38,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header, footer, auth } = getLang(lang)
+  const { header, footer, auth, userProfile } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -69,7 +69,11 @@ const App = () => {
             path="/auth/logout"
           />
           {/* <Route exact component={() => <Profile />} path="/profile/:id" /> */}
-          <Route exact component={() => <UserProfile />} path="/user/:id" />
+          <Route
+            exact
+            component={() => <UserProfile lang={userProfile} />}
+            path="/user/:id"
+          />
 
           <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />
