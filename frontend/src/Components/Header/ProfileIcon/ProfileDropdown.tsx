@@ -47,7 +47,7 @@ const ProfileDropdown: FC<Props> = ({
               localStorage.getItem('username') || 'unknown'
             )}
           </div>
-          <div onClick={click(`/profile/${localStorage.getItem('id')}`)}>
+          <div onClick={click(`/user/${localStorage.getItem('id')}`)}>
             {myProfile}
           </div>
           <div onClick={click('/')}>{myPosts}</div>
