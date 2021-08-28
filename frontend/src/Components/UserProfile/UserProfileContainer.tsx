@@ -56,6 +56,10 @@ const ProfileContainer = styled.div`
   min-height: 400px;
 `
 
+const TextField = styled.div`
+  margin-left: 350px;
+`
+
 const UserProfileContainer: FC<Props> = ({
   id,
   lang,
@@ -104,13 +108,15 @@ const UserProfileContainer: FC<Props> = ({
       ) : (
         <>
           <UserProfileImg id={id} isOwner={isOwner} />
-          <ProfileText
-            editable={isOwner}
-            lang={lang}
-            type="username"
-            placeholder="Username"
-            value={profile?.username || ''}
-          />
+          <TextField>
+            <ProfileText
+              editable={isOwner}
+              lang={lang}
+              type="username"
+              placeholder="Username"
+              value={profile?.username || ''}
+            />
+          </TextField>
         </>
       )}
     </ProfileContainer>
