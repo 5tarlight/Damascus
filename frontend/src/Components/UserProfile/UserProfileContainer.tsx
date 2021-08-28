@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { FC, useEffect, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { server } from '../../config'
 import { UserLang } from '../../lang/lang'
-import { parseBit } from '../../util'
+import { isCurrentUser, parseBit } from '../../util'
+import UserProfileImg from './UserProfileImg'
 
 interface Props {
   id: string
@@ -31,10 +32,27 @@ interface ProfileResponse {
 }
 
 const Loading = styled.div`
+  font-size: 25px;
+`
+
+const Failure = styled.div`
+  font-size: 25px;
+`
+
+const ProfileContainer = styled.div`
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 25px;
-  align-items: center;
+  padding: 20px;
+  border: 1px solid #e7e7e7;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.009),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.018), 0 12.5px 10px rgba(0, 0, 0, 0.026),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.034), 0 41.8px 33.4px rgba(0, 0, 0, 0.041),
+    0 100px 80px rgba(0, 0, 0, 0.04);
+  min-height: 150px;
 `
 
 const UserProfileContainer: FC<Props> = ({
@@ -44,6 +62,7 @@ const UserProfileContainer: FC<Props> = ({
   const [profile, setProfile] = useState<ProfileState>()
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const isOwner = isCurrentUser(id)
 
   useEffect(() => {
     axios
@@ -75,16 +94,18 @@ const UserProfileContainer: FC<Props> = ({
   }, [id])
 
   return (
-    <>
+    <ProfileContainer>
       {!loaded ? (
         <Loading>{loading}</Loading>
       ) : failed ? (
-        <div>{failedToLoad}</div>
+        <Failure>{failedToLoad}</Failure>
       ) : (
-        <div>Success</div>
+        <>
+          <UserProfileImg id={id} isOwner={isOwner} />
+        </>
       )}
-    </>
+    </ProfileContainer>
   )
 }
 
-export default UserProfileContainer
+export default memo(UserProfileContainer)
