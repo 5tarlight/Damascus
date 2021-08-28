@@ -41,6 +41,8 @@ export interface AuthLang {
 export interface UserLang {
   loading: string
   failedToLoad: string
+  submit: string
+  cancel: string
 }
 
 export interface Language {

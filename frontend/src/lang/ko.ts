@@ -37,6 +37,8 @@ const ko: Language = {
   userProfile: {
     loading: '불러오는 중...',
     failedToLoad: '유저를 불러올 수 없습니다.',
+    cancel: '취소',
+    submit: '저장',
   },
 }
 

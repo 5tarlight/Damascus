@@ -52,7 +52,7 @@ const ProfileContainer = styled.div`
     0 6.7px 5.3px rgba(0, 0, 0, 0.018), 0 12.5px 10px rgba(0, 0, 0, 0.026),
     0 22.3px 17.9px rgba(0, 0, 0, 0.034), 0 41.8px 33.4px rgba(0, 0, 0, 0.041),
     0 100px 80px rgba(0, 0, 0, 0.04);
-  min-height: 150px;
+  min-height: 400px;
 `
 
 const UserProfileContainer: FC<Props> = ({

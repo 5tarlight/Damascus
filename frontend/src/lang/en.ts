@@ -38,6 +38,8 @@ const en: Language = {
   userProfile: {
     loading: 'Loading...',
     failedToLoad: 'Unable to load user.',
+    cancel: 'Cancel',
+    submit: 'Save',
   },
 }
 
