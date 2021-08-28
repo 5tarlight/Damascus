@@ -17,11 +17,19 @@ interface UploadPictureResult {
   image?: string
 }
 
-const Image = styled.img`
+interface ImageProps {
+  clickable: boolean
+}
+
+const Image = styled.img<ImageProps>`
   width: 300px;
   height: 300px;
   overflow: hidden;
   float: left;
+
+  &:hover {
+    cursor: ${({ clickable }) => (clickable ? 'pointer' : 'normal')};
+  }
 `
 
 const UserProfileImg: FC<Props> = ({ id, isOwner }) => {
@@ -89,6 +97,7 @@ const UserProfileImg: FC<Props> = ({ id, isOwner }) => {
       <Image
         src={image}
         alt="profile img"
+        clickable={isOwner}
         onClick={e => {
           if (!isOwner) return
           e.preventDefault()

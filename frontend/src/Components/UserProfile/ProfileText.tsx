@@ -1,5 +1,4 @@
-import { useState } from 'hoist-non-react-statics/node_modules/@types/react'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styled from 'styled-components'
 import { UserLang } from '../../lang/lang'
 
@@ -43,7 +42,7 @@ const ProfileText: FC<Props> = ({
   if (!editable) {
     return <Text edit={editable}>{value}</Text>
   } else {
-    return edit ? (
+    return !edit ? (
       <Text edit={editable}>{value}</Text>
     ) : (
       <>

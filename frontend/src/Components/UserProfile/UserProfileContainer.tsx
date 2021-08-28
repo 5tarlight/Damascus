@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { server } from '../../config'
 import { UserLang } from '../../lang/lang'
 import { isCurrentUser, parseBit } from '../../util'
+import ProfileText from './ProfileText'
 import UserProfileImg from './UserProfileImg'
 
 interface Props {
@@ -57,6 +58,7 @@ const ProfileContainer = styled.div`
 
 const UserProfileContainer: FC<Props> = ({
   id,
+  lang,
   lang: { failedToLoad, loading },
 }) => {
   const [profile, setProfile] = useState<ProfileState>()
@@ -102,6 +104,13 @@ const UserProfileContainer: FC<Props> = ({
       ) : (
         <>
           <UserProfileImg id={id} isOwner={isOwner} />
+          <ProfileText
+            editable={isOwner}
+            lang={lang}
+            type="username"
+            placeholder="Username"
+            value={profile?.username || ''}
+          />
         </>
       )}
     </ProfileContainer>
