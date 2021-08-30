@@ -43,6 +43,8 @@ const ProfileText: FC<Props> = ({
   lang: { cancel, submit },
 }) => {
   const [edit, setEdit] = useState(false)
+  const origin = value
+  const [editted, setEditted] = useState(origin)
 
   if (!editable) {
     return (
@@ -65,12 +67,19 @@ const ProfileText: FC<Props> = ({
       </Text>
     ) : (
       <>
-        <EditInput />
+        <EditInput
+          placeholder={placeholder}
+          value={editted}
+          onChange={({ target: { value } }) => {
+            setEditted(value)
+          }}
+        />
         <CancelBtn
           onClick={e => {
             e.preventDefault()
             e.stopPropagation()
             setEdit(false)
+            setEditted(origin)
           }}
         >
           {cancel}
