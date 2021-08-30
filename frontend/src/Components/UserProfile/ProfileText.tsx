@@ -12,7 +12,12 @@ interface Props {
   lang: UserLang
 }
 
-const Text = styled.div<{ edit: boolean }>`
+interface TextProps {
+  edit: boolean
+  type: TxtType
+}
+
+const Text = styled.div<TextProps>`
   ${({ edit }) => {
     if (edit) {
       return `
@@ -40,14 +45,36 @@ const ProfileText: FC<Props> = ({
   const [edit, setEdit] = useState(false)
 
   if (!editable) {
-    return <Text edit={editable}>{value}</Text>
+    return (
+      <Text edit={editable} type={type}>
+        {value}
+      </Text>
+    )
   } else {
     return !edit ? (
-      <Text edit={editable}>{value}</Text>
+      <Text
+        edit={editable}
+        onClick={e => {
+          e.stopPropagation()
+          e.preventDefault()
+          setEdit(true)
+        }}
+        type={type}
+      >
+        {value}
+      </Text>
     ) : (
       <>
         <EditInput />
-        <CancelBtn>{cancel}</CancelBtn>
+        <CancelBtn
+          onClick={e => {
+            e.preventDefault()
+            e.stopPropagation()
+            setEdit(false)
+          }}
+        >
+          {cancel}
+        </CancelBtn>
         <SubmitBtn>{submit}</SubmitBtn>
       </>
     )
