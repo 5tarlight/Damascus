@@ -19,6 +19,7 @@ interface UploadPictureResult {
 
 interface ImageProps {
   clickable: boolean
+  fail: boolean
 }
 
 const Image = styled.img<ImageProps>`
@@ -26,6 +27,7 @@ const Image = styled.img<ImageProps>`
   height: 300px;
   overflow: hidden;
   float: left;
+  border-color: ${({ fail }) => (fail ? 'red' : 'currentColor')};
 
   &:hover {
     cursor: ${({ clickable }) => (clickable ? 'pointer' : 'normal')};
@@ -104,6 +106,7 @@ const UserProfileImg: FC<Props> = ({ id, isOwner }) => {
           e.stopPropagation()
           inputFile.current?.click()
         }}
+        fail={error}
       />
     </>
   )
