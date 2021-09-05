@@ -39,6 +39,10 @@ const ko: Language = {
     failedToLoad: '유저를 불러올 수 없습니다.',
     cancel: '취소',
     submit: '저장',
+    usernamePlace: '이름',
+    profilePlace: '프로필',
+    emailPlace: '이메일',
+    bioPlace: '상태 메세지',
   },
 }
 

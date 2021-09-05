@@ -63,7 +63,14 @@ const TextField = styled.div`
 const UserProfileContainer: FC<Props> = ({
   id,
   lang,
-  lang: { failedToLoad, loading },
+  lang: {
+    failedToLoad,
+    loading,
+    bioPlace,
+    emailPlace,
+    usernamePlace,
+    profilePlace,
+  },
 }) => {
   const [profile, setProfile] = useState<ProfileState>()
   const [failed, setFailed] = useState(false)
@@ -113,14 +120,14 @@ const UserProfileContainer: FC<Props> = ({
               editable={isOwner}
               lang={lang}
               type="username"
-              placeholder="Username"
+              placeholder={usernamePlace}
               value={profile?.username || ''}
             />
             <ProfileText
               editable={isOwner}
               lang={lang}
               type="email"
-              placeholder="E-mail"
+              placeholder={emailPlace}
               value={profile?.email || ''}
               email_verify={profile?.email_verify}
             />
@@ -128,14 +135,14 @@ const UserProfileContainer: FC<Props> = ({
               editable={isOwner}
               lang={lang}
               type="bio"
-              placeholder="Bio"
+              placeholder={bioPlace}
               value={profile?.bio || ''}
             />
             <ProfileText
               editable={isOwner}
               lang={lang}
               type="profile"
-              placeholder="Profile"
+              placeholder={profilePlace}
               value={profile?.profile || ''}
             />
           </TextField>

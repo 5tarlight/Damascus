@@ -40,6 +40,10 @@ const en: Language = {
     failedToLoad: 'Unable to load user.',
     cancel: 'Cancel',
     submit: 'Save',
+    usernamePlace: 'Username',
+    bioPlace: 'Bio',
+    emailPlace: 'Email',
+    profilePlace: 'Profile',
   },
 }
 

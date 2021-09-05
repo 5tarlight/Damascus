@@ -43,6 +43,10 @@ export interface UserLang {
   failedToLoad: string
   submit: string
   cancel: string
+  usernamePlace: string
+  emailPlace: string
+  bioPlace: string
+  profilePlace: string
 }
 
 export interface Language {
