@@ -10,6 +10,7 @@ interface Props {
   type: TxtType
   placeholder?: string
   lang: UserLang
+  email_verify?: boolean
 }
 
 interface TextProps {
@@ -18,6 +19,28 @@ interface TextProps {
 }
 
 const Text = styled.div<TextProps>`
+  width: fit-content;
+
+  font-size: ${({ type }) => {
+    switch (type) {
+      case 'username':
+        return '48px'
+      case 'email':
+        return '20px'
+      default:
+        return 'inherit'
+    }
+  }};
+
+  color: ${({ type }) => {
+    switch (type) {
+      case 'email':
+        return '#646464'
+      default:
+        return 'default'
+    }
+  }};
+
   ${({ edit }) => {
     if (edit) {
       return `
@@ -26,7 +49,7 @@ const Text = styled.div<TextProps>`
         }
       `
     } else return ''
-  }}
+  }};
 `
 
 const EditInput = styled.input``

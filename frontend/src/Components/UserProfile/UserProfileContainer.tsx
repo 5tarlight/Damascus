@@ -116,6 +116,28 @@ const UserProfileContainer: FC<Props> = ({
               placeholder="Username"
               value={profile?.username || ''}
             />
+            <ProfileText
+              editable={isOwner}
+              lang={lang}
+              type="email"
+              placeholder="E-mail"
+              value={profile?.email || ''}
+              email_verify={profile?.email_verify}
+            />
+            <ProfileText
+              editable={isOwner}
+              lang={lang}
+              type="bio"
+              placeholder="Bio"
+              value={profile?.bio || ''}
+            />
+            <ProfileText
+              editable={isOwner}
+              lang={lang}
+              type="profile"
+              placeholder="Profile"
+              value={profile?.profile || ''}
+            />
           </TextField>
         </>
       )}
