@@ -18,19 +18,29 @@ interface TextProps {
   type: TxtType
 }
 
+interface InputProps {
+  type: TxtType
+}
+
+interface EditProps {
+  kind: TxtType
+  // children?: JSX.Element | JSX.Element[]
+}
+
+const getSize = (type: string) => {
+  switch (type) {
+    case 'username':
+      return '48px'
+    case 'email':
+      return '20px'
+    default:
+      return 'inherit'
+  }
+}
+
 const Text = styled.div<TextProps>`
   width: fit-content;
-
-  font-size: ${({ type }) => {
-    switch (type) {
-      case 'username':
-        return '48px'
-      case 'email':
-        return '20px'
-      default:
-        return 'inherit'
-    }
-  }};
+  font-size: ${({ type }) => getSize(type)};
 
   color: ${({ type }) => {
     switch (type) {
@@ -52,11 +62,18 @@ const Text = styled.div<TextProps>`
   }};
 `
 
-const EditInput = styled.input``
+const EditInput = styled.input<InputProps>`
+  min-width: 300px;
+  font-size: ${({ type }) => getSize(type)};
+`
 
-const SubmitBtn = styled.button``
+const SubmitBtn = styled.button<EditProps>`
+  font-size: ${({ kind }) => getSize(kind)};
+`
 
-const CancelBtn = styled.button``
+const CancelBtn = styled.button<EditProps>`
+  font-size: ${({ kind }) => getSize(kind)};
+`
 
 const ProfileText: FC<Props> = ({
   editable,
@@ -96,6 +113,7 @@ const ProfileText: FC<Props> = ({
           onChange={({ target: { value } }) => {
             setEditted(value)
           }}
+          type={type}
         />
         <CancelBtn
           onClick={e => {
@@ -104,10 +122,10 @@ const ProfileText: FC<Props> = ({
             setEdit(false)
             setEditted(origin)
           }}
-        >
-          {cancel}
-        </CancelBtn>
-        <SubmitBtn>{submit}</SubmitBtn>
+          children={cancel}
+          kind={type}
+        />
+        <SubmitBtn kind={type}>{submit}</SubmitBtn>
       </>
     )
   }
