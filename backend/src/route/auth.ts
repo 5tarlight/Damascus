@@ -73,7 +73,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
             uuid4(),
             email,
             cryptSha(password),
-            username
+            username,
           )
           const reg = await user.findOne({ email: email })
 
@@ -92,7 +92,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       } catch (e) {
         console.log(e)
       }
-    }
+    },
   )
 
   /**
@@ -134,7 +134,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       } catch (e) {
         console.log(e)
       }
-    }
+    },
   )
 
   const getUser = async (id: string) => {
@@ -178,7 +178,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       const result = await getUser(id)
 
       reply.code(200).send(result)
-    }
+    },
   )
 
   /**
@@ -220,12 +220,12 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
 
       if (update === 'email' || update === 'username') {
         if (update === 'email')
-          user.update([{ id: id }], [updateCon, { email_verify: 0 }])
-        else user.update([{ id: id }], [updateCon])
+          await user.update([{ id: id }], [updateCon, { email_verify: 0 }])
+        else await user.update([{ id: id }], [updateCon])
       } else if (update === 'email_verify') {
-        user.update([{ id }], [{ email_verify: parseInt(value) }])
+        await user.update([{ id }], [{ email_verify: parseInt(value) }])
       } else {
-        profile.update([{ id: id }], [updateCon])
+        await profile.update([{ id: id }], [updateCon])
       }
 
       const users = await getUser(id)
@@ -233,7 +233,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         msg: 'success',
         user: users,
       })
-    }
+    },
   )
 
   const getRandom = (min: number, max: number) =>
@@ -289,7 +289,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
           verify: number,
         })
       })
-    }
+    },
   )
 
   done()

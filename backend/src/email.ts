@@ -1,6 +1,7 @@
 import { createTransport } from 'nodemailer'
 
 const service = createTransport({
+  name: 'Damascus',
   service: 'gmail',
   host: 'smtp.gmail.com',
   port: 587,

@@ -1,6 +1,10 @@
 import { FC, useState } from 'react'
 import styled from 'styled-components'
 import { UserLang } from '../../lang/lang'
+import axios from 'axios'
+import { UpdateResult } from '../Profile/ProfileSec/ProfileDesc/ProfileDesc'
+import { applyLocalStorage } from '../../util'
+import ProfileEmailVerify from './ProfileEmailVerify'
 
 type TxtType = 'normal' | 'email' | 'username' | 'id' | 'bio' | 'profile'
 
@@ -11,6 +15,7 @@ interface Props {
   placeholder?: string
   lang: UserLang
   email_verify?: boolean
+
   handleChange(value: string): any
 }
 
@@ -78,16 +83,33 @@ const CancelBtn = styled.button<EditProps>`
 `
 
 const ProfileText: FC<Props> = ({
-  editable,
-  type,
-  value,
-  placeholder,
-  handleChange,
-  lang: { cancel, submit },
-}) => {
+                                  editable,
+                                  type,
+                                  value,
+                                  placeholder,
+                                  handleChange,
+                                  email_verify,
+                                  lang: { cancel, submit },
+                                }) => {
   const [edit, setEdit] = useState(false)
   const origin = value
   const [edited, setEdited] = useState(origin)
+
+  const handleVerifyEmail = async () => {
+    const {
+      data: { user: users },
+    } = await axios.post<UpdateResult>(
+      'http://localhost:5676/api/auth/update',
+      {
+        id: localStorage.getItem('id'),
+        update: 'email_verify',
+        value: 1,
+      },
+    )
+
+    applyLocalStorage(users[0])
+    window.location.reload()
+  }
 
   if (!editable) {
     return (
@@ -106,7 +128,18 @@ const ProfileText: FC<Props> = ({
         }}
         type={type}
       >
-        {value}
+        {type === 'email' ? (
+          email_verify ? (
+            `${value} (인증됨)`
+          ) : (
+            <>
+              {value}
+              <ProfileEmailVerify handleSuccess={handleVerifyEmail} />
+            </>
+          )
+        ) : (
+          value
+        )}
       </Text>
     ) : (
       <div>
@@ -131,7 +164,7 @@ const ProfileText: FC<Props> = ({
         <SubmitBtn kind={type} onClick={e => {
           e.preventDefault()
           e.stopPropagation()
-          
+
           handleChange(edited)
         }}>{submit}</SubmitBtn>
       </div>
