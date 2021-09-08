@@ -6,6 +6,7 @@ import { UserLang } from '../../lang/lang'
 import { isCurrentUser, parseBit } from '../../util'
 import ProfileText from './ProfileText'
 import UserProfileImg from './UserProfileImg'
+import { UpdateResult } from '../Profile/ProfileSec/ProfileDesc/ProfileDesc'
 
 interface Props {
   id: string
@@ -106,6 +107,56 @@ const UserProfileContainer: FC<Props> = ({
       })
   }, [id])
 
+  const getBody = (type: string, value: string) => {
+    return {
+      id: localStorage.getItem('id'),
+      update: type,
+      value: value,
+    }
+  }
+  const handleResponse = (res: UpdateResult) => {
+    if (res.msg === 'success') {
+      const { email, username, admin, bio, profile } = res.user[0]
+      localStorage.setItem('email', email)
+      localStorage.setItem('username', username)
+      localStorage.setItem('bio', bio)
+      localStorage.setItem('profile', profile)
+      localStorage.setItem('admin', parseBit(admin))
+      window.location.reload()
+    } else {
+      alert(res.msg)
+    }
+  }
+
+  const handleUsernameChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('username', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleEmailChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('email', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleBioChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('bio', value)
+    )
+    handleResponse(result.data)
+  }
+  const handleProfileChange = async (value: string) => {
+    const result = await axios.post<UpdateResult>(
+      `http://${server}/api/auth/update`,
+      getBody('profile', value)
+    )
+    handleResponse(result.data)
+  }
+
   return (
     <ProfileContainer>
       {!loaded ? (
@@ -122,6 +173,7 @@ const UserProfileContainer: FC<Props> = ({
               type="username"
               placeholder={usernamePlace}
               value={profile?.username || ''}
+              handleChange={handleUsernameChange}
             />
             <ProfileText
               editable={isOwner}
@@ -130,6 +182,7 @@ const UserProfileContainer: FC<Props> = ({
               placeholder={emailPlace}
               value={profile?.email || ''}
               email_verify={profile?.email_verify}
+              handleChange={handleEmailChange}
             />
             <ProfileText
               editable={isOwner}
@@ -137,6 +190,7 @@ const UserProfileContainer: FC<Props> = ({
               type="bio"
               placeholder={bioPlace}
               value={profile?.bio || ''}
+              handleChange={handleBioChange}
             />
             <ProfileText
               editable={isOwner}
@@ -144,6 +198,7 @@ const UserProfileContainer: FC<Props> = ({
               type="profile"
               placeholder={profilePlace}
               value={profile?.profile || ''}
+              handleChange={handleProfileChange}
             />
           </TextField>
         </>

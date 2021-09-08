@@ -11,6 +11,7 @@ interface Props {
   placeholder?: string
   lang: UserLang
   email_verify?: boolean
+  handleChange(value: string): any
 }
 
 interface TextProps {
@@ -64,6 +65,7 @@ const Text = styled.div<TextProps>`
 
 const EditInput = styled.input<InputProps>`
   min-width: 300px;
+  max-width: 400px;
   font-size: ${({ type }) => getSize(type)};
 `
 
@@ -80,11 +82,12 @@ const ProfileText: FC<Props> = ({
   type,
   value,
   placeholder,
+  handleChange,
   lang: { cancel, submit },
 }) => {
   const [edit, setEdit] = useState(false)
   const origin = value
-  const [editted, setEditted] = useState(origin)
+  const [edited, setEdited] = useState(origin)
 
   if (!editable) {
     return (
@@ -106,12 +109,12 @@ const ProfileText: FC<Props> = ({
         {value}
       </Text>
     ) : (
-      <>
+      <div>
         <EditInput
           placeholder={placeholder}
-          value={editted}
+          value={edited}
           onChange={({ target: { value } }) => {
-            setEditted(value)
+            setEdited(value)
           }}
           type={type}
         />
@@ -120,13 +123,18 @@ const ProfileText: FC<Props> = ({
             e.preventDefault()
             e.stopPropagation()
             setEdit(false)
-            setEditted(origin)
+            setEdited(origin)
           }}
           children={cancel}
           kind={type}
         />
-        <SubmitBtn kind={type}>{submit}</SubmitBtn>
-      </>
+        <SubmitBtn kind={type} onClick={e => {
+          e.preventDefault()
+          e.stopPropagation()
+          
+          handleChange(edited)
+        }}>{submit}</SubmitBtn>
+      </div>
     )
   }
 }
