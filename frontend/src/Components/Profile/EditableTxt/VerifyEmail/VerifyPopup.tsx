@@ -29,7 +29,7 @@ const VerifyPopup: FC<Props> = ({
     alert('오류가 발생했습니다.')
   }
 
-  const handleChnage = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = event
@@ -65,7 +65,7 @@ const VerifyPopup: FC<Props> = ({
           : '이메일 발송중...'}
       </div>
       인증코드 6자리를 입력하세요.
-      <input className={cx('verify-input')} onChange={handleChnage} />
+      <input className={cx('verify-input')} onChange={handleChange} />
     </div>
   )
 }

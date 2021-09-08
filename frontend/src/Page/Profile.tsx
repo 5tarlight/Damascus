@@ -13,6 +13,9 @@ export interface ProfileMenuProps {
   value: string
 }
 
+/**
+ * @deprecated The method should not be used
+ */
 const Profile: FC<{}> = () => {
   const id = useParams<ProfileParam>().id
   const [curMenu, setCurMenu] = useState<ProfileMenuType>('profile')

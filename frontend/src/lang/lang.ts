@@ -38,10 +38,22 @@ export interface AuthLang {
   notValidUsername: string
 }
 
+export interface UserLang {
+  loading: string
+  failedToLoad: string
+  submit: string
+  cancel: string
+  usernamePlace: string
+  emailPlace: string
+  bioPlace: string
+  profilePlace: string
+}
+
 export interface Language {
   header: HeaderLang
   footer: FooterLang
   auth: AuthLang
+  userProfile: UserLang
 }
 
 export const getLang = (lang: Lang) => {

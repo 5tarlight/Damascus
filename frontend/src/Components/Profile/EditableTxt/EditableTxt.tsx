@@ -9,7 +9,7 @@ import { UpdateResult } from '../ProfileSec/ProfileDesc/ProfileDesc'
 const cx = classNames.bind(styles)
 
 type TxtType = 'normal' | 'email' | 'username' | 'id' | 'bio' | 'profile'
-type SubimtHandler = (value: string) => void
+type SubmitHandler = (value: string) => void
 
 interface Props {
   value: string
@@ -17,19 +17,19 @@ interface Props {
   placeholder?: string
   isOwner?: boolean
   type?: TxtType
-  handleSubmit: SubimtHandler
+  handleSubmit: SubmitHandler
   email_verify?: boolean
 }
 
 const EditableTxt: FC<Props> = ({
-  value,
-  // handleChange,
-  placeholder,
-  isOwner = false,
-  type = 'normal',
-  handleSubmit,
-  email_verify,
-}) => {
+                                  value,
+                                  // handleChange,
+                                  placeholder,
+                                  isOwner = false,
+                                  type = 'normal',
+                                  handleSubmit,
+                                  email_verify,
+                                }) => {
   const [isEdit, setIsEdit] = useState(false)
   const [changedValue, setChangedValue] = useState('')
   const [hasError, setHasError] = useState(false)
@@ -46,8 +46,8 @@ const EditableTxt: FC<Props> = ({
 
   const getHandler = (
     event: ME<HTMLButtonElement, MouseEvent>,
-    handler: SubimtHandler,
-    value: string
+    handler: SubmitHandler,
+    value: string,
   ) => {
     event.preventDefault()
     event.stopPropagation()
@@ -66,7 +66,7 @@ const EditableTxt: FC<Props> = ({
         id: localStorage.getItem('id'),
         update: 'email_verify',
         value: 1,
-      }
+      },
     )
 
     applyLocalStorage(users[0])

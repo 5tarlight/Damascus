@@ -34,6 +34,16 @@ const ko: Language = {
     notValidPassword: '8자리 이상, 특수문자를 포함해야 합니다.',
     notValidUsername: '사용할 수 없는 이름입니다.',
   },
+  userProfile: {
+    loading: '불러오는 중...',
+    failedToLoad: '유저를 불러올 수 없습니다.',
+    cancel: '취소',
+    submit: '저장',
+    usernamePlace: '이름',
+    profilePlace: '프로필',
+    emailPlace: '이메일',
+    bioPlace: '상태 메세지',
+  },
 }
 
 export default ko

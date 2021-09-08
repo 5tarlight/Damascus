@@ -4,10 +4,11 @@ import { getLang } from '../../lang/lang'
 import Home from '../../Page/Home'
 import Logout from '../../Page/Logout'
 import NotFound from '../../Page/NotFound'
-import Profile from '../../Page/Profile'
+// import Profile from '../../Page/Profile'
 import Search from '../../Page/Search'
 import SignIn from '../../Page/SignIn'
 import SignUp from '../../Page/SignUp'
+import UserProfile from '../../Page/UserProfile'
 import Content from '../Content/Content'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
@@ -37,7 +38,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header, footer, auth } = getLang(lang)
+  const { header, footer, auth, userProfile } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -49,8 +50,8 @@ const App = () => {
       />
       <Content>
         <Switch>
-          <Route exact component={() => <Home />} path="/" />
-          <Route exact component={() => <Search />} path="/search/:search" />
+          <Route exact component={Home} path="/" />
+          <Route exact component={Search} path="/search/:search" />
 
           <Route
             exact
@@ -67,7 +68,12 @@ const App = () => {
             component={() => <Logout setLogin={setIsLoggedIn} />}
             path="/auth/logout"
           />
-          <Route exact component={() => <Profile />} path="/profile/:id" />
+          {/* <Route exact component={() => <Profile />} path="/profile/:id" /> */}
+          <Route
+            exact
+            component={() => <UserProfile lang={userProfile} />}
+            path="/user/:id"
+          />
 
           <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />
