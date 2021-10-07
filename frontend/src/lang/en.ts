@@ -13,6 +13,7 @@ const en: Language = {
     likedPosts: 'Liked Posts',
     storagedPosts: 'Kept Posts',
     logout: 'Logout',
+    writePost: 'Write Post',
   },
   footer: {
     privacy: 'Privacy',

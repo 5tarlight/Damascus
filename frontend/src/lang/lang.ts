@@ -14,6 +14,7 @@ export interface HeaderLang {
   likedPosts: string
   storagedPosts: string
   logout: string
+  writePost: string
 }
 
 export interface FooterLang {

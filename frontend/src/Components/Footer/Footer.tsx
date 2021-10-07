@@ -13,7 +13,7 @@ const Footer: FC<Props> = ({ footerLang: { privacy, terms } }) => (
   <footer className={cx('footer')}>
     <div className={cx('copy')}>
       &copy; 2021{' '}
-      <a href="https://github.com/5tarlight" target="_blank">
+      <a href="https://github.com/5tarlight" target="_blank" rel="noreferrer">
         5tarlight
       </a>
       .

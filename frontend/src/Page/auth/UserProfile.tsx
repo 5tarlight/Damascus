@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useParams } from 'react-router'
-import UserProfileContainer from '../Components/UserProfile/UserProfileContainer'
-import { UserLang } from '../lang/lang'
+import UserProfileContainer from '../../Components/UserProfile/UserProfileContainer'
+import { UserLang } from '../../lang/lang'
 
 interface Props {
   lang: UserLang

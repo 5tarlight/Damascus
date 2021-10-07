@@ -13,6 +13,7 @@ const ko: Language = {
     likedPosts: '좋아요 표시한 글',
     storagedPosts: '저장한 글',
     logout: '로그아웃',
+    writePost: '글 쓰기',
   },
   footer: {
     privacy: '개인정보',
