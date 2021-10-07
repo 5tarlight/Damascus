@@ -11,7 +11,13 @@ interface Props {
 
 const Footer: FC<Props> = ({ footerLang: { privacy, terms } }) => (
   <footer className={cx('footer')}>
-    <div className={cx('copy')}>&copy; 2021 5tarlight.</div>
+    <div className={cx('copy')}>
+      &copy; 2021{' '}
+      <a href="https://github.com/5tarlight" target="_blank">
+        5tarlight
+      </a>
+      .
+    </div>
     <div>{terms}</div>
     <div>{privacy}</div>
   </footer>
