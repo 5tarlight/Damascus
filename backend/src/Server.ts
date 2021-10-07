@@ -14,28 +14,45 @@ export default class Server {
   }
 
   setup() {
+    // this.app.register(corsPlugin, {
+    //   origin: (origin, callback) => {
+    //     callback(null, true)
+    //     if (!origin) {
+    //       return callback(null, true)
+    //     }
+    //     const host = origin.split('://')[1]
+    //     const allowedHost = [
+    //       'localhost:5676',
+    //       'localhost:3000',
+    //       'yeahx4.kro.kr:3000',
+    //       'yeahx4.kro.kr',
+    //       'yeahx4.kro.kr:5676',
+    //       'damascus.kro.kr',
+    //       'damascus.kro.kr:3000',
+    //     ]
+    //     console.log('host :', origin)
+    //     const allowed = allowedHost.includes(host)
+    //     callback(null, allowed)
+    //   },
+    //   credentials: true,
+    // })
+
     this.app.register(corsPlugin, {
       origin: (origin, callback) => {
-        callback(null, true)
-        // if (!origin) {
-        //   return callback(null, true)
-        // }
-        // const host = origin.split('://')[1]
-        // const allowedHost = [
-        //   'localhost:5676',
-        //   'localhost:3000',
-        //   'yeahx4.kro.kr:3000',
-        //   'yeahx4.kro.kr',
-        //   'yeahx4.kro.kr:5676',
-        //   'damascus.kro.kr',
-        //   'damascus.kro.kr:3000'
-        // ]
-        // console.log(origin)
-        // const allowed = allowedHost.includes(host)
-        // callback(null, allowed)
+        if (process.env.NODE_ENV === 'development') {
+          callback(null, true)
+        } else {
+          const allowedHost = [/localhost/, /yeahx4.kro.kr/, /damascus.kro.kr/]
+          const allowed = allowedHost.some(host => host.test(origin))
+          if (allowed) {
+            callback(null, true)
+          } else {
+            callback(new Error('Not allowed by CORS'), false)
+          }
+        }
       },
-      credentials: true,
     })
+
     this.app.register(cookie)
     this.app.register(compress)
 
@@ -47,7 +64,7 @@ export default class Server {
         name: error.name,
         message: error.message,
         validation: error.validation,
-        stack: error.stack,
+        // stack: error.stack,
       })
     })
   }
