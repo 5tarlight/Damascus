@@ -30,7 +30,6 @@ const TagInput: FC<Props> = ({ value, setValue, tagPlace }) => {
   const token = value.split(' ')
   const lastToken = token.pop() || ''
   let filtered = Array.from(new Set(token))
-  console.log(filtered, value)
 
   const remove = (remove: string) => {
     filtered = filtered.filter(tag => tag !== remove && tag !== '')
@@ -39,7 +38,6 @@ const TagInput: FC<Props> = ({ value, setValue, tagPlace }) => {
         ? `${filtered.join(' ')} ${lastToken}`.trimLeft()
         : `${filtered.join(' ')} `.trimLeft()
     )
-    console.log(filtered, value)
   }
 
   const tags = filtered.map((tag, index) => {
