@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 import { useTitle } from 'react-use'
 import styled from 'styled-components'
+import Description from '../../Components/Write/Description'
 import TagInput from '../../Components/Write/TagInput'
 import WriteEditor from '../../Components/Write/WriteEditor'
 import WriteTitle from '../../Components/Write/WriteTitle'
@@ -17,11 +18,14 @@ const Container = styled.div`
   min-height: 80vh;
 `
 
-const Write: FC<Props> = ({ lang: { titlePlace, tagPlace } }) => {
+const Write: FC<Props> = ({
+  lang: { titlePlace, tagPlace, descriptionPlace },
+}) => {
   const [title, setTitle] = useState('')
   const [tag, setTag] = useState([] as string[])
   const [tagV, setTagV] = useState('')
   const [content, setContent] = useState('')
+  const [description, setDescription] = useState('')
 
   useTitle(`Damascus - ${title ? title : 'Write'}`)
 
@@ -36,6 +40,11 @@ const Write: FC<Props> = ({ lang: { titlePlace, tagPlace } }) => {
         tagPlace={tagPlace}
       />
       <WriteEditor value={content} setValue={setContent} />
+      <Description
+        placeholder={descriptionPlace}
+        value={description}
+        setValue={setDescription}
+      />
     </Container>
   )
 }

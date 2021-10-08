@@ -11,6 +11,7 @@ const Editor = styled.textarea`
   overflow-y: auto;
   min-height: 60vh;
   margin-top: 10px;
+  resize: none;
 `
 
 const WriteEditor: FC<Props> = ({ value, setValue }) => {

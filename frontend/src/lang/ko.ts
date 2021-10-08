@@ -48,6 +48,7 @@ const ko: Language = {
   write: {
     titlePlace: '제목',
     tagPlace: '태그 (Enter로 추가하기)',
+    descriptionPlace: '설명 (최대 300자)',
   },
 }
 

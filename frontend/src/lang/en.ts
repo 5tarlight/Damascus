@@ -49,6 +49,7 @@ const en: Language = {
   write: {
     titlePlace: 'Title',
     tagPlace: 'Tags (press Enter to add)',
+    descriptionPlace: 'Description (up to 300 characters)',
   },
 }
 
