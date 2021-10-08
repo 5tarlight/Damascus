@@ -12,6 +12,7 @@ import { server } from '../../config'
 import { applyLocalStorage, emailRegexp, pwRegexp } from '../../util'
 import { OAuthContainer } from '../../Components/Auth/OAuthButton/OAuthButton'
 import { AuthLang } from '../../lang/lang'
+import { useTitle } from 'react-use'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -43,6 +44,7 @@ const SignIn: FC<Props> = ({
     loginFailed,
   },
 }) => {
+  useTitle('Damascus - Sign In')
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
 

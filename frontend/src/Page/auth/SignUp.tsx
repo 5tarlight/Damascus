@@ -17,6 +17,7 @@ import {
 } from '../../util'
 import { OAuthContainer } from '../../Components/Auth/OAuthButton/OAuthButton'
 import { AuthLang } from '../../lang/lang'
+import { useTitle } from 'react-use'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -47,6 +48,7 @@ const SignUp: FC<Props> = ({
     confirmPasswordFail,
   },
 }) => {
+  useTitle('Damascus - Sign Up')
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwCon, setPwCon] = useState('')

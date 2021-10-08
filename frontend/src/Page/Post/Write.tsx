@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { useTitle } from 'react-use'
 import styled from 'styled-components'
 import WriteTitle from '../../Components/Write/WriteTitle'
 import { WriteLang } from '../../lang/lang'
@@ -15,9 +16,12 @@ const Container = styled.div`
 `
 
 const Write: FC<Props> = ({ lang: { titlePlace } }) => {
+  const [title, setTitle] = useState('')
+  useTitle(`Damascus - ${title ? title : 'Write'}`)
+
   return (
     <Container>
-      <WriteTitle titlePlace={titlePlace} />
+      <WriteTitle titlePlace={titlePlace} value={title} setValue={setTitle} />
     </Container>
   )
 }

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 interface Props {
   titlePlace: string
+  value: string
+  setValue: (value: string) => void
 }
 
 const Input = styled.input`
@@ -16,8 +18,14 @@ const Input = styled.input`
   }
 `
 
-const WriteTitle: FC<Props> = ({ titlePlace }) => {
-  return <Input placeholder={titlePlace} />
+const WriteTitle: FC<Props> = ({ titlePlace, value, setValue }) => {
+  return (
+    <Input
+      value={value}
+      placeholder={titlePlace}
+      onChange={({ target: { value } }) => setValue(value)}
+    />
+  )
 }
 
 export default WriteTitle
