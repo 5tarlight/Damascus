@@ -18,15 +18,21 @@ const Container = styled.div`
 
 const Write: FC<Props> = ({ lang: { titlePlace, tagPlace } }) => {
   const [title, setTitle] = useState('')
-  const [tag, setTag] = useState('')
-  // const filtered = Array.from(new Set(tag.split(' '))).filter(v => v !== '')
+  const [tag, setTag] = useState([] as string[])
+  const [tagV, setTagV] = useState('')
 
   useTitle(`Damascus - ${title ? title : 'Write'}`)
 
   return (
     <Container>
       <WriteTitle titlePlace={titlePlace} value={title} setValue={setTitle} />
-      <TagInput value={tag} setValue={setTag} tagPlace={tagPlace} />
+      <TagInput
+        inputV={tagV}
+        setInputV={setTagV}
+        tags={tag}
+        setTags={list => setTag(list.filter(v => v))}
+        tagPlace={tagPlace}
+      />
     </Container>
   )
 }

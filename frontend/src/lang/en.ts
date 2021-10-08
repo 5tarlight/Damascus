@@ -48,7 +48,7 @@ const en: Language = {
   },
   write: {
     titlePlace: 'Title',
-    tagPlace: 'Tags (separated by space)',
+    tagPlace: 'Tags (press Enter to add)',
   },
 }
 

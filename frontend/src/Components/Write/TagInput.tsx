@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import Tag from './Tag'
 
 interface Props {
-  value: string
-  setValue: (value: string) => void
+  inputV: string
+  setInputV: (value: string) => void
+  tags: string[]
+  setTags: (tags: string[]) => void
   tagPlace: string
 }
 
@@ -26,33 +28,32 @@ const Wrapper = styled.div`
   margin-top: 10px;
 `
 
-const TagInput: FC<Props> = ({ value, setValue, tagPlace }) => {
-  const token = value.split(' ')
-  const lastToken = token.pop() || ''
-  let filtered = Array.from(new Set(token))
-
-  const remove = (remove: string) => {
-    filtered = filtered.filter(tag => tag !== remove && tag !== '')
-    setValue(
-      lastToken
-        ? `${filtered.join(' ')} ${lastToken}`.trimLeft()
-        : `${filtered.join(' ')} `.trimLeft()
-    )
+const TagInput: FC<Props> = ({
+  tagPlace,
+  inputV,
+  setInputV,
+  setTags,
+  tags,
+}) => {
+  const remove = (tag: string) => {
+    setTags(tags.filter(t => t !== tag))
   }
-
-  const tags = filtered.map((tag, index) => {
-    filtered.push(tag)
-    return tag ? <Tag value={tag} key={index} handleClick={remove} /> : null
-  })
+  const tagComs = tags.map((tag, i) => (
+    <Tag key={i} value={tag} handleClick={remove} />
+  ))
 
   return (
     <Wrapper>
-      {tags}
+      {tagComs}
       <Input
-        value={lastToken}
-        onChange={({ target: { value } }) =>
-          setValue(`${filtered.join(' ')} ${value}`.trimLeft())
-        }
+        value={inputV}
+        onChange={({ target: { value } }) => setInputV(value)}
+        onKeyPress={({ key }) => {
+          if (key === 'Enter') {
+            setTags([...tags, inputV])
+            setInputV('')
+          }
+        }}
         placeholder={tagPlace}
       />
     </Wrapper>
