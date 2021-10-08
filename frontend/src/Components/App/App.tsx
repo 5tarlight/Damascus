@@ -13,6 +13,7 @@ import { Lang } from '../Header/LangSwitch/LangSwitch'
 import SignUp from '../../Page/auth/SignUp'
 import SignIn from '../../Page/auth/SignIn'
 import UserProfile from '../../Page/auth/UserProfile'
+import Write from '../../Page/Post/Write'
 
 const App = () => {
   const isLang = (str: string): str is Lang => {
@@ -38,7 +39,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header, footer, auth, userProfile } = getLang(lang)
+  const { header, footer, auth, userProfile, write } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -74,6 +75,8 @@ const App = () => {
             component={() => <UserProfile lang={userProfile} />}
             path="/user/:id"
           />
+
+          <Route component={() => <Write lang={write} />} exact path="/write" />
 
           <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />

@@ -45,6 +45,9 @@ const ko: Language = {
     emailPlace: '이메일',
     bioPlace: '상태 메세지',
   },
+  write: {
+    titlePlace: '제목',
+  },
 }
 
 export default ko

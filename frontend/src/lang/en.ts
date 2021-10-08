@@ -46,6 +46,9 @@ const en: Language = {
     emailPlace: 'Email',
     profilePlace: 'Profile',
   },
+  write: {
+    titlePlace: 'Title',
+  },
 }
 
 export default en

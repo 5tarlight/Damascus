@@ -50,11 +50,16 @@ export interface UserLang {
   profilePlace: string
 }
 
+export interface WriteLang {
+  titlePlace: string
+}
+
 export interface Language {
   header: HeaderLang
   footer: FooterLang
   auth: AuthLang
   userProfile: UserLang
+  write: WriteLang
 }
 
 export const getLang = (lang: Lang) => {
