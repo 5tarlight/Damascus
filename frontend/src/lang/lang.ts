@@ -52,6 +52,7 @@ export interface UserLang {
 
 export interface WriteLang {
   titlePlace: string
+  tagPlace: string
 }
 
 export interface Language {

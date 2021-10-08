@@ -47,6 +47,7 @@ const ko: Language = {
   },
   write: {
     titlePlace: '제목',
+    tagPlace: '태그 (띄어쓰기로 구분)',
   },
 }
 
