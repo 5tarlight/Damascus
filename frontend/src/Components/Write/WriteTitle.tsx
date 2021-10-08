@@ -24,6 +24,7 @@ const WriteTitle: FC<Props> = ({ titlePlace, value, setValue }) => {
       value={value}
       placeholder={titlePlace}
       onChange={({ target: { value } }) => setValue(value)}
+      autoFocus
     />
   )
 }

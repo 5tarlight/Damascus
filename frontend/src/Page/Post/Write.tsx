@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { useTitle } from 'react-use'
 import styled from 'styled-components'
 import TagInput from '../../Components/Write/TagInput'
+import WriteEditor from '../../Components/Write/WriteEditor'
 import WriteTitle from '../../Components/Write/WriteTitle'
 import { WriteLang } from '../../lang/lang'
 
@@ -20,6 +21,7 @@ const Write: FC<Props> = ({ lang: { titlePlace, tagPlace } }) => {
   const [title, setTitle] = useState('')
   const [tag, setTag] = useState([] as string[])
   const [tagV, setTagV] = useState('')
+  const [content, setContent] = useState('')
 
   useTitle(`Damascus - ${title ? title : 'Write'}`)
 
@@ -33,6 +35,7 @@ const Write: FC<Props> = ({ lang: { titlePlace, tagPlace } }) => {
         setTags={list => setTag(list.filter(v => v))}
         tagPlace={tagPlace}
       />
+      <WriteEditor value={content} setValue={setContent} />
     </Container>
   )
 }
