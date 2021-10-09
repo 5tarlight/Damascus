@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Description from '../../Components/Write/Description'
 import TagInput from '../../Components/Write/TagInput'
 import WriteEditor from '../../Components/Write/WriteEditor'
+import WriteSubmit from '../../Components/Write/WriteSubmit'
 import WriteTitle from '../../Components/Write/WriteTitle'
 import { WriteLang } from '../../lang/lang'
 
@@ -19,7 +20,7 @@ const Container = styled.div`
 `
 
 const Write: FC<Props> = ({
-  lang: { titlePlace, tagPlace, descriptionPlace },
+  lang: { titlePlace, tagPlace, descriptionPlace, contentPlace, submit },
 }) => {
   const [title, setTitle] = useState('')
   const [tag, setTag] = useState([] as string[])
@@ -39,12 +40,17 @@ const Write: FC<Props> = ({
         setTags={list => setTag(list.filter(v => v))}
         tagPlace={tagPlace}
       />
-      <WriteEditor value={content} setValue={setContent} />
+      <WriteEditor
+        value={content}
+        setValue={setContent}
+        contentPlace={contentPlace}
+      />
       <Description
         placeholder={descriptionPlace}
         value={description}
         setValue={setDescription}
       />
+      <WriteSubmit submit={submit} />
     </Container>
   )
 }

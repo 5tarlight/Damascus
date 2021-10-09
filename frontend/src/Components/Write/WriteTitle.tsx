@@ -9,7 +9,7 @@ interface Props {
 
 const Input = styled.input`
   border: none;
-  border-bottom: 5px solid #dbdbdb;
+  /* border-bottom: 5px solid #dbdbdb; */
   font-size: 2rem;
   width: 100%;
 

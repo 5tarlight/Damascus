@@ -54,6 +54,8 @@ export interface WriteLang {
   titlePlace: string
   tagPlace: string
   descriptionPlace: string
+  contentPlace: string
+  submit: string
 }
 
 export interface Language {

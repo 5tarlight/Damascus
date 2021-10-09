@@ -11,7 +11,11 @@ const Input = styled.textarea`
   width: 100%;
   resize: none;
   height: 8rem;
-  margin-bottom: 5rem;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 `
 
 const Description: FC<Props> = ({ value, setValue, placeholder }) => {
