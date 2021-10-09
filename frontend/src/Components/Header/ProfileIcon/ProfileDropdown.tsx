@@ -28,6 +28,7 @@ const ProfileDropdown: FC<Props> = ({
     notLoggedin,
     signin,
     signup,
+    writePost,
   },
 }) => {
   const history = useHistory()
@@ -51,6 +52,7 @@ const ProfileDropdown: FC<Props> = ({
             {myProfile}
           </div>
           <div onClick={click('/')}>{myPosts}</div>
+          <div onClick={click('/write')}>{writePost}</div>
           <div onClick={click('/')}>{subscribes}</div>
           <div onClick={click('/')}>{likedPosts}</div>
           <div className={cx('sep')} onClick={click('/')}>

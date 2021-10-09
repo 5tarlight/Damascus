@@ -14,6 +14,7 @@ export interface HeaderLang {
   likedPosts: string
   storagedPosts: string
   logout: string
+  writePost: string
 }
 
 export interface FooterLang {
@@ -49,11 +50,21 @@ export interface UserLang {
   profilePlace: string
 }
 
+export interface WriteLang {
+  titlePlace: string
+  tagPlace: string
+  descriptionPlace: string
+  contentPlace: string
+  submit: string
+  tempSave: string
+}
+
 export interface Language {
   header: HeaderLang
   footer: FooterLang
   auth: AuthLang
   userProfile: UserLang
+  write: WriteLang
 }
 
 export const getLang = (lang: Lang) => {

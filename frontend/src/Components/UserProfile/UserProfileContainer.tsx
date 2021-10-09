@@ -7,6 +7,7 @@ import { isCurrentUser, parseBit } from '../../util'
 import ProfileText from './ProfileText'
 import UserProfileImg from './UserProfileImg'
 import { UpdateResult } from '../Profile/ProfileSec/ProfileDesc/ProfileDesc'
+import { useTitle } from 'react-use'
 
 interface Props {
   id: string
@@ -77,6 +78,8 @@ const UserProfileContainer: FC<Props> = ({
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const isOwner = isCurrentUser(id)
+
+  useTitle(`Damascus - ${profile?.username}'s Profile'`)
 
   useEffect(() => {
     axios
@@ -174,6 +177,7 @@ const UserProfileContainer: FC<Props> = ({
               placeholder={usernamePlace}
               value={profile?.username || ''}
               handleChange={handleUsernameChange}
+              admin={profile?.admin}
             />
             <ProfileText
               editable={isOwner}

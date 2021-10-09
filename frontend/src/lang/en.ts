@@ -13,6 +13,7 @@ const en: Language = {
     likedPosts: 'Liked Posts',
     storagedPosts: 'Kept Posts',
     logout: 'Logout',
+    writePost: 'Write Post',
   },
   footer: {
     privacy: 'Privacy',
@@ -44,6 +45,14 @@ const en: Language = {
     bioPlace: 'Bio',
     emailPlace: 'Email',
     profilePlace: 'Profile',
+  },
+  write: {
+    titlePlace: 'Title',
+    tagPlace: 'Tags (press Enter to add)',
+    descriptionPlace: 'Description (up to 300 characters)',
+    contentPlace: 'Content',
+    submit: 'Publish',
+    tempSave: 'Temporary Save',
   },
 }
 

@@ -1,0 +1,25 @@
+{
+  "title": "Write Body",
+  "type": "object",
+  "properties": {
+    "author": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "tag": {
+      "type": "string"
+    }
+  },
+  "required": ["author", "title", "content"]
+}

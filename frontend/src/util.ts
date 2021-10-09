@@ -59,3 +59,5 @@ export const applyLocalStorage = (user: User) => {
   localStorage.setItem('profile', user.profile)
   localStorage.setItem('email_verify', parseBit(user.email_verify))
 }
+
+export const tagSep = '!@#sep!@#'

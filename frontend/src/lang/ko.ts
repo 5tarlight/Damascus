@@ -13,6 +13,7 @@ const ko: Language = {
     likedPosts: '좋아요 표시한 글',
     storagedPosts: '저장한 글',
     logout: '로그아웃',
+    writePost: '글 쓰기',
   },
   footer: {
     privacy: '개인정보',
@@ -43,6 +44,14 @@ const ko: Language = {
     profilePlace: '프로필',
     emailPlace: '이메일',
     bioPlace: '상태 메세지',
+  },
+  write: {
+    titlePlace: '제목',
+    tagPlace: '태그 (Enter로 추가하기)',
+    descriptionPlace: '설명 (최대 300자)',
+    contentPlace: '내용',
+    submit: '게시하기',
+    tempSave: '임시저장',
   },
 }
 

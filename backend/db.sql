@@ -12,11 +12,26 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_UN` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='user table with email, pw, username';
 
--- damascus.profile definition
-
+-- damascus.`profile` definition
 CREATE TABLE `profile` (
   `id` varchar(36) NOT NULL DEFAULT '',
   `bio` varchar(50) DEFAULT '',
   `profile` varchar(200) DEFAULT '',
   UNIQUE KEY `profile_UN` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- damascus.`post` definition
+CREATE TABLE `posts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `author` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` longtext DEFAULT NULL,
+  `published` tinyint(4) NOT NULL DEFAULT 0,
+  `like` int(10) unsigned NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `description` varchar(300) DEFAULT NULL,
+  `tag` longtext DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4

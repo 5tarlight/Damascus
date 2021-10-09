@@ -1,7 +1,10 @@
 import { Dispatch, FC, memo, SetStateAction } from 'react'
 import styles from './ProfileMenuItem.scss'
 import classNames from 'classnames/bind'
-import { ProfileMenuProps, ProfileMenuType } from '../../../../Page/Profile'
+import {
+  ProfileMenuProps,
+  ProfileMenuType,
+} from '../../../../Page/auth/Profile'
 
 const cx = classNames.bind(styles)
 

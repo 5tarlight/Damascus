@@ -1,17 +1,18 @@
 import axios from 'axios'
 import { createRef, Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import { useHistory } from 'react-router'
-import AuthBox from '../Components/Auth/AuthBox/AuthBox'
-import AuthBtn from '../Components/Auth/AuthBtn/AuthBtn'
-import AuthInput from '../Components/Auth/AuthInput/AuthInput'
-import AuthMessage from '../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
-import AuthTitle from '../Components/Auth/AuthTitle/AuthTitle'
-import AuthLinkBox from '../Components/Auth/AuthLinkBox/AuthLinkBox'
-import AuthLink from '../Components/Auth/AuthLink/AuthLink'
-import { server } from '../config'
-import { applyLocalStorage, emailRegexp, pwRegexp } from '../util'
-import { OAuthContainer } from '../Components/Auth/OAuthButton/OAuthButton'
-import { AuthLang } from '../lang/lang'
+import AuthBox from '../../Components/Auth/AuthBox/AuthBox'
+import AuthBtn from '../../Components/Auth/AuthBtn/AuthBtn'
+import AuthInput from '../../Components/Auth/AuthInput/AuthInput'
+import AuthMessage from '../../Components/Auth/AuthInput/AuthMesssage/AuthMessage'
+import AuthTitle from '../../Components/Auth/AuthTitle/AuthTitle'
+import AuthLinkBox from '../../Components/Auth/AuthLinkBox/AuthLinkBox'
+import AuthLink from '../../Components/Auth/AuthLink/AuthLink'
+import { server } from '../../config'
+import { applyLocalStorage, emailRegexp, pwRegexp } from '../../util'
+import { OAuthContainer } from '../../Components/Auth/OAuthButton/OAuthButton'
+import { AuthLang } from '../../lang/lang'
+import { useTitle } from 'react-use'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
@@ -43,6 +44,7 @@ const SignIn: FC<Props> = ({
     loginFailed,
   },
 }) => {
+  useTitle('Damascus - Sign In')
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
 

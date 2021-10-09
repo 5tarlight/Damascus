@@ -1,5 +1,5 @@
 import { createConnection, escape } from 'mysql'
-import { Bit } from './types/type'
+import { Bit, SqlBoolean } from './types/type'
 
 const setting = {
   host: process.env.DB_HOST || 'localhost',
@@ -7,14 +7,6 @@ const setting = {
   user: process.env.DB_USER || 'damascus',
   password: process.env.DB_PASSWORD || 'damascus1234',
   database: process.env.DB_DATABASE || 'damascus',
-}
-
-interface AddType {
-  user: {
-    email: string
-    password: string
-    username: string
-  }
 }
 
 interface SearchType {
@@ -31,10 +23,20 @@ interface SearchType {
     bio: string
     profile: string
   }
+  posts: {
+    id: number
+    author: string
+    title: string
+    description: string
+    content: string
+    published: SqlBoolean
+    like: number
+    tag: string
+  }
 }
 
 export const DB = createConnection(setting)
-export type TableType = 'user' | 'profile'
+export type TableType = 'user' | 'profile' | 'posts'
 
 class Table<T extends TableType> {
   private table: T
@@ -145,3 +147,4 @@ class Table<T extends TableType> {
 
 export const user = new Table('user')
 export const profile = new Table('profile')
+export const post = new Table('posts')

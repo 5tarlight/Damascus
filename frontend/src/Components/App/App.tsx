@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { getLang } from '../../lang/lang'
 import Home from '../../Page/Home'
-import Logout from '../../Page/Logout'
-import NotFound from '../../Page/NotFound'
+import Logout from '../../Page/auth/Logout'
+import NotFound from '../../Page/auth/NotFound'
 // import Profile from '../../Page/Profile'
 import Search from '../../Page/Search'
-import SignIn from '../../Page/SignIn'
-import SignUp from '../../Page/SignUp'
-import UserProfile from '../../Page/UserProfile'
 import Content from '../Content/Content'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import { Lang } from '../Header/LangSwitch/LangSwitch'
+import SignUp from '../../Page/auth/SignUp'
+import SignIn from '../../Page/auth/SignIn'
+import UserProfile from '../../Page/auth/UserProfile'
+import Write from '../../Page/Post/Write'
 
 const App = () => {
   const isLang = (str: string): str is Lang => {
@@ -38,7 +39,7 @@ const App = () => {
     setIsLoggedIn(localStorage.getItem('login') === 'true')
   }, [])
 
-  const { header, footer, auth, userProfile } = getLang(lang)
+  const { header, footer, auth, userProfile, write } = getLang(lang)
 
   return (
     <BrowserRouter>
@@ -74,6 +75,8 @@ const App = () => {
             component={() => <UserProfile lang={userProfile} />}
             path="/user/:id"
           />
+
+          <Route component={() => <Write lang={write} />} exact path="/write" />
 
           <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />
