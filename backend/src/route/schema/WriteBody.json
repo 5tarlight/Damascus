@@ -11,8 +11,14 @@
     "content": {
       "type": "string"
     },
+    "description": {
+      "type": "string"
+    },
     "published": {
       "type": "boolean"
+    },
+    "tag": {
+      "type": "string"
     }
   },
   "required": ["author", "title", "content"]

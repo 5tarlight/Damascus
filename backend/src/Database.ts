@@ -27,9 +27,11 @@ interface SearchType {
     id: number
     author: string
     title: string
+    description: string
     content: string
     published: SqlBoolean
     like: number
+    tag: string
   }
 }
 

@@ -42,7 +42,12 @@ export default class Server {
         if (process.env.NODE_ENV === 'development') {
           callback(null, true)
         } else {
-          const allowedHost = [/localhost/, /yeahx4.kro.kr/, /damascus.kro.kr/]
+          const allowedHost = [
+            /localhost/,
+            /yeahx4.kro.kr/,
+            /damascus.kro.kr/,
+            /damascus.kro.kr:3000/,
+          ]
           const allowed = allowedHost.some(host => host.test(origin))
           if (allowed) {
             callback(null, true)

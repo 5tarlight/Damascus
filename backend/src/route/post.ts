@@ -6,7 +6,9 @@ interface Write {
   author: string
   title: string
   content: string
-  published: boolean
+  description?: string
+  published?: boolean
+  tag: string
 }
 
 const postRoute: FastifyPluginCallback = async (server, opts, next) => {
@@ -26,11 +28,18 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
       },
     },
     async (request, reply) => {
-      const { author, title, content, published = false } = request.body
+      const {
+        author,
+        title,
+        content,
+        description,
+        published = false,
+        tag,
+      } = request.body
       const isAuthorValid = (await user.find({ id: author })).length > 0
 
       if (!isAuthorValid) {
-        reply.code(400).send({
+        reply.code(401).send({
           message: 'Author is not valid',
         })
         return
@@ -46,11 +55,13 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
       }
 
       post.add(
-        'author, title, content, published',
+        'author, title, content, description, published, tag',
         author,
         title,
         content,
-        published ? 1 : 0
+        description,
+        published ? 1 : 0,
+        tag
       )
 
       const { id } = await post.findOne({ title })

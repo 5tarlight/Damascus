@@ -51,7 +51,7 @@ const en: Language = {
     tagPlace: 'Tags (press Enter to add)',
     descriptionPlace: 'Description (up to 300 characters)',
     contentPlace: 'Content',
-    submit: 'Submit',
+    submit: 'Publish',
     tempSave: 'Temporary Save',
   },
 }

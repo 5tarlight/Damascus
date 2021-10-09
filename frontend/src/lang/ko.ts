@@ -50,7 +50,7 @@ const ko: Language = {
     tagPlace: '태그 (Enter로 추가하기)',
     descriptionPlace: '설명 (최대 300자)',
     contentPlace: '내용',
-    submit: '저장',
+    submit: '게시하기',
     tempSave: '임시저장',
   },
 }
