@@ -177,6 +177,7 @@ const UserProfileContainer: FC<Props> = ({
               placeholder={usernamePlace}
               value={profile?.username || ''}
               handleChange={handleUsernameChange}
+              admin={profile?.admin}
             />
             <ProfileText
               editable={isOwner}
