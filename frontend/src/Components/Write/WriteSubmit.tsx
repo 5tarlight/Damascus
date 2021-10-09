@@ -2,7 +2,10 @@ import { FC } from 'react'
 import styled from 'styled-components'
 
 interface Props {
+  willPublish: boolean
   submit: string
+  tempSave: string
+  handleSubmit: (publish: boolean) => void
 }
 
 const Button = styled.button`
@@ -20,8 +23,16 @@ const Button = styled.button`
   font-size: 1.2rem;
 `
 
-const WriteSubmit: FC<Props> = ({ submit }) => {
-  return <Button>{submit}</Button>
+const WriteSubmit: FC<Props> = ({
+  willPublish,
+  submit,
+  tempSave,
+  handleSubmit,
+}) => {
+  if (willPublish)
+    return <Button onClick={() => handleSubmit(willPublish)}>{submit}</Button>
+  else
+    return <Button onClick={() => handleSubmit(willPublish)}>{tempSave}</Button>
 }
 
 export default WriteSubmit

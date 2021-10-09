@@ -52,6 +52,7 @@ const en: Language = {
     descriptionPlace: 'Description (up to 300 characters)',
     contentPlace: 'Content',
     submit: 'Submit',
+    tempSave: 'Temporary Save',
   },
 }
 

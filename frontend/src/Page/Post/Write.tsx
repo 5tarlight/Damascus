@@ -20,7 +20,14 @@ const Container = styled.div`
 `
 
 const Write: FC<Props> = ({
-  lang: { titlePlace, tagPlace, descriptionPlace, contentPlace, submit },
+  lang: {
+    titlePlace,
+    tagPlace,
+    descriptionPlace,
+    contentPlace,
+    submit,
+    tempSave,
+  },
 }) => {
   const [title, setTitle] = useState('')
   const [tag, setTag] = useState([] as string[])
@@ -29,6 +36,8 @@ const Write: FC<Props> = ({
   const [description, setDescription] = useState('')
 
   useTitle(`Damascus - ${title ? title : 'Write'}`)
+
+  const handleSubmit = (publish: boolean) => {}
 
   return (
     <Container>
@@ -50,7 +59,18 @@ const Write: FC<Props> = ({
         value={description}
         setValue={setDescription}
       />
-      <WriteSubmit submit={submit} />
+      <WriteSubmit
+        submit={submit}
+        tempSave={tempSave}
+        willPublish={true}
+        handleSubmit={handleSubmit}
+      />
+      <WriteSubmit
+        submit={submit}
+        tempSave={tempSave}
+        willPublish={false}
+        handleSubmit={handleSubmit}
+      />
     </Container>
   )
 }

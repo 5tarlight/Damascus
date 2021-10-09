@@ -56,6 +56,7 @@ export interface WriteLang {
   descriptionPlace: string
   contentPlace: string
   submit: string
+  tempSave: string
 }
 
 export interface Language {

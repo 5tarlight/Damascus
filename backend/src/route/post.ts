@@ -36,6 +36,15 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
         return
       }
 
+      const dupPost = (await post.find({ title, author })).length > 0
+
+      if (dupPost) {
+        reply.code(400).send({
+          message: 'Post already exists',
+        })
+        return
+      }
+
       post.add(
         'author, title, content, published',
         author,

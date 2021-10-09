@@ -51,6 +51,7 @@ const ko: Language = {
     descriptionPlace: '설명 (최대 300자)',
     contentPlace: '내용',
     submit: '저장',
+    tempSave: '임시저장',
   },
 }
 
