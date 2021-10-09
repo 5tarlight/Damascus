@@ -25,9 +25,8 @@ const WriteEditor: FC<Props> = ({ value, setValue, contentPlace }) => {
     <Editor
       onChange={({ target: { value } }) => setValue(value)}
       placeholder={contentPlace}
-    >
-      {value}
-    </Editor>
+      value={value}
+    />
   )
 }
 

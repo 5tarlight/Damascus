@@ -27,7 +27,9 @@ CREATE TABLE `posts` (
   `author` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` longtext DEFAULT NULL,
-  `published` bit(1) NOT NULL DEFAULT b'0',
+  `published` tinyint(4) NOT NULL DEFAULT 0,
   `like` int(10) unsigned NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
