@@ -1,6 +1,7 @@
 import { FastifyPluginCallback } from 'fastify'
 import { post, user } from '../Database'
 import WriteBody from './schema/WriteBody.json'
+import GetPostBOdy from './schema/GetPostBody.json'
 
 interface Write {
   author: string
@@ -9,6 +10,10 @@ interface Write {
   description?: string
   published?: boolean
   tag: string
+}
+
+interface GetPost {
+  id: number
 }
 
 const postRoute: FastifyPluginCallback = async (server, opts, next) => {
@@ -68,6 +73,64 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
       reply.code(200).send({
         message: 'Post created',
         id,
+      })
+    }
+  )
+
+  // POST api/auth/postid
+  server.post<{ Body: GetPost }>(
+    '/postid',
+    {
+      schema: {
+        body: GetPostBOdy,
+      },
+    },
+    async (request, reply) => {
+      const { id } = request.body
+      const foundPost = await post.findOne({ id })
+
+      if (!foundPost) {
+        reply.code(400).send({
+          message: 'Post not found',
+        })
+        return
+      }
+
+      const {
+        id: postId,
+        author,
+        title,
+        content,
+        tag,
+        description,
+        like,
+        published,
+        created_at,
+        updated_at,
+      } = foundPost
+      const authorUser = await user.findOne({ id: author })
+      let username = ''
+
+      if (!authorUser) username = 'unknwon'
+      else username = authorUser.username
+
+      reply.code(200).send({
+        message: 'post found',
+        id: postId,
+        author,
+        username,
+        title,
+        tag,
+        content,
+        description,
+        like,
+        published,
+        created_at: `${created_at.getFullYear()}.${
+          created_at.getMonth() + 1
+        }.${created_at.getDate()}`,
+        updated_at: `${updated_at.getFullYear()}.${
+          updated_at.getMonth() + 1
+        }.${updated_at.getDate()}`,
       })
     }
   )

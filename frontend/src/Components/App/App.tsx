@@ -14,6 +14,7 @@ import SignUp from '../../Page/auth/SignUp'
 import SignIn from '../../Page/auth/SignIn'
 import UserProfile from '../../Page/auth/UserProfile'
 import Write from '../../Page/Post/Write'
+import Post from '../../Page/Post/Post'
 
 const App = () => {
   const isLang = (str: string): str is Lang => {
@@ -77,6 +78,7 @@ const App = () => {
           />
 
           <Route component={() => <Write lang={write} />} exact path="/write" />
+          <Route component={() => <Post />} exact path="/post/:postid" />
 
           <Route exact path="/404" component={() => <NotFound />} />
           <Redirect from="*" to="/404" />
