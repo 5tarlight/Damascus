@@ -32,6 +32,8 @@ interface SearchType {
     published: SqlBoolean
     like: number
     tag: string
+    created_at: Date
+    updated_at: Date
   }
 }
 

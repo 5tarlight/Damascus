@@ -77,7 +77,7 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
     }
   )
 
-  // POST /postid
+  // POST api/auth/postid
   server.post<{ Body: GetPost }>(
     '/postid',
     {
@@ -105,6 +105,8 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
         description,
         like,
         published,
+        created_at,
+        updated_at,
       } = foundPost
       const authorUser = await user.findOne({ id: author })
       let username = ''
@@ -123,6 +125,12 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
         description,
         like,
         published,
+        created_at: `${created_at.getFullYear()}.${
+          created_at.getMonth() + 1
+        }.${created_at.getDate()}`,
+        updated_at: `${updated_at.getFullYear()}.${
+          updated_at.getMonth() + 1
+        }.${updated_at.getDate()}`,
       })
     }
   )
