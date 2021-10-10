@@ -1,0 +1,10 @@
+{
+  "title": "get post with id",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    }
+  },
+  "required": ["id"]
+}
