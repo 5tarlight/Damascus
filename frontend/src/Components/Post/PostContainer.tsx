@@ -1,7 +1,11 @@
 import axios from 'axios'
 import { FC, useState, useEffect } from 'react'
+import { useHistory } from 'react-router'
+import { useTitle } from 'react-use'
 import styled from 'styled-components'
 import { server } from '../../config'
+import { tagSep } from '../../util'
+import Tag from '../Write/Tag'
 
 interface Props {
   postid: string
@@ -27,7 +31,34 @@ const Container = styled.div`
   margin: 3rem auto 3rem auto;
 `
 
+const Title = styled.h1`
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+`
+
+const Description = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #a5a5a5;
+  font-style: italic;
+`
+
+const Author = styled.a`
+  margin-top: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`
+
+const Article = styled.div`
+  margin-top: 1rem;
+`
+
 const PostContainer: FC<Props> = ({ postid }) => {
+  const history = useHistory()
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(false)
   const [post, setPost] = useState<PostRes>({
@@ -44,6 +75,8 @@ const PostContainer: FC<Props> = ({ postid }) => {
     created_at: '',
     updated_at: '',
   })
+
+  useTitle(`Damascus${post.title ? ` - ${post.title}` : ''}`)
 
   useEffect(() => {
     let mounted = true
@@ -80,7 +113,27 @@ const PostContainer: FC<Props> = ({ postid }) => {
     <div>loading...</div>
   ) : (
     <Container>
-      {post.title} {post.username}
+      <Title>{post.title}</Title>
+      <Description>{post.description}</Description>
+      <div>
+        {post.tag.split(tagSep).map((v, i) => (
+          <Tag
+            value={v}
+            key={i}
+            handleClick={() => history.push(`/tag/${v}`)}
+          />
+        ))}
+      </div>
+      <Article>{post.content}</Article>
+      <Author
+        onClick={e => {
+          e.preventDefault()
+          e.stopPropagation()
+          history.push(`/user/${post.author}`)
+        }}
+      >
+        {post.username} ({post.updated_at})
+      </Author>
     </Container>
   )
 }
