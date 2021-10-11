@@ -65,7 +65,7 @@ const Write: FC<Props> = ({
       alert('Please logout and login again')
     }
 
-    history.push(`/${localStorage.getItem('id')}/${res.data.id}`)
+    history.push(`/post/${res.data.id}`)
   }
 
   return (

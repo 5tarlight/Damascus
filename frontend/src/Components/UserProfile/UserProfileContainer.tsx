@@ -8,6 +8,7 @@ import ProfileText from './ProfileText'
 import UserProfileImg from './UserProfileImg'
 import { UpdateResult } from '../Profile/ProfileSec/ProfileDesc/ProfileDesc'
 import { useTitle } from 'react-use'
+import UserPost from './UserPost'
 
 interface Props {
   id: string
@@ -82,32 +83,39 @@ const UserProfileContainer: FC<Props> = ({
   useTitle(`Damascus - ${profile?.username}'s Profile'`)
 
   useEffect(() => {
+    let mounted = true
     axios
       .get<ProfileResponse[]>(`http://${server}/api/auth/getuserbyid?id=${id}`)
       .then(res => {
-        if (res.status !== 200 || res.data.length < 1) {
-          setFailed(true)
-          setLoaded(true)
-        } else {
-          const { id, email, username, admin, profile, bio, email_verify } =
-            res.data[0]
-          setProfile({
-            id,
-            email,
-            username,
-            admin: parseBit(admin) === 'true',
-            profile,
-            bio,
-            email_verify: parseBit(email_verify) === 'true',
-          })
-          setLoaded(true)
-          setFailed(false)
+        if (mounted) {
+          if (res.status !== 200 || res.data.length < 1) {
+            setFailed(true)
+            setLoaded(true)
+          } else {
+            const { id, email, username, admin, profile, bio, email_verify } =
+              res.data[0]
+            setProfile({
+              id,
+              email,
+              username,
+              admin: parseBit(admin) === 'true',
+              profile,
+              bio,
+              email_verify: parseBit(email_verify) === 'true',
+            })
+            setLoaded(true)
+            setFailed(false)
+          }
         }
       })
       .catch(err => {
         setFailed(true)
         setLoaded(true)
       })
+
+    return () => {
+      mounted = false
+    }
   }, [id])
 
   const getBody = (type: string, value: string) => {
@@ -207,6 +215,7 @@ const UserProfileContainer: FC<Props> = ({
           </TextField>
         </>
       )}
+      <UserPost author={id} />
     </ProfileContainer>
   )
 }
