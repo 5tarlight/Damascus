@@ -2,6 +2,7 @@ import { FastifyPluginCallback } from 'fastify'
 import { post, user } from '../Database'
 import WriteBody from './schema/WriteBody.json'
 import GetPostBOdy from './schema/GetPostBody.json'
+import GetUserPostQueryString from './schema/GetUserPost.json'
 
 interface Write {
   author: string
@@ -14,6 +15,10 @@ interface Write {
 
 interface GetPost {
   id: number
+}
+
+interface GetUserPost {
+  author: string
 }
 
 const postRoute: FastifyPluginCallback = async (server, opts, next) => {
@@ -131,6 +136,32 @@ const postRoute: FastifyPluginCallback = async (server, opts, next) => {
         updated_at: `${updated_at.getFullYear()}.${
           updated_at.getMonth() + 1
         }.${updated_at.getDate()}`,
+      })
+    }
+  )
+
+  // GET /api/post/user
+  server.get<{ Querystring: GetUserPost }>(
+    '/user',
+    {
+      schema: {
+        querystring: GetUserPostQueryString,
+      },
+    },
+    async (request, reply) => {
+      const {
+        query: { author },
+      } = request
+
+      const posts = await post.find({ author })
+      reply.code(200).send({
+        message: 'posts found',
+        posts: posts.map(p => ({
+          id: p.id,
+          title: p.title,
+          description: p.description,
+          tag: p.tag,
+        })),
       })
     }
   )

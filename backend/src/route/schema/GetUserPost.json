@@ -1,10 +1,10 @@
 {
-  "title": "Get user by id querystring",
+  "title": "Get author's posts",
   "type": "object",
   "properties": {
-    "id": {
+    "author": {
       "type": "string"
     }
   },
-  "required": ["id"]
+  "required": ["author"]
 }
