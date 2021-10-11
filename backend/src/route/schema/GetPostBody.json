@@ -1,9 +1,9 @@
 {
-  "title": "Get user by id querystring",
+  "title": "get post with id",
   "type": "object",
   "properties": {
     "id": {
-      "type": "string"
+      "type": "number"
     }
   },
   "required": ["id"]

@@ -1,11 +1,13 @@
 import { FC, useEffect, memo, SetStateAction, Dispatch } from 'react'
 import { useHistory } from 'react-router'
+import { useTitle } from 'react-use'
 
 interface Props {
   setLogin: Dispatch<SetStateAction<boolean>>
 }
 
 const Logout: FC<Props> = ({ setLogin }) => {
+  useTitle('Damascus - Logout')
   const history = useHistory()
 
   useEffect(() => {

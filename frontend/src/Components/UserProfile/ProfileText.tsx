@@ -15,13 +15,14 @@ interface Props {
   placeholder?: string
   lang: UserLang
   email_verify?: boolean
-
+  admin?: boolean
   handleChange(value: string): any
 }
 
 interface TextProps {
   edit: boolean
   type: TxtType
+  admin?: boolean
 }
 
 interface InputProps {
@@ -47,6 +48,8 @@ const getSize = (type: string) => {
 const Text = styled.div<TextProps>`
   width: fit-content;
   font-size: ${({ type }) => getSize(type)};
+
+  color: ${({ admin }) => (admin ? '#000b6e' : 'inherit')};
 
   color: ${({ type }) => {
     switch (type) {
@@ -83,14 +86,15 @@ const CancelBtn = styled.button<EditProps>`
 `
 
 const ProfileText: FC<Props> = ({
-                                  editable,
-                                  type,
-                                  value,
-                                  placeholder,
-                                  handleChange,
-                                  email_verify,
-                                  lang: { cancel, submit },
-                                }) => {
+  editable,
+  type,
+  value,
+  placeholder,
+  handleChange,
+  email_verify,
+  lang: { cancel, submit },
+  admin,
+}) => {
   const [edit, setEdit] = useState(false)
   const origin = value
   const [edited, setEdited] = useState(origin)
@@ -104,7 +108,7 @@ const ProfileText: FC<Props> = ({
         id: localStorage.getItem('id'),
         update: 'email_verify',
         value: 1,
-      },
+      }
     )
 
     applyLocalStorage(users[0])
@@ -113,7 +117,7 @@ const ProfileText: FC<Props> = ({
 
   if (!editable) {
     return (
-      <Text edit={editable} type={type}>
+      <Text edit={editable} type={type} admin={admin}>
         {value}
       </Text>
     )
@@ -127,6 +131,7 @@ const ProfileText: FC<Props> = ({
           setEdit(true)
         }}
         type={type}
+        admin={admin}
       >
         {type === 'email' ? (
           email_verify ? (
@@ -161,12 +166,17 @@ const ProfileText: FC<Props> = ({
           children={cancel}
           kind={type}
         />
-        <SubmitBtn kind={type} onClick={e => {
-          e.preventDefault()
-          e.stopPropagation()
+        <SubmitBtn
+          kind={type}
+          onClick={e => {
+            e.preventDefault()
+            e.stopPropagation()
 
-          handleChange(edited)
-        }}>{submit}</SubmitBtn>
+            handleChange(edited)
+          }}
+        >
+          {submit}
+        </SubmitBtn>
       </div>
     )
   }

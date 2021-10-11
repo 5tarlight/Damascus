@@ -9,8 +9,10 @@ class Error404 extends Component<{}, {}> {
 
   constructor(props: {}) {
     super(props)
-    // this.beforeColor = document.body.style.backgroundColor
     this.beforeColor = 'white'
+  }
+
+  componentDidMount() {
     document.body.style.backgroundColor = 'black'
   }
 

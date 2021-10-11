@@ -1,6 +1,6 @@
 import { FC, memo, useState } from 'react'
 import { useParams } from 'react-router'
-import ProfileTable from '../Components/Profile/ProfileTable/ProfileTable'
+import ProfileTable from '../../Components/Profile/ProfileTable/ProfileTable'
 
 interface ProfileParam {
   id: string
