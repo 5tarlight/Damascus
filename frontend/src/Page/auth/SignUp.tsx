@@ -46,6 +46,7 @@ const SignUp: FC<Props> = ({
     notValidPassword,
     notValidUsername,
     confirmPasswordFail,
+    internalServerError,
   },
 }) => {
   useTitle('Damascus - Sign Up')
@@ -53,6 +54,7 @@ const SignUp: FC<Props> = ({
   const [pw, setPw] = useState('')
   const [pwCon, setPwCon] = useState('')
   const [username, SetUsername] = useState('')
+  const [errMsg, setErrMsg] = useState('')
   const history = useHistory()
 
   const emailRef = createRef<HTMLDivElement>()
@@ -114,8 +116,9 @@ const SignUp: FC<Props> = ({
         `http://${server}/api/auth/signup`,
         data
       )
+      const code = result.status
 
-      if (result.data.suc) {
+      if (code === 200 || code === 201) {
         // Sign up success
         const user: User = {
           id: result.data.id,
@@ -133,12 +136,16 @@ const SignUp: FC<Props> = ({
         applyLocalStorage(user)
         setLogin(true)
         history.push('/')
-      } else {
+      } else if (code === 400) {
         // already exists
+        setErrMsg(emailAlreadyTaken)
         resultRef.current?.classList.add('show')
+      } else {
+        throw Error()
       }
     } catch (err) {
       console.error(err)
+      setErrMsg(internalServerError)
       resultRef.current?.classList.add('show')
     }
   }
@@ -154,7 +161,7 @@ const SignUp: FC<Props> = ({
         handleSubmit={handleClick}
       />
       <AuthMessage value={notValidEmail} reff={emailRef} />
-      <AuthMessage value={emailAlreadyTaken} reff={resultRef} />
+      <AuthMessage value={errMsg} reff={resultRef} />
       <AuthInput
         value={pw}
         handleChnage={handleChnage(setPw)}

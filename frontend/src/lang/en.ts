@@ -35,6 +35,8 @@ const en: Language = {
     notValidPassword:
       'Password must be longer than 8 and include special characters.',
     notValidUsername: 'Invalid username',
+    internalServerError:
+      'Internal Server Error. Try later or please contact moderator',
   },
   userProfile: {
     loading: 'Loading...',
