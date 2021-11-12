@@ -1163,10 +1163,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@7.15.4", "@babel/runtime@^7.12.13":
-  version "7.15.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
-  integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
+"@babel/runtime@7.16.3":
+  version "7.16.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
+  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1181,6 +1181,13 @@
   version "7.12.18"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.18.tgz#af137bd7e7d9705a412b3caaf991fe6aaa97831b"
   integrity sha512-BogPQ7ciE6SYAUPtlm9tWbgI9+2AgqSam6QivMgXgAT+fKbgppaj4ZX15MHeLC1PVF5sNk70huBu20XxWOs8Cg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.12.13":
+  version "7.15.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+  integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1493,7 +1500,14 @@
     "@codemirror/view" "^0.19.0"
     crelt "^1.0.5"
 
-"@codemirror/state@0.19.2", "@codemirror/state@^0.19.0", "@codemirror/state@^0.19.2":
+"@codemirror/state@0.19.5", "@codemirror/state@^0.19.3":
+  version "0.19.5"
+  resolved "https://registry.yarnpkg.com/@codemirror/state/-/state-0.19.5.tgz#af56e3af50224d748a992e56d1e31a52287594a5"
+  integrity sha512-a3bJnkFuh4Z36nuOzAYobWViQ9eq5ux2wOb/46jUl+0Sj2BGrdz+pY1L+y2NUZhwPyWGcIrBtranr5P0rEEq8A==
+  dependencies:
+    "@codemirror/text" "^0.19.0"
+
+"@codemirror/state@^0.19.0", "@codemirror/state@^0.19.2":
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/@codemirror/state/-/state-0.19.2.tgz#81de81f89e87b9362b8bc6d51135637dddd4d33d"
   integrity sha512-dDqCrtkb0c/LYUlvQBLyLfkISEskbZnhvBbcVOF4j2AusJ1ptJ3EGMxBL9G16GP1TOdC1T613gA1J1qc3pbfGQ==
@@ -1505,10 +1519,10 @@
   resolved "https://registry.yarnpkg.com/@codemirror/text/-/text-0.19.4.tgz#522cbe93becdf7637ca7148b67f628b3d8b8fdf5"
   integrity sha512-Msd1ImS+Mmref28+oyoOrBwqjH4lbCVO/5ol2jRaCEYH7+KaMocxFADZomPLnMPgDW6Gc4mu/K2lj8IjAOFdTA==
 
-"@codemirror/theme-one-dark@0.19.0":
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/@codemirror/theme-one-dark/-/theme-one-dark-0.19.0.tgz#e039d7ee5de7ea6251f6cd53d1c12281a9b8e210"
-  integrity sha512-Xlk68ARreanFveE+KvZJY4HxecNr+VKDOR61O8l3kzlQ0qvxNXA0KAp1xu4p32pA9jzJqJi5haIgdfWSZogXZg==
+"@codemirror/theme-one-dark@0.19.1":
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/@codemirror/theme-one-dark/-/theme-one-dark-0.19.1.tgz#648b9cbe37186a2b7bd2a83fb483dc7aa18ce218"
+  integrity sha512-8gc4c2k2o/EhyHoWkghCxp5vyDT96JaFGtRy35PHwIom0LZdx7aU4AbDUnITvwiFB+0+i54VO+WQjBqgTyJvqg==
   dependencies:
     "@codemirror/highlight" "^0.19.0"
     "@codemirror/state" "^0.19.0"
@@ -1522,7 +1536,18 @@
     "@codemirror/state" "^0.19.0"
     "@codemirror/view" "^0.19.0"
 
-"@codemirror/view@0.19.9", "@codemirror/view@^0.19.0":
+"@codemirror/view@0.19.15":
+  version "0.19.15"
+  resolved "https://registry.yarnpkg.com/@codemirror/view/-/view-0.19.15.tgz#9580b8b69d957d073667dc3f9dd5989028cbbced"
+  integrity sha512-aLWjINi9ReVgq2lwHpf8EzzbTO8KTufcYF7o74SL/Z1yPPayxEEGl/4NyIX6cbAxJaQ+hyN60kJ+XAtz3Ag0Kw==
+  dependencies:
+    "@codemirror/rangeset" "^0.19.0"
+    "@codemirror/state" "^0.19.3"
+    "@codemirror/text" "^0.19.0"
+    style-mod "^4.0.0"
+    w3c-keyname "^2.2.4"
+
+"@codemirror/view@^0.19.0":
   version "0.19.9"
   resolved "https://registry.yarnpkg.com/@codemirror/view/-/view-0.19.9.tgz#cbdcbc398818e7c9603c81e4b2a2868ec0a1f954"
   integrity sha512-d2Z2rFl53yTwvhsRYtS97xT7ce1f/Q/NNE2uDg/Be1MVjP2v1OlwUTyTosBmxiCt4oUvMklfa+EdPGOATVJhtg==
@@ -2656,16 +2681,16 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
-"@uiw/react-codemirror@^4.0.7":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@uiw/react-codemirror/-/react-codemirror-4.0.7.tgz#2656c29f86d4a3fb8da610f87e27a5830bbeb73f"
-  integrity sha512-8grMi6DSGeOeTvEhYUIIv7olqTTlvaGzSEKCbHcRlkyYey6o2fkKNrRDLPIzD84gQyiN+CrUeWU6NrNSlIaITg==
+"@uiw/react-codemirror@^4.1.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@uiw/react-codemirror/-/react-codemirror-4.2.3.tgz#ead4c6df8a5c3a7a44fcd51743597e3d3fa0c040"
+  integrity sha512-LhnQXPmRsazC6nuP4fpqJcYpa/AAr1TJrvhRK30PPHv2NCNZ4xNlZP58eRJgamy/Pdm8HFiQeKLBf2qQzqjOMw==
   dependencies:
-    "@babel/runtime" "7.15.4"
+    "@babel/runtime" "7.16.3"
     "@codemirror/basic-setup" "0.19.0"
-    "@codemirror/state" "0.19.2"
-    "@codemirror/theme-one-dark" "0.19.0"
-    "@codemirror/view" "0.19.9"
+    "@codemirror/state" "0.19.5"
+    "@codemirror/theme-one-dark" "0.19.1"
+    "@codemirror/view" "0.19.15"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
