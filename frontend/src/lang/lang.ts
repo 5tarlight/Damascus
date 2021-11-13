@@ -35,6 +35,7 @@ export interface AuthLang {
   notValidPassword: string
   loginFailed: string
   emailAlreadyTaken: string
+  internalServerError: string
   confirmPasswordFail: string
   notValidUsername: string
 }
