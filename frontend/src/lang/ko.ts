@@ -34,6 +34,7 @@ const ko: Language = {
     notValidEmail: '유효하지 않은 이메일입니다.',
     notValidPassword: '8자리 이상, 특수문자를 포함해야 합니다.',
     notValidUsername: '사용할 수 없는 이름입니다.',
+    internalServerError: '내부 오류: 잠시후 재시도하거나 관리자에게 '
   },
   userProfile: {
     loading: '불러오는 중...',
