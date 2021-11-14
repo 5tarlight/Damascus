@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 const Logo = styled.h1`
-  margin-left: 1rem;
   cursor: pointer;
   user-select: none;
+  width: 200px;
+  display: inline-block;
 `
 
 const HeaderLogo: NextPage = () => {
