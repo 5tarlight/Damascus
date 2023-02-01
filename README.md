@@ -59,10 +59,4 @@ yarn start
 ```
 
 ### Author
-
-- YEAHx4 (YEAHx4#5998 on discord)
-
-### Contact
-
-<developerstarlight@gmail.com>
-I recommend discord. Email might be unread or slowly responded
+YEAHx4 (5tarlight)
